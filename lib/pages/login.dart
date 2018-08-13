@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../services/authentication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../model/user.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -70,7 +71,9 @@ class _LoginPageState extends State<LoginPage> {
                       _usernameController.clear();
                       _passwordController.clear();
 
-                      UserController.fetchUser();
+                      UserController.fetchUsers().then((List<User> user){
+                        print("<<<<<"+user[0].authorities[1]);
+                      });
                       Navigator.pop(context);
                     });
 

@@ -63,38 +63,49 @@ class UserController {
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
-      print('>>>>>>>>???>>>>> '+response.body);
-      //var token;
-       token = json.decode(response.body)["id_token"];
-      //SharedPreferences prefs = await base.prefs;
-      //_pref().setString("token", token);
-     // base.savePrefs("token", token);
-      //await base.prefs.setString("token", token);
-      print('>>>>>>>>#######>>>>> '+token);
+     token = json.decode(response.body)["id_token"];
+
       _pref();
       getPref();
 
       return true;
     } else {
-      print('>>>>>>>>??>>>?>>>>> '+response.toString());
       // If that call was not successful, throw an error.
       throw Exception('Failed to load post');
     }
   }
 
-  static Future<User> fetchUser() async {
+  static Future<User> fetchUser(String user) async {
 
-    final response = await http.get(base.API_USER+"admin",
+    final response = await http.get(base.API_USER+user,
         headers: {HttpHeaders.contentTypeHeader: "application/json","Authorization" : "Bearer "+token});
-
-    //final response = await http.ge.get('http://localhost:8080/api/users');
-    print('>>>>///>>>>'+response.body);
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON
       print('>>>>>>>>'+response.body);
 
       return User.fromJson(json.decode(response.body));
+    } else {
+      // If that call was not successful, throw an error.
+      throw Exception('Failed to load post');
+    }
+  }
+
+  static Future<List<User>> fetchUsers() async {
+
+    final response = await http.get(base.API_USERS,
+        headers: {HttpHeaders.contentTypeHeader: "application/json","Authorization" : "Bearer "+token});
+
+    if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      print('>>>>>>>>'+response.body);
+
+      final parse = json.decode(response.body) as List;
+
+      List<User> users = parse.map((v) => User.fromJson(v)).toList();
+      print('>>>>>>>>'+users[0].email);
+
+      return users;
     } else {
       // If that call was not successful, throw an error.
       throw Exception('Failed to load post');
