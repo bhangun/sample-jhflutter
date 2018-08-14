@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
-import '../services/helper.dart' as helper;
 
-
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class UserPage extends StatefulWidget {
+  UserPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HomePageState createState() => new _HomePageState();
+  _UserPageState createState() => new _UserPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  _HomePageState(){
-    helper.isRole(helper.ADMIN).then((v)=> isAdmin);
-  }
-
+class _UserPageState extends State<UserPage> {
   int _counter = 0;
 
-  
-  var isAdmin = false;
   void _incrementCounter() {
-
     setState(() {
       _counter++;
     });
@@ -29,17 +20,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return new Scaffold(
       appBar: new AppBar(
 
-        title: new Text("Bismillah"),
+        title: new Text(widget.title),
       ),
       body: new Center(
-
         child: new Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
@@ -70,9 +57,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   OutlineButton(
                       color: Colors.amber,
-                      child:  Text("Button " + isAdmin.toString()),textColor: Colors.blue,
+                      child: new Text("Button"),textColor: Colors.blue,
                       onPressed: ()=> print('tombol'),
-                      shape:  RoundedRectangleBorder(
+                      shape: new RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0)
                       )
                   ),
@@ -107,11 +94,11 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      /*floatingActionButton: new FloatingActionButton(
+      floatingActionButton: new FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'Add',
         child: new Icon(Icons.add),
-      ),*/ // This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

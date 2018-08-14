@@ -40,9 +40,9 @@ class User {
   final String langKey;
   final List<dynamic> authorities;
   final String createdBy;
-  final String createdDate;
+  final DateTime createdDate;
   final String lastModifiedBy;
-  final String lastModifiedDate;
+  final DateTime lastModifiedDate;
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -56,9 +56,25 @@ class User {
         langKey: json['langKey'],
         authorities: json['authorities'],
         createdBy: json['createdBy'],
-        createdDate: json['createdDate'],
+        createdDate: (json['createdDate'] != null)? DateTime.parse(json['createdDate']):null,
         lastModifiedBy: json['lastModifiedBy'],
-        lastModifiedDate: json['lastModifiedDate']
+        lastModifiedDate: (json['lastModifiedDate'] != null)? DateTime.parse(json['lastModifiedDate']):null
     );
   }
 }
+
+/*
+"id" : 3,
+  "login" : "admin",
+  "firstName" : "Administrator",
+  "lastName" : "Administrator",
+  "email" : "admin@localhost",
+  "imageUrl" : "",
+  "activated" : true,
+  "langKey" : "en",
+  "createdBy" : "system",
+  "createdDate" : "2018-07-02T07:46:23.273Z",
+  "lastModifiedBy" : "system",
+  "lastModifiedDate" : null,
+  "authorities" : [ "ROLE_USER", "ROLE_ADMIN" ]
+ */

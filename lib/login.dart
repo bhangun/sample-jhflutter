@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import '../services/authentication.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../model/user.dart';
+import 'services/authentication.dart' as auth;
+import 'services/helper.dart' as helper;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -56,27 +55,20 @@ class _LoginPageState extends State<LoginPage> {
                 FlatButton(
                   child: Text('CANCEL'),
                   onPressed: () {
-
                     _usernameController.clear();
                     _passwordController.clear();
                   },
                 ),
                 RaisedButton(
-                  child: Text('NEXT'),
+                  child: Text('Login'),
                   onPressed: () {
-                    //UserController.fetchUser();
-                    print(_usernameController.text +'--'+_passwordController.text);
-                    UserController.login(_usernameController.text, _passwordController.text, false).then((bool v){
-                      print("<<<<<<< $v");
+
+                    auth.login(_usernameController.text, _passwordController.text, false).then((bool v){
                       _usernameController.clear();
                       _passwordController.clear();
 
-                      UserController.fetchUsers().then((List<User> user){
-                        print("<<<<<"+user[0].authorities[1]);
-                      });
                       Navigator.pop(context);
                     });
-
                   },
                 ),
               ],

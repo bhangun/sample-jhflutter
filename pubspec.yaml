@@ -19,6 +19,8 @@ dependencies:
   http:
   event_bus: ^1.0.1
   shared_preferences:
+  charts_flutter: ^0.4.0
+  corsac_jwt: ^0.1.1
 
 dev_dependencies:
   flutter_test:
