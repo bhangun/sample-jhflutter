@@ -2,27 +2,26 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:jh_flutter_sample/account/user.dart';
+import 'package:jh_flutter_sample/administration/account/user.dart';
 import 'package:meta/meta.dart';
-import '../services/helper.dart' as helper;
+import '../../services/helper.dart' as helper;
 
-
-String API_ACCOUNT= 'account';
+String API_ACCOUNT = 'account';
 
 // POST saveAccount
-const API_ACCOUNT_SAVE= "account";
+const API_ACCOUNT_SAVE = "account";
 
 // POST changePassword
-const API_ACCOUNT_CHANGE_PASSWORD= "account/change-password";
+const API_ACCOUNT_CHANGE_PASSWORD = "account/change-password";
 
 //POST finishPasswordReset
-const API_ACCOUNT_RESET_FINISH= "account/reset-password/finish";
+const API_ACCOUNT_RESET_FINISH = "account/reset-password/finish";
 
 // POST requestPasswordReset
-const API_ACCOUNT_RESET_INIT= "account/reset-password/init";
+const API_ACCOUNT_RESET_INIT = "account/reset-password/init";
 
 // GET activateAccount
-const API_ACTIVATE= "activate";
+const API_ACTIVATE = "activate";
 
 // POST registerAccount
 const API_REGISTER = "register";
@@ -37,7 +36,6 @@ const API_USERS_AUTHENTICATE = "authenticate";
 // GET getAuthorities
 const API_USERS_AUTHORITIES = "users/authorities";
 
-
 // GET getAllUsers
 // POST createUser
 // PUT updateUser
@@ -46,17 +44,17 @@ const API_USERS = "users";
 
 // GET getUser
 // DELETE deleteUser
-const API_USER= "users/";
+const API_USER = "users/";
 
+Future<User> user(String user) async {
+  return User.fromJson(json.decode(await helper.restGet(API_USER + user)));
+}
 
-  Future<User> getUser(String user) async {
-    return User.fromJson(json.decode(await helper.restGet(API_USER + user)));
-  }
-
-
-  Future<List<User>> getUsers() async {
-    return (json.decode(await helper.restGet(API_USERS)) as List).map((v) => User.fromJson(v)).toList();
-  }
+Future<List<User>> users() async {
+  return (json.decode(await helper.restGet(API_USERS)) as List)
+      .map((v) => User.fromJson(v))
+      .toList();
+}
 
 /*
   createUsers(List<User> User){
@@ -74,4 +72,3 @@ const API_USER= "users/";
 
 
 */
-

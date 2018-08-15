@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'services/authentication.dart' as auth;
+import 'package:jh_flutter_sample/administration/authentication.dart' as auth;
 import 'services/helper.dart' as helper;
 
 class LoginPage extends StatefulWidget {
@@ -11,8 +11,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  String token;
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                     auth.login(_usernameController.text, _passwordController.text, false).then((bool v){
                       _usernameController.clear();
                       _passwordController.clear();
-
+print(">>>>>");
                       Navigator.pop(context);
                     });
                   },
