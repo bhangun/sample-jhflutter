@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import '../services/connection.dart';
 import '../services/helper.dart';
-import '../services/constants.dart';
+import '../services/config.dart';
 
 Future<bool> login(String username, String password, bool rememberMe) async {
   var body = jsonEncode(

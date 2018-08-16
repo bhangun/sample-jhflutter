@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_sample/administration/authentication.dart' as auth;
-import 'services/helper.dart' as helper;
+import 'package:jh_flutter_sample/services/authentication.dart' as auth;
+import 'package:flutter_svg/flutter_svg.dart';
+import 'widgets/staggered.dart';
+import 'widgets/logo_anim.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +25,10 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                //Image.asset('assets/diamond.png'),
+                //SvgPicture.asset('assets/logo-jhipster.svg'),
                 SizedBox(height: 16.0),
-                Text('SYIRKAH'),
+                Text('Flutter'),
+                LogoApp()
               ],
             ),
             SizedBox(height: 120.0),
@@ -44,15 +48,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               obscureText: true,
             ),
-            Checkbox(
-                value: false,
-                onChanged: null
-            ),
+
             ButtonBar(
               children: <Widget>[
                 FlatButton(
                   child: Text('CANCEL'),
                   onPressed: () {
+                    print(DateTime.parse("2018-08-16T04:51:46.706Z"));
+                    print(DateTime.parse("2002-02-27T19:00:00Z").toIso8601String());
+                    print(DateTime.now().toLocal());
+                    print(DateTime.tryParse("2018-08-16T04:51:46.706Z").timeZoneName);
                     _usernameController.clear();
                     _passwordController.clear();
                   },
@@ -60,11 +65,12 @@ class _LoginPageState extends State<LoginPage> {
                 RaisedButton(
                   child: Text('Login'),
                   onPressed: () {
-
                     auth.login(_usernameController.text, _passwordController.text, false).then((bool v){
                       _usernameController.clear();
                       _passwordController.clear();
-print(">>>>>");
+
+
+
                       Navigator.pop(context);
                     });
                   },

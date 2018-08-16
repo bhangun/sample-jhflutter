@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 
 
 
-class User {
-  const User({
+class Entity {
+  const Entity({
     @required this.id,
    @required this.login,
    @required this.firstName,
@@ -44,8 +44,8 @@ class User {
   final String lastModifiedBy;
   final DateTime lastModifiedDate;
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory Entity.fromJson(Map<String, dynamic> json) {
+    return Entity(
         id: json['id'],
         login: json['login'],
         firstName: json['firstName'],
@@ -61,24 +61,6 @@ class User {
         lastModifiedDate: (json['lastModifiedDate'] != null)? DateTime.parse(json['lastModifiedDate']):null
     );
   }
-
-
-    Map<String, dynamic> toJson() =>
-    {
-      'id': id,
-      'login': login,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'imageUrl': imageUrl,
-      'activated': activated,
-      'langKey': langKey,
-      'authorities': authorities,
-      'createdBy': createdBy,
-      'createdDate' : createdDate.toIso8601String(),
-      'lastModifiedBy': lastModifiedBy,
-      'lastModifiedDate':lastModifiedDate.toIso8601String()
-    };
 }
 
 /*
@@ -94,5 +76,5 @@ class User {
   "createdDate" : "2018-07-02T07:46:23.273Z",
   "lastModifiedBy" : "system",
   "lastModifiedDate" : null,
-  "authorities" : [ "ROLE_USER", "ROLE_ADMIN" ]
+  "authorities" : [ "ROLE_Entity", "ROLE_ADMIN" ]
  */

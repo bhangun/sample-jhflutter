@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
 import 'login.dart';
+//import 'widgets/login_anim.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -29,11 +30,14 @@ class MyApp extends StatelessWidget {
     );
   }
 
+
   final _routes = <String, WidgetBuilder> {
-      "/welcome":(BuildContext context) => null,
-      "/signin": (BuildContext context) => null,//new SignIn(),
-      "/personal_data": (BuildContext context) => null,
-      "/activities": (BuildContext context) => null
+      "/home":(BuildContext context) => null,
+      "/register": (BuildContext context) => null,//new SignIn(),
+      "/users": (BuildContext context) => null,
+      "/dashboard": (BuildContext context) => null,
+      "/entities": (BuildContext context) => null,
+      "/entity": (BuildContext context) => null
   };
 
   Route<dynamic> _getRoute(RouteSettings settings) {

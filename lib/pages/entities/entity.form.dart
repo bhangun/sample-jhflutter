@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import '../services/helper.dart';
-import '../services/config.dart';
-import '../widgets/drawer.dart';
-import '../widgets/label_below_icon.dart';
+import '../../services/helper.dart';
+import '../../services/config.dart';
+import '../../widgets/drawer.dart';
+import '../../widgets/label_below_icon.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class Entity extends StatefulWidget {
+  Entity({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _EntityState createState() => _EntityState();
 }
 
-class _HomePageState extends State<HomePage> {
-  _HomePageState() {
+class _EntityState extends State<Entity> {
+  _EntityState() {
     isRole(ADMIN).then((v) => _isAdmin = v);
   }
 

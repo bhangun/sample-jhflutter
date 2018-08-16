@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:jh_flutter_sample/administration/account/user.dart';
-import 'package:meta/meta.dart';
-import '../../services/helper.dart' as helper;
+import '../../services/connection.dart';
 
 String API_ACCOUNT = 'account';
 
@@ -39,36 +36,35 @@ const API_USERS_AUTHORITIES = "users/authorities";
 // GET getAllUsers
 // POST createUser
 // PUT updateUser
-// DELETE deleteUser
 const API_USERS = "users";
 
 // GET getUser
 // DELETE deleteUser
 const API_USER = "users/";
 
+//
 Future<User> user(String user) async {
-  return User.fromJson(json.decode(await helper.restGet(API_USER + user)));
+  return User.fromJson(json.decode(await restGet(API_USER + user)));
 }
 
+//
 Future<List<User>> users() async {
-  return (json.decode(await helper.restGet(API_USERS)) as List)
+  return (json.decode(await restGet(API_USERS)) as List)
       .map((v) => User.fromJson(v))
       .toList();
 }
 
-/*
-  createUsers(List<User> User){
-    helper.restPost(helper.API+"authenticate", body);
+//
+createUser(User user) async {
+  return await restPost(API_USERS, user.toJson().toString());
+}
 
-  }
+//
+updateUsers(User user) async {
+  return await restPut(API_USERS, user.toJson().toString());
+}
 
-  updateUsers(users: User){
-  base.api.put(API_USERS,users)
-  }
-
-  deleteUser(login: String){
-  base.api.put(API_USER+"$login")
-  }
-
-
-*/
+//
+deleteUser(User user) async {
+  return await restDelete(API_USER + user.toJson().toString());
+}

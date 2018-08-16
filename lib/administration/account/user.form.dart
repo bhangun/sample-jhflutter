@@ -1,104 +1,96 @@
 import 'package:flutter/material.dart';
+import 'user.helper.dart';
+import 'user.dart';
 
-class UserPage extends StatefulWidget {
-  UserPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class UserFormPage extends StatefulWidget {
   @override
-  _UserPageState createState() => new _UserPageState();
+  _UserFormPageState createState() => _UserFormPageState();
 }
 
-class _UserPageState extends State<UserPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _UserFormPageState extends State<UserFormPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+        body: SafeArea(
+            child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                children: _listChild())),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _save,
+          tooltip: 'Add',
+          child: new Icon(Icons.add),
+        ));
+  }
 
-        title: new Text(widget.title),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.account_balance,
-                      color: Colors.red[500],
-                      size: 40.0,
-                    ),
-                    onPressed: ()=> print('bismillah'),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.motorcycle,
-                      color: Colors.red[200],
-                      size: 40.0,
-                    ),
-                    onPressed: ()=> print('bismillah'),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.access_alarm,
-                      color: Colors.red[200],
-                      size: 40.0,
-                    ),
-                    onPressed: ()=> print('bismillah'),
-                  ),
-                  OutlineButton(
-                      color: Colors.amber,
-                      child: new Text("Button"),textColor: Colors.blue,
-                      onPressed: ()=> print('tombol'),
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)
-                      )
-                  ),
-                  Container(
-                    /*decoration: new BoxDecoration(
-              borderRadius: new BorderRadius.circular(25.0),
-              border: new Border.all(
-                width: 5.0,
-                color: Colors.red,
-              )
-            ),*/
-                    margin: const EdgeInsets.all(0.0),
-                    color: const Color(0xFF00FF00),
-                    width: 48.0,
-                    height: 48.0,
-                  ),
-                ]
-            ),
-            new Container(
-              margin: const EdgeInsets.all(10.0),
-              color: const Color(0xFF00FF00),
-              width: 48.0,
-              height: 48.0,
-            ),
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+  var _activated=false;
+  final _username = TextEditingController();
+  final _password = TextEditingController();
+  final _firstname = TextEditingController();
+  final _lastname = TextEditingController();
+  final _email = TextEditingController();
+
+  _listChild() {
+    return <Widget>[
+      SizedBox(height: 120.0),
+      TextField(
+        controller: _username,
+        decoration: InputDecoration(
+          filled: true,
+          labelText: 'Login',
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Add',
-        child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      TextField(
+        controller: _firstname,
+        decoration: InputDecoration(
+          filled: true,
+          labelText: 'First Name',
+        ),
+      ),
+      TextField(
+        controller: _lastname,
+        decoration: InputDecoration(
+          filled: true,
+          labelText: 'Last Name',
+        ),
+      ),
+      TextField(
+        controller: _email,
+        decoration: InputDecoration(
+          filled: true,
+          labelText: 'Email',
+        ),
+      ),
+      Checkbox(
+        onChanged: (b)=>_activated=b,
+      ),
+      RaisedButton(
+        child: Text('Profile'),
+        onPressed: () {}
+      ),
+      ButtonBar(children: <Widget>[
+        FlatButton(
+          child: Text('CANCEL'),
+          onPressed: ()=> _clearForm
+        ),
+        FlatButton(
+          child: Text('SAVE'),
+          onPressed: ()=> _save
+        ),
+      ])
+    ];
+  }
+
+  void _save() async {
+    createUser(User(
+      login: _username.toString()
+    ));
+  }
+
+  void _clearForm(){
+    _username.clear();
+    _password.clear();
+     _firstname.clear();
+     _lastname.clear();
+     _email.clear();
   }
 }
