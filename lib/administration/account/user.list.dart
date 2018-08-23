@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'user.helper.dart';
 import 'user.dart';
+import 'dart:convert';
 import 'dart:async';
 
 class UserListPage extends StatefulWidget {
@@ -43,17 +44,22 @@ void _add(){
 
 
 List<Widget> _data(AsyncSnapshot snapshot) {
-  List<Widget> list = <Widget>[];
+  print("mmmmmmmmm");
+//User u= (snapshot.data[0]);
+//print("|||||||||"+u.toString());
+  final parsed =json.decode(snapshot.data).cast<Map<String, dynamic>>();
+  List<User> lu= parsed.map<User>((json) => User.fromJson(json)).toList();
 
-  return snapshot.hasData
-      ? _users(snapshot.data)
-      : null ;
-}
+  //List<User> lu2 =(json.decode(snapshot.data) as List<User>);
+//List<User> users = snapshot.data;
 
-List<Widget> _users(List<User> users) {
+print("Kkkkkkkkkk"+snapshot.toString());
+
   List<Widget> list = <Widget>[];
-  for (var user in users)
-    list.add(item(user.firstName,"user"));
+  for (var user in lu) {
+    print(user.email);
+    list.add(item(user.firstName, user.email));
+  }
   return list;
 
 }
@@ -103,6 +109,7 @@ class UserList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: _data(snapshot),
+
     );
   }
 }
