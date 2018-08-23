@@ -44,15 +44,26 @@ const API_USER = "users/";
 
 //
 Future<User> user(String user) async {
-  return User.fromJson(json.decode(await restGet(API_USER + user)));
+  var response = await restGet(API_USER + user);
+  return User.fromJson(json.decode(response));
 }
 
 //
 Future<List<User>> users() async {
-  return (json.decode(await restGet(API_USERS)) as List)
+  var response =await restGet(API_USERS);
+
+  final parsed =json.decode(response).cast<Map<String, dynamic>>();
+  print((parsed.map<User>((json) => User.fromJson(json)).toList()).toString());
+  print("<><><><><><>< "+response);
+
+
+  /*return (json.decode(response) as List)
       .map((v) => User.fromJson(v))
-      .toList();
+      .toList();*/
+
+  return (json.decode(response) as List);
 }
+
 
 //
 createUser(User user) async {

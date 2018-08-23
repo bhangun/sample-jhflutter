@@ -2,14 +2,15 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'helper.dart';
-
+import '../services/config.dart';
 
 //
 restGet(String path) async {
-  final response =  await http.get(path,
+  final response =  await http.get(API+path,
       headers:{HttpHeaders.contentTypeHeader: "application/json",
         "Authorization":"Bearer "+ await prefs("token")});
   if (response.statusCode == 200) {
+
     // If the call to the server was successful, parse the JSON
     return response.body;
   } else {
@@ -20,7 +21,7 @@ restGet(String path) async {
 
 //
 restPost(String path,String payload,[bool auth=false]) async{
-  final response =  await http.post(path,
+  final response =  await http.post(API+path,
       headers: {HttpHeaders.contentTypeHeader: "application/json",
         "Authorization":"Bearer  ${(auth)? await prefs("token"):""}"},
       body:payload,encoding: Encoding.getByName('UTF8') );
@@ -35,7 +36,7 @@ restPost(String path,String payload,[bool auth=false]) async{
 
 //
 restPut(String path,String payload,[bool auth=false]) async{
-  final response =  await http.put(path,
+  final response =  await http.put(API+path,
       headers: {HttpHeaders.contentTypeHeader: "application/json",
         "Authorization":"Bearer  ${(auth)? await prefs("token"):""}"},
       body:payload,encoding: Encoding.getByName('UTF8') );
@@ -50,7 +51,7 @@ restPut(String path,String payload,[bool auth=false]) async{
 
 //
 restDelete(String path) async {
-  final response =  await http.delete(path,
+  final response =  await http.delete(API+path,
       headers:{HttpHeaders.contentTypeHeader: "application/json",
         "Authorization":"Bearer "+ await prefs("token")});
   if (response.statusCode == 200) {

@@ -11,6 +11,9 @@ class _UserFormPageState extends State<UserFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Create User'),
+        ),
         body: SafeArea(
             child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -22,7 +25,7 @@ class _UserFormPageState extends State<UserFormPage> {
         ));
   }
 
-  var _activated=false;
+  bool _activated =false;
   final _username = TextEditingController();
   final _password = TextEditingController();
   final _firstname = TextEditingController();
@@ -61,6 +64,7 @@ class _UserFormPageState extends State<UserFormPage> {
         ),
       ),
       Checkbox(
+        value: false,
         onChanged: (b)=>_activated=b,
       ),
       RaisedButton(
@@ -81,9 +85,21 @@ class _UserFormPageState extends State<UserFormPage> {
   }
 
   void _save() async {
-    createUser(User(
-      login: _username.toString()
+   /* createUser(User(
+      login: _username.toString(),
+        firstName: _firstname.toString(),
+    lastName: _lastname.toString(),
+    email: _email.toString(),
+    imageUrl: "",
+    activated: false,
+    langKey: "",
+    authorities: null,
+    createdBy: "",
+    createdDate: null,
+    lastModifiedBy: "",
+    lastModifiedDate: null
     ));
+    */
   }
 
   void _clearForm(){

@@ -6,23 +6,21 @@ class CommonDrawer extends StatelessWidget {
   final String accountName;
   final String accountEmail;
 
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: _listMenu(context),
+      ),
+    );
+  }
+
   CommonDrawer({
     this.accountName,
     this.accountEmail
   });
 
-
-  Widget _listTitle(String name) =>
-      ListTile(
-        title: Text(
-          name,
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
-        ),
-        leading: Icon(
-          Icons.person,
-          color: Colors.blue,
-        ),
-      );
 
   Widget _header(String imgPath) =>
       UserAccountsDrawerHeader(
@@ -33,25 +31,29 @@ class CommonDrawer extends StatelessWidget {
           accountEmail,
         ),
         currentAccountPicture: CircleAvatar(
-          // backgroundImage: new AssetImage(imgPath),
+          // backgroundImage: ,
         ),
       );
 
-  _listMenu(){
+  Widget _listTitle(String name,BuildContext context) =>
+      ListTile(
+        title: Text(
+          name,
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+        ),
+        leading: Icon(
+          Icons.person,
+          color: Colors.blue,
+        ),
+        onTap: ()=> Navigator.pushNamed(context, "/users"),
+      );
+
+  _listMenu(BuildContext context){
     var list = <Widget>[];
     list.add(_header(""));
-    list.add(_listTitle("shoping"));
+    list.add(_listTitle("Register", context));
+    list.add(_listTitle("User", context));
     return list;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: _listMenu(),
-      ),
-    );
   }
 }
 

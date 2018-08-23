@@ -14,41 +14,20 @@
 
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
-import 'login.dart';
-//import 'widgets/login_anim.dart';
+import 'services/routes.dart';
 
 class MyApp extends StatelessWidget {
+
+  final _title = "My Page";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Page',
+      title: _title,
       home: HomePage(),
-      initialRoute: '/login',
-      onGenerateRoute: _getRoute,
-      routes: _routes
-    );
-  }
-
-
-  final _routes = <String, WidgetBuilder> {
-      "/home":(BuildContext context) => null,
-      "/register": (BuildContext context) => null,//new SignIn(),
-      "/users": (BuildContext context) => null,
-      "/dashboard": (BuildContext context) => null,
-      "/entities": (BuildContext context) => null,
-      "/entity": (BuildContext context) => null
-  };
-
-  Route<dynamic> _getRoute(RouteSettings settings) {
-    if (settings.name != '/login') {
-      return null;
-    }
-
-    return MaterialPageRoute<void>(
-      settings: settings,
-      builder: (BuildContext context) => LoginPage(),
-      fullscreenDialog: true,
+      initialRoute: login,
+      onGenerateRoute: getRoute,
+      routes: routes
     );
   }
 }

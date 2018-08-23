@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_sample/services/authentication.dart' as auth;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'widgets/staggered.dart';
-import 'widgets/logo_anim.dart';
+import '../widgets/staggered.dart';
+import '../widgets/logo_anim.dart';
+
+import '../administration/account/user.helper.dart';
+import '../administration/account/user.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,7 +15,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-
 
 
   @override
@@ -68,9 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                     auth.login(_usernameController.text, _passwordController.text, false).then((bool v){
                       _usernameController.clear();
                       _passwordController.clear();
-
-
-
                       Navigator.pop(context);
                     });
                   },

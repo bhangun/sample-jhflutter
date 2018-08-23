@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class User {
   const User({
-    @required this.id,
+     this.id,
    @required this.login,
    @required this.firstName,
    @required this.lastName,
@@ -18,7 +18,6 @@ class User {
     this.lastModifiedBy,
     this.lastModifiedDate
   })  :
-         assert(id != null),
          assert(login != null),
          assert(firstName != null),
          assert(lastName != null),
