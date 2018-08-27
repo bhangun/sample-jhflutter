@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
 import 'services/routes.dart';
+import 'themes/default.theme.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: login,
       onGenerateRoute: getRoute,
-      routes: routes
+      routes: routes,
+      theme: kShrineTheme,
     );
   }
 }

@@ -48,29 +48,10 @@ Future<User> user(String user) async {
   return User.fromJson(json.decode(response));
 }
 
+
 //
-/*
-Future<List<User>> users() async {
-  var response =await restGet(API_USERS);
-
-  final parsed =json.decode(response).cast<Map<String, dynamic>>();
-  List<User> list= parsed.map<User>((json) => User.fromJson(json)).toList();
- // print(list[2].createdDate.toString()+"<><><><><><>< "+response);
-//List<User> lu = (json.decode(response) as List);
-print(list[0].email+"<<<<>>>>");
-  *//*return (json.decode(response) as List)
-      .map((v) => User.fromJson(v))
-      .toList();*//*
-return list;
-  //return lu;//(json.decode(response) as List);
-}
-*/
-
 Future<String> users() async {
-  var response =await restGet(API_USERS);
-
-  return response;
-  //return lu;//(json.decode(response) as List);
+  return await restGet(API_USERS);
 }
 
 //
@@ -86,4 +67,11 @@ updateUsers(User user) async {
 //
 deleteUser(User user) async {
   return await restDelete(API_USER + user.toJson().toString());
+}
+
+
+List<User> usersData(String data) {
+  final parsed =json.decode(data).cast<Map<String, dynamic>>();
+  List<User> lu= parsed.map<User>((json) => User.fromJson(json)).toList();
+  return lu;
 }
