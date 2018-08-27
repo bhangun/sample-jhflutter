@@ -64,19 +64,19 @@ class User {
 
     Map<String, dynamic> toJson() =>
     {
-      'id': id,
-      'login': login,
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'imageUrl': imageUrl,
-      'activated': activated,
-      'langKey': langKey,
-      'authorities': authorities,
-      'createdBy': createdBy,
-      'createdDate' : createdDate.toIso8601String(),
-      'lastModifiedBy': lastModifiedBy,
-      'lastModifiedDate':lastModifiedDate.toIso8601String()
+      '"id"': '"$id"',
+      '"login"': '"$login"',
+      '"firstName"': '"$firstName"',
+      '"lastName"': '"$lastName"',
+      '"email"': '"$email"',
+      '"imageUrl"': '"$imageUrl"',
+      '"activated"': '"$activated"',
+      '"langKey"': '"$langKey"',
+      '"authorities"': '$authorities',
+      '"createdBy"': '"$createdBy"',
+      '"createdDate"' : '"'+createdDate.toIso8601String()+'Z"',
+      '"lastModifiedBy"': '"$lastModifiedBy"',
+      '"lastModifiedDate"':'"'+lastModifiedDate.toIso8601String()+'Z"'
     };
 }
 

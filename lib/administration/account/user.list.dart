@@ -3,6 +3,7 @@ import 'user.detail.dart';
 import 'user.helper.dart';
 import 'user.dart';
 import 'dart:convert';
+import 'user.form.dart';
 
 class UserListPage extends StatefulWidget {
   //UserListPage({Key key, this.title}) : super(key: key);
@@ -29,14 +30,14 @@ class _UserListPageState extends State<UserListPage> {
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
-          onPressed: _add,
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => UserFormPage()));
+          },
           tooltip: 'Add',
           child: new Icon(Icons.add),
         ));
   }
 }
-
-void _add() {}
 
 
 Widget item(int id, String name, String role, BuildContext context) {
@@ -44,9 +45,8 @@ Widget item(int id, String name, String role, BuildContext context) {
       title: Text(name,
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
       subtitle: Text(role),
-      //onTap: _viewDetail(id, context),
-      onLongPress: (){
-        print(id.toString()+" > panjaaaang");
+      onTap: (){
+        print(id.toString()+" > tap");
         Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetail(id: id,username: name,)));
       },
       leading: Icon(Icons.theaters, color: Colors.blue[500]));
@@ -54,8 +54,6 @@ Widget item(int id, String name, String role, BuildContext context) {
 
 class UserList extends StatelessWidget{
   final String data;
-
-
   UserList({this.data});
 
   @override

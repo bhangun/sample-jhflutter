@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'user.helper.dart';
-import 'user.dart';
+import 'package:jh_flutter_sample/administration/account/user.dart';
 
 class UserDetail extends StatelessWidget{
   final int id;
@@ -40,9 +40,7 @@ class UserDetail extends StatelessWidget{
         Text(
             data.createdDate.toString()
         ),
-        Text(
-            data.authorities[0]
-        )
+
       ],
     );
   }

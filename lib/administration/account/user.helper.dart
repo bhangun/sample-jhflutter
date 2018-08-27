@@ -44,9 +44,7 @@ const API_USER = "users/";
 
 //
 Future<User> user(String id) async {
-  print(">>>id>>>>>>"+id);
   var response = await restGet(API_USER + id);
-  print(">>>>>>>>>"+response);
   return User.fromJson(json.decode(response));
 }
 
@@ -57,8 +55,9 @@ Future<String> users() async {
 }
 
 //
-createUser(User user) async {
-  return await restPost(API_USERS, user.toJson().toString());
+createUser(String user) async {
+  print("<<<<<"+user);
+  return await restPost(API_USERS, user,true);
 }
 
 //

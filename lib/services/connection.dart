@@ -30,7 +30,7 @@ restPost(String path,String payload,[bool auth=false]) async{
     return response.body;
   } else {
     // If that call was not successful, throw an error.
-    throw Exception('Failed to load get');
+    throw Exception('Failed to load post');
   }
 }
 

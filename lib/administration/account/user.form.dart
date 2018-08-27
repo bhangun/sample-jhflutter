@@ -19,9 +19,25 @@ class _UserFormPageState extends State<UserFormPage> {
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 children: _listChild())),
         floatingActionButton: FloatingActionButton(
-          onPressed: _save,
+          onPressed: (){
+            print(">>>>print>>>");
+             createUser(User(
+                login: _username.text,
+                firstName: _firstname.text,
+                lastName: _lastname.text,
+                email: _email.text,
+                imageUrl: "",
+                activated: true,
+                langKey: "en",
+                authorities: ['"ROLE_USER"'],
+                createdBy: "",
+                createdDate: DateTime.now(),
+                lastModifiedBy: "",
+                lastModifiedDate: DateTime.now()
+            ).toJson().toString());
+          },
           tooltip: 'Add',
-          child: new Icon(Icons.add),
+          child: Icon(Icons.save),
         ));
   }
 
@@ -85,7 +101,8 @@ class _UserFormPageState extends State<UserFormPage> {
   }
 
   void _save() async {
-   /* createUser(User(
+    print(">>>>print>>>");
+    await createUser(User(
       login: _username.toString(),
         firstName: _firstname.toString(),
     lastName: _lastname.toString(),
@@ -98,8 +115,7 @@ class _UserFormPageState extends State<UserFormPage> {
     createdDate: null,
     lastModifiedBy: "",
     lastModifiedDate: null
-    ));
-    */
+    ).toJson().toString());
   }
 
   void _clearForm(){

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';// deferred as listMenuDrawer;
-
+import 'widgets.dart'; // deferred as listMenuDrawer;
 
 class CommonDrawer extends StatelessWidget {
   final String accountName;
@@ -16,14 +15,9 @@ class CommonDrawer extends StatelessWidget {
     );
   }
 
-  CommonDrawer({
-    this.accountName,
-    this.accountEmail
-  });
+  CommonDrawer({this.accountName, this.accountEmail});
 
-
-  Widget _header(String imgPath) =>
-      UserAccountsDrawerHeader(
+  Widget _header(String imgPath) => UserAccountsDrawerHeader(
         accountName: Text(
           accountName,
         ),
@@ -31,12 +25,11 @@ class CommonDrawer extends StatelessWidget {
           accountEmail,
         ),
         currentAccountPicture: CircleAvatar(
-          // backgroundImage: ,
-        ),
+            // backgroundImage: ,
+            ),
       );
 
-  Widget _listTitle(String name,BuildContext context) =>
-      ListTile(
+  Widget _listTitle(String name, BuildContext context) => ListTile(
         title: Text(
           name,
           style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
@@ -45,10 +38,10 @@ class CommonDrawer extends StatelessWidget {
           Icons.person,
           color: Colors.blue,
         ),
-        onTap: ()=> Navigator.pushNamed(context, "/users"),
+        onTap: () => Navigator.pushNamed(context, "/users"),
       );
 
-  _listMenu(BuildContext context){
+  _listMenu(BuildContext context) {
     var list = <Widget>[];
     list.add(_header(""));
     list.add(_listTitle("Register", context));
@@ -56,7 +49,6 @@ class CommonDrawer extends StatelessWidget {
     return list;
   }
 }
-
 
 /*
 <Widget>[
