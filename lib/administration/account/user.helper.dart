@@ -56,7 +56,6 @@ Future<String> users() async {
 
 //
 createUser(String user) async {
-  print("<<<<<"+user);
   return await restPost(API_USERS, user,true);
 }
 

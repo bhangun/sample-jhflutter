@@ -19,23 +19,7 @@ class _UserFormPageState extends State<UserFormPage> {
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 children: _listChild())),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            print(">>>>print>>>");
-             createUser(User(
-                login: _username.text,
-                firstName: _firstname.text,
-                lastName: _lastname.text,
-                email: _email.text,
-                imageUrl: "",
-                activated: true,
-                langKey: "en",
-                authorities: ['"ROLE_USER"'],
-                createdBy: "",
-                createdDate: DateTime.now(),
-                lastModifiedBy: "",
-                lastModifiedDate: DateTime.now()
-            ).toJson().toString());
-          },
+          onPressed: _save,
           tooltip: 'Add',
           child: Icon(Icons.save),
         ));
@@ -80,42 +64,40 @@ class _UserFormPageState extends State<UserFormPage> {
         ),
       ),
       Checkbox(
-        value: false,
-        onChanged: (b)=>_activated=b,
+        value: _activated,
+        onChanged: (bool newValue) {
+          setState(() {
+            _activated = newValue;
+          });
+        }
       ),
       RaisedButton(
         child: Text('Profile'),
         onPressed: () {}
       ),
-      ButtonBar(children: <Widget>[
-        FlatButton(
-          child: Text('CANCEL'),
-          onPressed: ()=> _clearForm
-        ),
-        FlatButton(
-          child: Text('SAVE'),
-          onPressed: ()=> _save
-        ),
-      ])
     ];
   }
 
   void _save() async {
-    print(">>>>print>>>");
-    await createUser(User(
-      login: _username.toString(),
-        firstName: _firstname.toString(),
-    lastName: _lastname.toString(),
-    email: _email.toString(),
-    imageUrl: "",
-    activated: false,
-    langKey: "",
-    authorities: null,
-    createdBy: "",
-    createdDate: null,
-    lastModifiedBy: "",
-    lastModifiedDate: null
-    ).toJson().toString());
+    try {
+      await createUser(User(
+          login: _username.text,
+          firstName: _firstname.text,
+          lastName: _lastname.text,
+          email: _email.text,
+          imageUrl: "",
+          activated: _activated,
+          langKey: "en",
+          authorities: ['"ROLE_USER"'],
+          createdBy: "",
+          createdDate: DateTime.now(),
+          lastModifiedBy: "",
+          lastModifiedDate: DateTime.now()
+      ).toJson().toString());
+    }catch ( e ){
+      print("gk bisa imel");
+    }
+      Navigator.pop(context);
   }
 
   void _clearForm(){
