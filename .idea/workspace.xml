@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84c25166-fb1a-48a1-adfe-87ed8b1d54ce" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/themes/default.theme.dart" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/administration/account/register.dart" afterPath="$PROJECT_DIR$/lib/administration/account/user.register.dart" />
       <change beforePath="$PROJECT_DIR$/lib/administration/account/user.detail.dart" afterPath="$PROJECT_DIR$/lib/administration/account/user.detail.dart" />
       <change beforePath="$PROJECT_DIR$/lib/administration/account/user.helper.dart" afterPath="$PROJECT_DIR$/lib/administration/account/user.helper.dart" />
       <change beforePath="$PROJECT_DIR$/lib/administration/account/user.list.dart" afterPath="$PROJECT_DIR$/lib/administration/account/user.list.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" afterPath="$PROJECT_DIR$/lib/app.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/login_anim.dart" afterPath="$PROJECT_DIR$/lib/widgets/login_anim.dart" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -30,9 +23,11 @@
       <file leaf-file-name="user.helper.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/administration/account/user.helper.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="22" />
-              <folding />
+            <state relative-caret-position="160">
+              <caret line="46" column="14" lean-forward="false" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,11 +35,31 @@
       <file leaf-file-name="user.list.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/administration/account/user.list.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="96" column="7" lean-forward="true" selection-start-line="91" selection-start-column="3" selection-end-line="96" selection-end-column="7" />
+            <state relative-caret-position="15">
+              <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.detail.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/administration/account/user.detail.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/administration/account/user.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-884">
+              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,18 +89,8 @@
       <file leaf-file-name="user.form.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/administration/account/user.form.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.detail.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/administration/account/user.detail.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="825">
+              <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -151,6 +156,7 @@
       <find>list</find>
       <find>ce</find>
       <find>const</find>
+      <find>item(</find>
     </findStrings>
     <replaceStrings>
       <replace>@required</replace>
@@ -222,12 +228,12 @@
         <option value="$PROJECT_DIR$/lib/pages/home.dart" />
         <option value="$PROJECT_DIR$/lib/services/authentication.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/login_anim.dart" />
-        <option value="$PROJECT_DIR$/lib/administration/account/user.helper.dart" />
-        <option value="$PROJECT_DIR$/lib/administration/account/user.detail.dart" />
         <option value="$PROJECT_DIR$/lib/widgets/theme.dart" />
         <option value="$PROJECT_DIR$/lib/app.dart" />
         <option value="$PROJECT_DIR$/lib/themes/theme.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/administration/account/user.helper.dart" />
+        <option value="$PROJECT_DIR$/lib/administration/account/user.detail.dart" />
         <option value="$PROJECT_DIR$/lib/administration/account/user.list.dart" />
       </list>
     </option>
@@ -514,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1535066406629</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="user list jd&#10;tapi parsing data harus dalam satu file">
+      <created>1535353357279</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1535353357279</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -607,7 +620,8 @@
     <MESSAGE value="logo anim" />
     <MESSAGE value="user list" />
     <MESSAGE value="user list jd" />
-    <option name="LAST_COMMIT_MESSAGE" value="user list jd" />
+    <MESSAGE value="user list jd&#10;tapi parsing data harus dalam satu file" />
+    <option name="LAST_COMMIT_MESSAGE" value="user list jd&#10;tapi parsing data harus dalam satu file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/services/config.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -892,14 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.form.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="70" column="31" lean-forward="false" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/widgets/login_anim.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -911,14 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.detail.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -961,24 +951,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="24" column="23" lean-forward="true" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.form.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/administration/account/user.helper.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="22" />
+        <state relative-caret-position="160">
+          <caret line="46" column="14" lean-forward="false" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-884">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/administration/account/user.detail.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/administration/account/user.list.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="96" column="7" lean-forward="true" selection-start-line="91" selection-start-column="3" selection-end-line="96" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

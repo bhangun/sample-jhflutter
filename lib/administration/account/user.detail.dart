@@ -1,50 +1,49 @@
 import 'package:flutter/material.dart';
+import 'user.helper.dart';
+import 'user.dart';
 
+class UserDetail extends StatelessWidget{
+  final int id;
+  final String username;
+  UserDetail({@required this.id, @required this.username});
 
-class UserListPage extends StatefulWidget {
-  //UserListPage({Key key, this.title}) : super(key: key);
-
-
-
-  @override
-  _UserListPageState createState() => _UserListPageState();
-}
-
-final String _title="User List";
-
-class _UserListPageState extends State<UserListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_title),
-        elevation: 5.0, // Removing the drop shadow cast by the app bar.
-      ),
-      body: Center(
-        child: ListView(
-          children: list,
+        appBar: AppBar(
+          title: Text("User Detail"),
+          elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
-      ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _add,
-          tooltip: 'Add',
-          child: new Icon(Icons.add),
-        ));
+        body: FutureBuilder(
+            future: user(username),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              return snapshot.hasData
+                  ? userDetail(snapshot.data)
+                  : Center(child: CircularProgressIndicator());
+            })
+    );
+  }
+
+  Widget userDetail(User data) {
+
+    return Column(
+      children: <Widget>[
+        Text(
+            data.firstName
+        ),
+        Text(
+            data.lastName
+        ),
+        Text(
+            data.email
+        ),
+        Text(
+            data.createdDate.toString()
+        ),
+        Text(
+            data.authorities[0]
+        )
+      ],
+    );
   }
 }
-
-void _add(){
-
-}
-
-List<Widget> list = <Widget>[
-  ListTile(
-    title: Text('CineArts at the Empire',
-        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
-    subtitle: Text('85 W Portal Ave'),
-    leading: Icon(
-      Icons.theaters,
-      color: Colors.blue[500],
-    ),
-  ),
-];

@@ -43,8 +43,10 @@ const API_USERS = "users";
 const API_USER = "users/";
 
 //
-Future<User> user(String user) async {
-  var response = await restGet(API_USER + user);
+Future<User> user(String id) async {
+  print(">>>id>>>>>>"+id);
+  var response = await restGet(API_USER + id);
+  print(">>>>>>>>>"+response);
   return User.fromJson(json.decode(response));
 }
 
