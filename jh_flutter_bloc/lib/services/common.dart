@@ -18,6 +18,18 @@ try {
 }
 }
 
+Future<String> loginToken(String username, String password, bool rememberMe) async {
+  var body = jsonEncode(
+      {"username": username, "password": password, "rememberMe": rememberMe});
+try {
+  final response = await restPost("authenticate", body);
+  return json.decode(response)["id_token"];
+  
+}catch(e){
+  return e.toString();
+}
+}
+
 Future<Health> health() async {
   var response = await restGet("management/metrics",true,true);
 print(json.decode(response)["gauges"]+"---"+response);

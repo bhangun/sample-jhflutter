@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_sample/bloc/login_bloc.dart';
+import 'package:jh_flutter_sample/login.dart';
 import 'pages/home.dart';
 import 'services/services.dart';
 import 'themes/default.theme.dart';
@@ -32,5 +34,20 @@ class MyApp extends StatelessWidget {
       theme: kShrineTheme,
     );
   }
+
+  Route<dynamic> route(RouteSettings settings) {
+    final LoginBloc _loginBloc = LoginBloc();
+  if (settings.name != '/login') {
+    return null;
+  }
+
+  return MaterialPageRoute<void>(
+    settings: settings,
+    builder: (BuildContext context) => LoginForm(loginBloc: _loginBloc),//LoginPage(),
+    fullscreenDialog: true,
+  );
+}
+
+final loginRoute = "/login";
 }
 
