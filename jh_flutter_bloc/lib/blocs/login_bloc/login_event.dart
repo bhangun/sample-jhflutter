@@ -7,10 +7,12 @@ abstract class LoginEvent {}
 class LoginButtonPressed extends LoginEvent {
   final String username;
   final String password;
+  final bool rememberMe;
 
   LoginButtonPressed({
     @required this.username,
     @required this.password,
+    this.rememberMe
   });
 }
 

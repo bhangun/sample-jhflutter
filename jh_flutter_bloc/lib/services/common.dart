@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:jh_flutter_sample/administration/dashboard.dart';
+import '../pages/administration/dashboard.dart';
 
-import '../services/connection.dart';
+import '../services/api.dart';
 import '../services/helper.dart';
 import '../services/config.dart';
 
-Future<bool> login(String username, String password, bool rememberMe) async {
+/* Future<bool> login(String username, String password, bool rememberMe) async {
   var body = jsonEncode(
       {"username": username, "password": password, "rememberMe": rememberMe});
 try {
@@ -28,7 +28,7 @@ try {
 }catch(e){
   return e.toString();
 }
-}
+} */
 
 Future<Health> health() async {
   var response = await restGet("management/metrics",true,true);

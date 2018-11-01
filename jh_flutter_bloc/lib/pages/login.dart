@@ -1,96 +1,158 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_sample/services/common.dart' as auth;
-import '../widgets/logo_anim.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../blocs/auth_bloc/auth.dart';
+import '../blocs/login_bloc/login.dart';
 
 
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final String _token="";
-
+class LoginPageState extends State<LoginPage> {
+  //final LoginBloc _loginBloc = LoginBloc();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          children: <Widget>[
-            SizedBox(height: 80.0),
-            Column(
-              children: <Widget>[
-                //SvgPicture.asset('assets/logo-jhipster.svg'),
-                SizedBox(height: 16.0),
-                Text('Flutter'),
-                LogoApp()
-              ],
-            ),
-            SizedBox(height: 120.0),
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'Username',
-              ),
-            ),
-            SizedBox(height: 12.0),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-
-            ButtonBar(
-              children: <Widget>[
-                FlatButton(
-                  child: Text('Cancel'),
-                  onPressed: () {
-                    _usernameController.clear();
-                    _passwordController.clear();
-                  },
-                ),
-                RaisedButton(
-                  child: Text('Login'),
-                  onPressed: () {
-                    try {
-                      auth.login(
-                          _usernameController.text, _passwordController.text,
-                          false).then((bool v) {
-                            print("<><><>"+v.toString());
-
-                        if (v) {
-                          _usernameController.clear();
-                          _passwordController.clear();
-                          Navigator.pop(context);
-
-                        } else {
-                          Navigator.of(context).pop();
-                          print("diskonek");
-                        }
-                      });
-                    }catch(e){
-                      Navigator.of(context).pop();
-                      print(">>>>>>>>>"+e.toString());
-                    }
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text('Login'),
       ),
+      body: LoginForm(
+        authBloc: BlocProvider.of<AuthenticationBloc>(context),
+        //loginBloc: _loginBloc,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+   // _loginBloc.dispose();
+    super.dispose();
+  }
+}
+
+class LoginForm extends StatefulWidget {
+  //final LoginBloc _loginBloc;
+  final AuthenticationBloc _authBloc;
+
+  LoginForm({
+    Key key,
+   // @required LoginBloc loginBloc,
+    @required AuthenticationBloc authBloc,
+  })  : //_loginBloc = loginBloc,
+        _authBloc = authBloc,
+        super(key: key);
+
+  @override
+  State<LoginForm> createState() {
+    return LoginFormState(
+      //loginBloc: _loginBloc,
+      authBloc: _authBloc,
     );
   }
 }
 
+class LoginFormState extends State<LoginForm> {
+  //final LoginBloc _loginBloc;
+  final AuthenticationBloc _authBloc;
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
 
+
+  LoginFormState({
+    //@required LoginBloc loginBloc,
+    @required AuthenticationBloc authBloc,
+  })  : //_loginBloc = loginBloc,
+        _authBloc = authBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
+
+    print(_authBloc.toString());
+    
+    return BlocBuilder<AuthenticationEvent, AuthenticationState>(
+      bloc: _authBloc,
+      builder: (
+        BuildContext context,
+        AuthenticationState loginState,
+      ) {
+
+        if (loginState.token.isNotEmpty) {
+          _authBloc.onLogin(token: loginState.token);
+         // _authBloc.onLoginSuccess();
+        }
+
+        if (loginState.error.isNotEmpty) {
+          _onWidgetDidBuild(() {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text('${loginState.error}'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          });
+        }
+        return _form(loginState);
+      },
+    );
+  }
+
+  Widget _form(AuthenticationState loginState) {
+    return Form(
+      child: Column(
+        children: [
+          SizedBox(height: 80.0),
+            Column(
+              children: <Widget>[
+                SvgPicture.asset('assets/logo-jhipster.svg', 
+                width: MediaQuery.of(context).size.width/4,
+                height: MediaQuery.of(context).size.height/4,),
+                SizedBox(height: 16.0),
+                Text('Flutter'),
+              ],
+            ),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'username'),
+            controller: _usernameController,
+          ),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'password'),
+            controller: _passwordController,
+            obscureText: true,
+          ),
+          RaisedButton(
+            onPressed: loginState.isLoginButtonEnabled ? _onLoginButtonPressed : null,
+            child: Text('Login'),
+          ),
+          Container(
+            child: loginState.isLoading ? CircularProgressIndicator() : null,
+          ),
+        ],
+      ),
+    );
+  }
+
+ // bool _loginSucceeded(AuthenticationState state) => state.token.isNotEmpty;
+  
+  //bool _loginFailed(LoginState state) => state.error.isNotEmpty;
+
+  void _onWidgetDidBuild(Function callback) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      callback();
+    });
+  }
+
+  _onLoginButtonPressed() {
+    _authBloc.onLoginButtonPressed(
+      username: _usernameController.text,
+      password: _passwordController.text,
+    );
+  }
+}

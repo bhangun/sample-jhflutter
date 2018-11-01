@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jh_flutter_sample/bloc/auth_bloc.dart';
-import 'package:jh_flutter_sample/bloc/auth_event.dart';
-import 'package:jh_flutter_sample/bloc/auth_state.dart';
-import 'package:jh_flutter_sample/login.dart';
+import 'blocs/auth_bloc/auth.dart';
+import 'pages/login.dart';
 import 'package:jh_flutter_sample/pages/home.dart';
 import 'package:jh_flutter_sample/pages/splash.dart';
-import 'app.dart';
+
 
 void main() => runApp(new App());
 
@@ -17,22 +15,22 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
-  final AuthenticationBloc _authenticationBloc = AuthenticationBloc();
+  final AuthenticationBloc _authBloc = AuthenticationBloc();
 
   AppState() {
-    _authenticationBloc.onAppStart();
+    _authBloc.onAppStart();
   }
 
   @override
   void dispose() {
-    _authenticationBloc.dispose();
+    _authBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthenticationBloc>(
-      bloc: _authenticationBloc,
+      bloc: _authBloc,
       child: MaterialApp(
         home: _rootPage(),
       ),
@@ -41,7 +39,7 @@ class AppState extends State<App> {
 
   Widget _rootPage() {
     return BlocBuilder<AuthenticationEvent, AuthenticationState>(
-      bloc: _authenticationBloc,
+      bloc: _authBloc,
       builder: (BuildContext context, AuthenticationState state) {
         List<Widget> widgets = [];
 

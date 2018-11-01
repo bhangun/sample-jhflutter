@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'user.helper.dart';
-import 'user.dart';
+import '../../../models/user.dart';
 
 class UserFormPage extends StatefulWidget {
   @override

@@ -1,21 +1,23 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:jh_flutter_sample/services/common.dart' as auth;
-import 'package:jh_flutter_sample/bloc/login_event.dart';
-import 'package:jh_flutter_sample/bloc/login_state.dart';
+import 'package:jh_flutter_sample/services/services.dart';
+import 'login_event.dart';
+import 'login_state.dart';
 
 
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginState get initialState => LoginState.initial();
 
-  void onLoginButtonPressed({String username, String password}) {
+  void onLoginButtonPressed({String username, String password, bool rememberMe}) {
     dispatch(
       LoginButtonPressed(
         username: username,
         password: password,
+        rememberMe: rememberMe
       ),
     );
   }
@@ -36,6 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final token = await _getToken(
           username: event.username,
           password: event.password,
+          rememberMe: event.rememberMe
         );
 
         yield LoginState.success(token);
@@ -52,15 +55,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Future<String> _getToken({
     @required String username,
     @required String password,
+    bool rememberMe
   }) async {
     //await Future.delayed(Duration(seconds: 1));
-    var token =await auth.loginToken(
-                          username, password,
-                          false);
-        print(token);                  
- return token;
+    var token =await loginToken(username, password,false);
     /// uncomment the following line to simulator a login error.
-    // throw Exception('Login Error');
-    
+  // throw Exception('Login Error');
+    return token;
   }
+
+  Future<String> loginToken(String username, String password, bool rememberMe) async {
+  var body = jsonEncode(
+      {"username": username, "password": password, "rememberMe": rememberMe});
+  try {
+    final response = await restPost("authenticate", body);
+    return json.decode(response)["id_token"];
+    
+  }catch(e){
+    return e.toString();
+  }
+} 
 }

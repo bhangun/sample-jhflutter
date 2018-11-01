@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-
-
 class User {
   const User({
      this.id,

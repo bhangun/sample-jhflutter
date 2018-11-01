@@ -1,46 +1,46 @@
 import 'package:meta/meta.dart';
 
-class AuthenticationState {
+class ApplicationState {
   final bool isInitializing;
   final bool isLoading;
   final bool isAuthenticated;
 
-  const AuthenticationState({
+  const ApplicationState({
     @required this.isInitializing,
     @required this.isLoading,
     @required this.isAuthenticated,
   });
 
-  factory AuthenticationState.initializing() {
-    return AuthenticationState(
+  factory ApplicationState.initializing() {
+    return ApplicationState(
       isInitializing: true,
       isAuthenticated: false,
       isLoading: false,
     );
   }
 
-  factory AuthenticationState.authenticated() {
-    return AuthenticationState(
+  factory ApplicationState.authenticated() {
+    return ApplicationState(
       isInitializing: false,
       isAuthenticated: true,
       isLoading: false,
     );
   }
 
-  factory AuthenticationState.unauthenticated() {
-    return AuthenticationState(
+  factory ApplicationState.unauthenticated() {
+    return ApplicationState(
       isInitializing: false,
       isAuthenticated: false,
       isLoading: false,
     );
   }
 
-  AuthenticationState copyWith({
+  ApplicationState copyWith({
     bool isInitializing,
     bool isAuthenticated,
     bool isLoading,
   }) {
-    return AuthenticationState(
+    return ApplicationState(
       isInitializing: isInitializing ?? this.isInitializing,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       isLoading: isLoading ?? this.isLoading,
@@ -49,5 +49,5 @@ class AuthenticationState {
 
   @override
   String toString() =>
-      'AuthenticationState { isInitializing: $isInitializing, isLoading: $isLoading, isAuthenticated: $isAuthenticated }';
+      'ApplicationState { isInitializing: $isInitializing, isLoading: $isLoading, isAuthenticated: $isAuthenticated }';
 }

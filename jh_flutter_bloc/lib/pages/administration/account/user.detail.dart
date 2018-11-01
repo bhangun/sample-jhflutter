@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'user.helper.dart';
-import 'package:jh_flutter_sample/administration/account/user.dart';
+import '../../../models/user.dart';
 
 class UserDetail extends StatelessWidget{
   final int id;

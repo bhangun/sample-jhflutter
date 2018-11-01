@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:jh_flutter_sample/administration/account/user.dart';
-import '../../services/connection.dart';
+import '../../../models/user.dart';
+import '../../../services/services.dart';
 
 String API_ACCOUNT = 'account';
 

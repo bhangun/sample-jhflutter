@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'user.detail.dart';
 import 'user.helper.dart';
-import 'user.dart';
+import '../../../models/user.dart';
 import 'dart:convert';
 import 'user.form.dart';
 

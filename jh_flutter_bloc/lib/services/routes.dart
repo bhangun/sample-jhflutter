@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_sample/administration/dashboard.dart';
-import 'package:jh_flutter_sample/login.dart';
-import '../administration/account/user.form.dart';
-import '../administration/account/user.list.dart';
-import 'package:jh_flutter_sample/pages/login.dart';
-//import 'widgets/login_anim.dart';
+import '../pages/administration/dashboard.dart';
+import '../pages/administration/account/user.form.dart';
+import '../pages/administration/account/user.list.dart';
 
-Route<dynamic> route(RouteSettings settings) {
-  if (settings.name != '/login') {
-    return null;
-  }
-
-  return MaterialPageRoute<void>(
-    settings: settings,
-    builder: (BuildContext context) => LoginForm(),//LoginPage(),
-    fullscreenDialog: true,
-  );
-}
-
-final loginRoute = "/login";
 
 final routes = <String, WidgetBuilder> {
   "/home":(BuildContext context) => null,

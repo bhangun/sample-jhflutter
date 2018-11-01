@@ -3,12 +3,14 @@ import 'package:meta/meta.dart';
 class LoginState {
   final bool isLoading;
   final bool isLoginButtonEnabled;
+  final String status;
   final String error;
   final String token;
 
   const LoginState({
     @required this.isLoading,
     @required this.isLoginButtonEnabled,
+    @required this.status,
     @required this.error,
     @required this.token,
   });
@@ -17,7 +19,8 @@ class LoginState {
     return LoginState(
       isLoading: false,
       isLoginButtonEnabled: true,
-      error: '',
+      status: 'Initial',
+      error: '-',
       token: '',
     );
   }
@@ -26,7 +29,8 @@ class LoginState {
     return LoginState(
       isLoading: true,
       isLoginButtonEnabled: false,
-      error: '',
+      status: 'Loading',
+      error: '-',
       token: '',
     );
   }
@@ -35,6 +39,7 @@ class LoginState {
     return LoginState(
       isLoading: false,
       isLoginButtonEnabled: true,
+      status: 'Failure',
       error: error,
       token: '',
     );
@@ -44,12 +49,13 @@ class LoginState {
     return LoginState(
       isLoading: false,
       isLoginButtonEnabled: true,
-      error: '',
+      status: 'Success',
+      error: '-',
       token: token,
     );
   }
 
   @override
   String toString() =>
-      'LoginState { isLoading: $isLoading, isLoginButtonEnabled: $isLoginButtonEnabled, error: $error, token: $token }';
+      'LoginState { isLoading: $isLoading, isLoginButtonEnabled: $isLoginButtonEnabled, status: $status, error: $error, token: $token }';
 }

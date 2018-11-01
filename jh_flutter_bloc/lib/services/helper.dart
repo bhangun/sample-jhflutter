@@ -14,7 +14,16 @@ setPrefs(String key,String value) {
 //
 Future<String> prefs(String key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString("token");
+  return prefs.getString(key);
+}
+
+Future<bool> hasPrefs(String key) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString(key).isNotEmpty;
+}
+
+removePrefs(String key) {
+  SharedPreferences.getInstance().then((p)=>p.remove(key));
 }
 
 Future<JWT> jwt() async {
