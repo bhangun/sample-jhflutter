@@ -19,22 +19,6 @@ class ApplicationState {
     );
   }
 
-  factory ApplicationState.authenticated() {
-    return ApplicationState(
-      isInitializing: false,
-      isAuthenticated: true,
-      isLoading: false,
-    );
-  }
-
-  factory ApplicationState.unauthenticated() {
-    return ApplicationState(
-      isInitializing: false,
-      isAuthenticated: false,
-      isLoading: false,
-    );
-  }
-
   ApplicationState copyWith({
     bool isInitializing,
     bool isAuthenticated,

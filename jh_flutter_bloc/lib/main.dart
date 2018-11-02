@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'blocs/app_bloc/app.dart';
 import 'blocs/auth_bloc/auth.dart';
 import 'pages/login.dart';
 import 'package:jh_flutter_sample/pages/home.dart';
@@ -15,10 +16,12 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
+  final ApplicationBloc _appBloc = ApplicationBloc();
   final AuthenticationBloc _authBloc = AuthenticationBloc();
 
   AppState() {
-    _authBloc.onAppStart();
+    _appBloc.onAppStart();
+    _authBloc.checkAuthentication();
   }
 
   @override
@@ -29,10 +32,13 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthenticationBloc>(
-      bloc: _authBloc,
-      child: MaterialApp(
-        home: _rootPage(),
+    return BlocProvider<ApplicationBloc>(
+      bloc: _appBloc,
+      child: BlocProvider<AuthenticationBloc>(
+          bloc: _authBloc,
+          child: MaterialApp(
+            home: _rootPage(),
+          )
       ),
     );
   }
@@ -43,14 +49,14 @@ class AppState extends State<App> {
       builder: (BuildContext context, AuthenticationState state) {
         List<Widget> widgets = [];
 
+        if (state.isInitializing) {
+          widgets.add(SplashPage());
+        }
+
         if (state.isAuthenticated) {
           widgets.add(HomePage());
         } else {
           widgets.add(LoginPage());
-        }
-
-        if (state.isInitializing) {
-          widgets.add(SplashPage());
         }
 
         if (state.isLoading) {

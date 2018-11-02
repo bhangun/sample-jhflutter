@@ -48,30 +48,10 @@ class AuthenticationState {
       isInitializing: false,
       isAuthenticated: false,
       isLoading: false,
-      isLoginButtonEnabled: false,
+      isLoginButtonEnabled: true,
       status: "authenticated",
       error: "-",
       token: ""
-    );
-  }
-
-  AuthenticationState copyWith({
-    bool isInitializing,
-    bool isAuthenticated,
-    bool isLoading,
-    bool isLoginButtonEnabled,
-    String  status,
-    String  error,
-    String  token
-  }) {
-    return AuthenticationState(
-      isInitializing: isInitializing ?? this.isInitializing,
-      isAuthenticated: isAuthenticated ?? this.isAuthenticated,
-      isLoading: isLoading ?? this.isLoading,
-      isLoginButtonEnabled: isLoginButtonEnabled ?? this.isLoginButtonEnabled,
-      status: status ?? this.status,
-      error: error ?? this.error,
-      token: token ?? this.token
     );
   }
 
@@ -116,10 +96,30 @@ class AuthenticationState {
       isInitializing: false,
       isAuthenticated: false,
       isLoading: false,
-      isLoginButtonEnabled: true,
+      isLoginButtonEnabled: false,
       status: 'Success',
       error: '-',
       token: token,
+    );
+  }
+
+  AuthenticationState copyWith({
+    bool isInitializing,
+    bool isAuthenticated,
+    bool isLoading,
+    bool isLoginButtonEnabled,
+    String  status,
+    String  error,
+    String  token
+  }) {
+    return AuthenticationState(
+      isInitializing: isInitializing ?? this.isInitializing,
+      isAuthenticated: isAuthenticated ?? this.isAuthenticated,
+      isLoading: isLoading ?? this.isLoading,
+      isLoginButtonEnabled: isLoginButtonEnabled ?? this.isLoginButtonEnabled,
+      status: status ?? this.status,
+      error: error ?? this.error,
+      token: token ?? this.token
     );
   }
 

@@ -15,16 +15,8 @@ class AuthenticationBloc
 @override
   AuthenticationState get initialState => AuthenticationState.initializing();
 
-  void onAppStart() {
-    dispatch(AppStarted());
-  }
-
-  void onLogin({@required String token}) {
-    dispatch(LoggedIn(token: token));
-  }
-
-  void onLogout() {
-    dispatch(LoggedOut());
+  void checkAuthentication() {
+    dispatch(CheckAuthentication());
   }
 
   void onLoginButtonPressed({String username, String password, bool rememberMe}) {
@@ -37,6 +29,16 @@ class AuthenticationBloc
     );
   }
 
+  void onLogin({@required String token}) {
+    dispatch(LoggedIn(token: token));
+  }
+
+  void onLogout() {
+    dispatch(LoggedOut());
+  }
+
+  
+
   /* void onLoginSuccess() {
     dispatch(LoggedIn());
   } */
@@ -46,14 +48,29 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
       AuthenticationState state, AuthenticationEvent event) async* {
     
-    if (event is AppStarted) {
+    if (event is CheckAuthentication) {
       print("------AppStarted--------");
       final bool hasToken = await _hasToken();
 
       if (hasToken) {
         yield AuthenticationState.authenticated();
+        print("------authenticated--------");
       } else {
         yield AuthenticationState.unauthenticated();
+        print("------authenticated--------");
+      }
+    }
+
+    if (event is LoginButtonPressed) {
+      yield AuthenticationState.loading();
+
+      try {
+        final token = await _login(
+          event.username, event.password, event.rememberMe);
+
+        yield AuthenticationState.success(token);
+      } catch (error) {
+        yield AuthenticationState.failure(error.toString());
       }
     }
 
@@ -73,25 +90,10 @@ class AuthenticationBloc
       yield AuthenticationState.unauthenticated();
     }
 
-    if (event is LoginButtonPressed) {
-      yield AuthenticationState.loading();
-
-      try {
-        final token = await _getToken(
-          username: event.username,
-          password: event.password,
-          rememberMe: event.rememberMe
-        );
-
-        yield AuthenticationState.success(token);
-      } catch (error) {
-        yield AuthenticationState.failure(error.toString());
-      }
-    }
-
-    if (event is LoggedIn) {
+    
+    /* if (event is LoggedIn) {
       yield AuthenticationState.initial();
-    }
+    } */
   }
 
   Future<void> _deleteToken() async {
@@ -109,19 +111,7 @@ class AuthenticationBloc
     
   }
 
-  Future<String> _getToken({
-    @required String username,
-    @required String password,
-    bool rememberMe
-  }) async {
-    //await Future.delayed(Duration(seconds: 1));
-    var token =await loginToken(username, password,false);
-    /// uncomment the following line to simulator a login error.
-  // throw Exception('Login Error');
-    return token;
-  }
-
-  Future<String> loginToken(String username, String password, bool rememberMe) async {
+  Future<String> _login(String username, String password, bool rememberMe) async {
   var body = jsonEncode(
       {"username": username, "password": password, "rememberMe": rememberMe});
   try {
