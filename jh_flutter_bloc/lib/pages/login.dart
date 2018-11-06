@@ -11,30 +11,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  //final LoginBloc _loginBloc = LoginBloc();
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
       body: LoginForm(
         authBloc: BlocProvider.of<AuthenticationBloc>(context),
-        //loginBloc: _loginBloc,
       ),
     );
   }
 
   @override
   void dispose() {
-   // _loginBloc.dispose();
     super.dispose();
   }
 }
 
 class LoginForm extends StatefulWidget {
-  //final LoginBloc _loginBloc;
+
   final AuthenticationBloc _authBloc;
 
   LoginForm({
@@ -48,32 +42,26 @@ class LoginForm extends StatefulWidget {
   @override
   State<LoginForm> createState() {
     return LoginFormState(
-      //loginBloc: _loginBloc,
       authBloc: _authBloc,
     );
   }
 }
 
 class LoginFormState extends State<LoginForm> {
-  //final LoginBloc _loginBloc;
   final AuthenticationBloc _authBloc;
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  bool _rememberMe = false;
 
 
   LoginFormState({
     //@required LoginBloc loginBloc,
     @required AuthenticationBloc authBloc,
-  })  : //_loginBloc = loginBloc,
-        _authBloc = authBloc;
+  })  : _authBloc = authBloc;
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
-
-    print(_authBloc.toString());
-    
+ 
     return BlocBuilder<AuthenticationEvent, AuthenticationState>(
       bloc: _authBloc,
       builder: (
@@ -83,7 +71,6 @@ class LoginFormState extends State<LoginForm> {
 
         if (loginState.token.isNotEmpty) {
           _authBloc.onLogin(token: loginState.token);
-         // _authBloc.onLoginSuccess();
         }
 
         if (loginState.error.isNotEmpty) {
@@ -124,6 +111,10 @@ class LoginFormState extends State<LoginForm> {
             controller: _passwordController,
             obscureText: true,
           ),
+          Checkbox(
+            value: _rememberMe,
+            onChanged: (v)=>_rememberMe=v
+          ),
           RaisedButton(
             onPressed: loginState.isLoginButtonEnabled ? _onLoginButtonPressed : null,
             child: Text('Login'),
@@ -136,10 +127,6 @@ class LoginFormState extends State<LoginForm> {
     );
   }
 
- // bool _loginSucceeded(AuthenticationState state) => state.token.isNotEmpty;
-  
-  //bool _loginFailed(LoginState state) => state.error.isNotEmpty;
-
   void _onWidgetDidBuild(Function callback) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       callback();
@@ -150,6 +137,7 @@ class LoginFormState extends State<LoginForm> {
     _authBloc.onLoginButtonPressed(
       username: _usernameController.text,
       password: _passwordController.text,
+      rememberMe: _rememberMe
     );
   }
 }

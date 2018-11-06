@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jh_flutter_sample/blocs/auth_bloc/auth.dart';
 import '../services/services.dart';
 import '../widgets/drawer.dart';
 import '../widgets/label_below_icon.dart';
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(_title),
@@ -36,7 +39,9 @@ class _HomePageState extends State<HomePage> {
         drawer: CommonDrawer(
           accountEmail: "bhangun@gmail.com",
           accountName: "Alhamdulillah",
-        ));
+          authBloc: _authBloc
+        )
+        );
   }
 
   // iconBox

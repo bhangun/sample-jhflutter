@@ -26,7 +26,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: true,
       status: "initializing",
-      error: "-",
+      error: "",
       token: ""
     );
   }
@@ -38,7 +38,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: false,
       status: "authenticated",
-      error: "-",
+      error: "",
       token: ""
     );
   }
@@ -50,7 +50,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: true,
       status: "authenticated",
-      error: "-",
+      error: "",
       token: ""
     );
   }
@@ -62,7 +62,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: true,
       status: 'Initial',
-      error: '-',
+      error: '',
       token: '',
     );
   }
@@ -74,7 +74,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: false,
       status: 'Loading',
-      error: '-',
+      error: '',
       token: '',
     );
   }
@@ -98,7 +98,7 @@ class AuthenticationState {
       isLoading: false,
       isLoginButtonEnabled: false,
       status: 'Success',
-      error: '-',
+      error: '',
       token: token,
     );
   }
@@ -126,5 +126,10 @@ class AuthenticationState {
   @override
   String toString() =>
       'AuthenticationState { isInitializing: $isInitializing,'+
-      'isLoading: $isLoading, isAuthenticated: $isAuthenticated }';
+      'isLoading: $isLoading, '+
+      'isAuthenticated: $isAuthenticated, '+
+      'isLoginButtonEnabled: $isLoginButtonEnabled, '+
+      'status: $status, '+
+      'error: $error, '+
+      'token: $token}';
 }

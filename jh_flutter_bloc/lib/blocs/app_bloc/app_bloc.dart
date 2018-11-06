@@ -11,27 +11,31 @@ import 'package:jh_flutter_sample/services/services.dart';
 
 class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
+  @override
+  ApplicationState get initialState {
+    print("--------ApplicationState get initialState----------");
+    return ApplicationState.initializing();
+  }
+
   void onAppStart() {
     dispatch(AppStarted());
   }
 
-  void onLogin({@required String token}) {
-    dispatch(FetchProfile(token: token));
+  void onLoggedIn({@required String token}) {
+    dispatch(LoggedIn(token: token));
   }
 
   void onLogout() {
     dispatch(LoggedOut());
   }
 
-  @override
-  ApplicationState get initialState => ApplicationState.initializing();
-
+  
   @override
   Stream<ApplicationState> mapEventToState(
       ApplicationState state, ApplicationEvent event) async* {
     
     if (event is AppStarted) {
-      print("------AppStarted--------");
+      print("------AppStarted 1--------");
       final bool hasToken = await _hasToken();
 
      /*  if (hasToken) {
@@ -41,22 +45,22 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
       } */
     }
 
-    if (event is FetchProfile) {
+    if (event is LoggedIn) {
       print("------LoggedIn--------");
       yield state.copyWith(isLoading: true);
 
       await _fetchProfile(event.token);
             //yield ApplicationState.authenticated();
-          }
+    }
       
-          if (event is LoggedOut) {
+    if (event is LoggedOut) {
             print("------LoggedOut--------");
             yield state.copyWith(isLoading: true);
       
             await _deleteToken();
             //yield ApplicationState.unauthenticated();
-          }
-        }
+    }
+  }
       
         Future<void> _deleteToken() async {
          removePrefs(TOKEN);
@@ -77,4 +81,5 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
           JWT jj = await jwt();
           print(jj.getClaim("auth"));
         }
+        
 }

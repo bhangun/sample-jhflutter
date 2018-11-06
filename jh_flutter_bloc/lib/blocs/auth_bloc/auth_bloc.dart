@@ -11,10 +11,11 @@ import 'package:jh_flutter_sample/services/services.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-
 @override
-  AuthenticationState get initialState => AuthenticationState.initializing();
-
+  AuthenticationState get initialState { 
+    print('----------AuthenticationState get initialState ');
+    return AuthenticationState.initializing();
+  }
   void checkAuthentication() {
     dispatch(CheckAuthentication());
   }
@@ -38,18 +39,12 @@ class AuthenticationBloc
   }
 
   
-
-  /* void onLoginSuccess() {
-    dispatch(LoggedIn());
-  } */
-
-  
   @override
   Stream<AuthenticationState> mapEventToState(
       AuthenticationState state, AuthenticationEvent event) async* {
     
     if (event is CheckAuthentication) {
-      print("------AppStarted--------");
+      print("----CheckAuthentication--AppStarted--------");
       final bool hasToken = await _hasToken();
 
       if (hasToken) {
@@ -69,6 +64,7 @@ class AuthenticationBloc
           event.username, event.password, event.rememberMe);
 
         yield AuthenticationState.success(token);
+
       } catch (error) {
         yield AuthenticationState.failure(error.toString());
       }
@@ -83,7 +79,7 @@ class AuthenticationBloc
     }
 
     if (event is LoggedOut) {
-      print("------LoggedOut--------");
+      print("------LoggedOut----2----");
       yield state.copyWith(isLoading: true);
 
       await _deleteToken();

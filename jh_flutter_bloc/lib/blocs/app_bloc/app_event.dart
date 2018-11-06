@@ -4,10 +4,10 @@ abstract class ApplicationEvent {}
 
 class AppStarted extends ApplicationEvent {}
 
-class FetchProfile extends ApplicationEvent {
+class LoggedIn extends ApplicationEvent {
   final String token;
 
-  FetchProfile({@required this.token});
+  LoggedIn({@required this.token});
 }
 
 class LoggedOut extends ApplicationEvent {}

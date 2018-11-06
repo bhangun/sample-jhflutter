@@ -66,10 +66,7 @@ class UserList extends StatelessWidget{
 
     // = usersData(data);
     return ListView.builder(
-      // Let the ListView know how many items it needs to build
       itemCount: _items.length,
-      // Provide a builder function. This is where the magic happens! We'll
-      // convert each item into a Widget based on the type of item it is.
       itemBuilder: (context, index) {
         final user = _items[index];
         return item(user.id, user.login, user.email, context);
