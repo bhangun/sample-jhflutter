@@ -4,6 +4,7 @@ abstract class AuthenticationEvent {}
 
 class CheckAuthentication extends AuthenticationEvent {}
 
+class RememberMe extends AuthenticationEvent{}
 
 class LoginButtonPressed extends AuthenticationEvent {
   final String username;

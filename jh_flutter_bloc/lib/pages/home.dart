@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   _HomePageState() {
-    isRole(ADMIN).then((v) => _isAdmin = v);
+    //.then((v) => _isAdmin = v);
   }
 
   var _title = "Home";
@@ -39,13 +39,13 @@ class _HomePageState extends State<HomePage> {
         drawer: CommonDrawer(
           accountEmail: "bhangun@gmail.com",
           accountName: "Alhamdulillah",
-          authBloc: _authBloc
+         // authBloc: _authBloc
         )
         );
   }
 
   // iconBox
-  Widget iconBox(IconData icon,String label,Size size) =>
+  Widget iconBox(IconData icon,String label,Size size,BuildContext context,String path) =>
       SizedBox.fromSize(
         size: Size.square(size.width / 3.3),
         child: Card(
@@ -54,8 +54,12 @@ class _HomePageState extends State<HomePage> {
             betweenHeight: 15.0,
             icon: icon,
             label: label,
-            iconColor: Colors.indigo.shade800,
+            iconColor: Colors.lightGreen,
             isCircleEnabled: false,
+            onPressed: (){
+              print("+++++++++++++++>>>>>>");
+              Navigator.pushNamed(context, path);
+            },
           ),
         ),
       );
@@ -64,9 +68,9 @@ class _HomePageState extends State<HomePage> {
   listChild(BuildContext context){
     Size size = MediaQuery.of(context).size;
     return <Widget>[
-      iconBox(Icons.pie_chart, "Dashboard", size),
-      iconBox(Icons.restaurant_menu, "Entities", size),
-      iconBox(Icons.email, "email", size)
+      iconBox(Icons.pie_chart, "Dashboard", size,context,"/dashboard"),
+      iconBox(Icons.restaurant_menu, "Entities", size,context,"/entities"),
+      iconBox(Icons.email, "email", size,context,"/dashboard")
     ];
   }
 }

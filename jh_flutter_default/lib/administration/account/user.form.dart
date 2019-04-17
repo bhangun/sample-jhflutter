@@ -17,15 +17,17 @@ class _UserFormPageState extends State<UserFormPage> {
         body: SafeArea(
             child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
-                children: _listChild())),
+                children: _listChild())
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: _save,
           tooltip: 'Add',
           child: Icon(Icons.save),
-        ));
+        )
+    );
   }
 
-  bool _activated =false;
+  bool _activated = false;
   final _username = TextEditingController();
   final _password = TextEditingController();
   final _firstname = TextEditingController();
@@ -64,47 +66,44 @@ class _UserFormPageState extends State<UserFormPage> {
         ),
       ),
       Checkbox(
-        value: _activated,
-        onChanged: (bool newValue) {
-          setState(() {
-            _activated = newValue;
-          });
-        }
-      ),
-      RaisedButton(
-        child: Text('Profile'),
-        onPressed: () {}
-      ),
+          value: _activated,
+          onChanged: (bool newValue) {
+            setState(() {
+              _activated = newValue;
+            });
+          }),
+      RaisedButton(child: Text('Profile'), onPressed: () {}),
     ];
   }
 
   void _save() async {
     try {
       await createUser(User(
-          login: _username.text,
-          firstName: _firstname.text,
-          lastName: _lastname.text,
-          email: _email.text,
-          imageUrl: "",
-          activated: _activated,
-          langKey: "en",
-          authorities: ['"ROLE_USER"'],
-          createdBy: "",
-          createdDate: DateTime.now(),
-          lastModifiedBy: "",
-          lastModifiedDate: DateTime.now()
-      ).toJson().toString());
-    }catch ( e ){
+              login: _username.text,
+              firstName: _firstname.text,
+              lastName: _lastname.text,
+              email: _email.text,
+              imageUrl: "",
+              activated: _activated,
+              langKey: "en",
+              authorities: ['"ROLE_USER"'],
+              createdBy: "",
+              createdDate: DateTime.now(),
+              lastModifiedBy: "",
+              lastModifiedDate: DateTime.now())
+          .toJson()
+          .toString());
+    } catch (e) {
       print("gk bisa imel");
     }
-      Navigator.pop(context);
+    Navigator.pop(context);
   }
 
-  void _clearForm(){
+  void _clearForm() {
     _username.clear();
     _password.clear();
-     _firstname.clear();
-     _lastname.clear();
-     _email.clear();
+    _firstname.clear();
+    _lastname.clear();
+    _email.clear();
   }
 }

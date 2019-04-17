@@ -1,9 +1,14 @@
 .DS_Store
-.dart_tool/
+jh_flutter_bloc/.dart_tool/
+jh_flutter_bloc/.packages
+jh_flutter_bloc/.pub/
+jh_flutter_bloc/build/
+jh_flutter_bloc/.flutter-plugins
 
-.packages
-.pub/
+jh_flutter_default/.dart_tool/
+jh_flutter_default/.packages
+jh_flutter_default/.pub/
+jh_flutter_default/build/
+jh_flutter_default/.flutter-plugins
 
-build/
 
-.flutter-plugins

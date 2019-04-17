@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     isRole(ADMIN).then((v) => _isAdmin = v);
   }
 
-  var _title = "My Home";
+  var _title = "My Home 3";
   var _isAdmin = false;
 
   @override

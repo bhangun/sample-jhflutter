@@ -3,7 +3,6 @@ import 'package:jh_flutter_sample/administration/dashboard.dart';
 import '../administration/account/user.form.dart';
 import '../administration/account/user.list.dart';
 import 'package:jh_flutter_sample/pages/login.dart';
-//import 'widgets/login_anim.dart';
 
 Route<dynamic> route(RouteSettings settings) {
   if (settings.name != '/login') {

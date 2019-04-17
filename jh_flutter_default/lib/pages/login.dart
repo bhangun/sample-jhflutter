@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_sample/services/common.dart' as auth;
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/logo_anim.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,8 +11,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final String _token="";
-
+  final String _token = "";
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +20,14 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            SizedBox(height: 80.0),
+            SizedBox(height: 200.0),
             Column(
               children: <Widget>[
-                //SvgPicture.asset('assets/logo-jhipster.svg'),
-                SizedBox(height: 16.0),
-                Text('Flutter'),
-                LogoApp()
+                SvgPicture.asset('assets/images/logo-jhipster.svg'),
+                //LogoApp()
               ],
             ),
-            SizedBox(height: 120.0),
+            SizedBox(height: 50.0),
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
@@ -48,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               obscureText: true,
             ),
-
             ButtonBar(
               children: <Widget>[
                 FlatButton(
@@ -58,32 +53,33 @@ class _LoginPageState extends State<LoginPage> {
                     _passwordController.clear();
                   },
                 ),
-                RaisedButton(
+                FlatButton(
                   child: Text('Login'),
                   onPressed: () {
                     try {
-                      auth.login(
-                          _usernameController.text, _passwordController.text,
-                          false).then((bool v) {
-                            print("<><><>"+v.toString());
-
+                      auth
+                          .login(_usernameController.text,
+                              _passwordController.text, false)
+                          .then((bool v) {
                         if (v) {
                           _usernameController.clear();
                           _passwordController.clear();
                           Navigator.pop(context);
-
-                        } else {
+                        } else
                           Navigator.of(context).pop();
-                          print("diskonek");
-                        }
                       });
-                    }catch(e){
+                    } catch (e) {
                       Navigator.of(context).pop();
-                      print(">>>>>>>>>"+e.toString());
                     }
                   },
                 ),
               ],
+            ),
+            FlatButton(
+              child: Text('Forgot Password?'),
+              onPressed: () {
+
+              },
             ),
           ],
         ),
@@ -91,6 +87,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-

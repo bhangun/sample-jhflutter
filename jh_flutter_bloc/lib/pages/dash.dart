@@ -34,12 +34,11 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  _viewHealth(Health health) {
-    //if (data is Health)
- List<charts.Series> seriesList = <charts.Series>[
+  _viewHealth(Health data) {
+/*  List<charts.Series> seriesList = <charts.Series>[
    Series(data: [10], domainFn: (datum, int index) {}, id: null, measureFn: (datum, int index) {})
- ]; 
- var data = [
+ ]; */
+/* var data = [
   new ClicksPerYear('2016', 12,Color.black),
   new ClicksPerYear('2017', 42, Color.black),
   new ClicksPerYear('2018', 23, Color.black),
@@ -52,7 +51,7 @@ class Dashboard extends StatelessWidget {
     colorFn: (ClicksPerYear clickData, _) => clickData.color,
     data: data,
   ),
-]; 
+]; */
 
     return CustomScrollView(
       primary: false,
@@ -63,13 +62,12 @@ class Dashboard extends StatelessWidget {
             crossAxisSpacing: 10.0,
             crossAxisCount: 2,
             children: <Widget>[
-               Text(health.histograms.connection.max.toString()),
+               Text('He\'d have you all unravel at the'),
               // Text(health.gauges.jvmCapacity.value),
-               Text(health.counters.count.toString()),
-               Text(health.gauges.jvmTotalMax.toString()),
-               Text(health.timers.getAuth.max.toString()),
-               Text(health.meters.connTimeoutRate.m1.toString()),
-              // GaugeChart(seriesList),
+               Text('Sound of screams but the'),
+               Text('Who scream'),
+               Text('Revolution is coming...'),
+               //GaugeChart(seriesList),
             ],
           ),
         ),

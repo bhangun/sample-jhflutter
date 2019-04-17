@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'user.helper.dart';
 import 'package:jh_flutter_sample/administration/account/user.dart';
 
-class UserDetail extends StatelessWidget{
+class UserDetail extends StatelessWidget {
   final int id;
   final String username;
   UserDetail({@required this.id, @required this.username});
@@ -25,22 +25,12 @@ class UserDetail extends StatelessWidget{
   }
 
   Widget userDetail(User data) {
-
     return Column(
       children: <Widget>[
-        Text(
-            data.firstName
-        ),
-        Text(
-            data.lastName
-        ),
-        Text(
-            data.email
-        ),
-        Text(
-            data.createdDate.toString()
-        ),
-
+        Text(data.firstName),
+        Text(data.lastName),
+        Text(data.email),
+        Text(data.createdDate.toString()),
       ],
     );
   }

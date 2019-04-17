@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/jh_flutter_sample.iml" filepath="$PROJECT_DIR$/.idea/jh_flutter_sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/jh_flutter_sample.iml" filepath="$PROJECT_DIR$/jh_flutter_sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/jh_flutter_sample_android.iml" filepath="$PROJECT_DIR$/jh_flutter_sample_android.iml" />
     </modules>

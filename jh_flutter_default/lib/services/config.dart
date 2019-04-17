@@ -1,6 +1,4 @@
 
-
-//const BASE_URL = 'http://192.168.0.102:8080/';
 const BASE_URL = 'http://localhost:8080/';
 const ADMIN = "ROLE_ADMIN";
 const USER = "ROLE_USER";

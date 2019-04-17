@@ -4,10 +4,10 @@ abstract class ApplicationEvent {}
 
 class AppStarted extends ApplicationEvent {}
 
-class LoggedIn extends ApplicationEvent {
+class AuthorizeUser extends ApplicationEvent {
   final String token;
 
-  LoggedIn({@required this.token});
+  AuthorizeUser({@required this.token});
 }
 
-class LoggedOut extends ApplicationEvent {}
+class DeauthorizeUser extends ApplicationEvent {}

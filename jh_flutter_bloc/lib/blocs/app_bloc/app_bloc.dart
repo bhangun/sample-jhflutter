@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 
 import 'app_event.dart';
 import 'app_state.dart';
-import 'package:jh_flutter_sample/services/services.dart';
+import '../../services/services.dart';
 
 
 
@@ -13,7 +13,6 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
   @override
   ApplicationState get initialState {
-    print("--------ApplicationState get initialState----------");
     return ApplicationState.initializing();
   }
 
@@ -22,11 +21,11 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
   }
 
   void onLoggedIn({@required String token}) {
-    dispatch(LoggedIn(token: token));
+    dispatch(AuthorizeUser(token: token));
   }
 
   void onLogout() {
-    dispatch(LoggedOut());
+    dispatch(DeauthorizeUser());
   }
 
   
@@ -35,30 +34,28 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
       ApplicationState state, ApplicationEvent event) async* {
     
     if (event is AppStarted) {
-      print("------AppStarted 1--------");
       final bool hasToken = await _hasToken();
+     // User user =await prefs(TOKEN);
 
-     /*  if (hasToken) {
-        yield ApplicationState.authenticated();
+     // fetchUser(token);
+     if (hasToken) {
+        //yield ApplicationState.authorizedUser();
       } else {
-        yield ApplicationState.unauthenticated();
-      } */
+       // yield ApplicationState.unauthenticated();
+      } 
     }
 
-    if (event is LoggedIn) {
-      print("------LoggedIn--------");
+    if (event is AuthorizeUser) {
+
       yield state.copyWith(isLoading: true);
 
       await _fetchProfile(event.token);
-            //yield ApplicationState.authenticated();
     }
       
-    if (event is LoggedOut) {
-            print("------LoggedOut--------");
+    if (event is DeauthorizeUser) {
             yield state.copyWith(isLoading: true);
       
             await _deleteToken();
-            //yield ApplicationState.unauthenticated();
     }
   }
       
@@ -66,9 +63,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
          removePrefs(TOKEN);
         }
       
-        Future<void> _persistToken(String token) async {
-          setPrefs(TOKEN,token);
-        }
+       
       
         Future<bool> _hasToken() async {
           bool _isTrue=false;

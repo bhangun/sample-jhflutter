@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart'; // deferred as listMenuDrawer;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jh_flutter_sample/blocs/auth_bloc/auth.dart';
+//import 'widgets.dart'; // deferred as listMenuDrawer;
 
 class CommonDrawer extends StatelessWidget {
   final String accountName;
   final String accountEmail;
+  final AuthenticationBloc authBloc;
+
+   CommonDrawer({this.accountName, this.accountEmail, this.authBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class CommonDrawer extends StatelessWidget {
     );
   }
 
-  CommonDrawer({this.accountName, this.accountEmail});
+ 
 
   Widget _header(String imgPath) => UserAccountsDrawerHeader(
         accountName: Text(
@@ -46,8 +51,32 @@ class CommonDrawer extends StatelessWidget {
     list.add(_header(""));
     list.add(_listTitle("Register", context,"/users"));
     list.add(_listTitle("User", context,"/users"));
-    list.add(_listTitle("Dashboard 2", context,"/dashboard"));
-    list.add(_listTitle("Logout", context,"/login"));
-    return list;
+    list.add(_listTitle("Dashboard", context,"/dashboard"));
+    //list.add(_listTitle("Logout", context,"/login"));
+    
+    /* list.add(
+      ListTile(
+        title: Text(
+          "Logout",
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+        ),
+        leading: Icon(
+          Icons.person,
+          color: Colors.blue,
+        ),
+        onTap: (){
+          print("????????????????????????????");
+         /*  BlocBuilder<AuthenticationEvent, AuthenticationState>(
+            bloc: authBloc,
+            builder: (BuildContext context,AuthenticationState loginState) { */
+           //  authBloc.onLogout();
+             // Navigator.pushNamed(context, "/login");},
+     //   );
+       // }
+      )
+    ); */
+
+
+   // return list;
   }
 }

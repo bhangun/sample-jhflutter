@@ -1,34 +1,31 @@
 import 'package:flutter/foundation.dart';
 
-
-
 class Entity {
-  const Entity({
-    @required this.id,
-   @required this.login,
-   @required this.firstName,
-   @required this.lastName,
-   @required this.email,
-   @required this.imageUrl,
-    @required this.activated,
-   @required this.langKey,
-   @required this.authorities,
-   @required this.createdBy,
-    this.createdDate,
-    this.lastModifiedBy,
-    this.lastModifiedDate
-  })  :
-         assert(id != null),
-         assert(login != null),
-         assert(firstName != null),
-         assert(lastName != null),
-         assert(email != null),
-         assert(imageUrl != null),
-         assert(activated != null),
-         assert(langKey != null),
-         assert(authorities != null),
-         assert(createdBy != null),
-         assert(createdDate != null);
+  const Entity(
+      {@required this.id,
+      @required this.login,
+      @required this.firstName,
+      @required this.lastName,
+      @required this.email,
+      @required this.imageUrl,
+      @required this.activated,
+      @required this.langKey,
+      @required this.authorities,
+      @required this.createdBy,
+      this.createdDate,
+      this.lastModifiedBy,
+      this.lastModifiedDate})
+      : assert(id != null),
+        assert(login != null),
+        assert(firstName != null),
+        assert(lastName != null),
+        assert(email != null),
+        assert(imageUrl != null),
+        assert(activated != null),
+        assert(langKey != null),
+        assert(authorities != null),
+        assert(createdBy != null),
+        assert(createdDate != null);
 
   final int id;
   final String login;
@@ -56,25 +53,14 @@ class Entity {
         langKey: json['langKey'],
         authorities: json['authorities'],
         createdBy: json['createdBy'],
-        createdDate: (json['createdDate'] != null)? DateTime.parse(json['createdDate']):null,
+        createdDate: (json['createdDate'] != null)
+            ? DateTime.parse(json['createdDate'])
+            : null,
         lastModifiedBy: json['lastModifiedBy'],
-        lastModifiedDate: (json['lastModifiedDate'] != null)? DateTime.parse(json['lastModifiedDate']):null
-    );
+        lastModifiedDate: (json['lastModifiedDate'] != null)
+            ? DateTime.parse(json['lastModifiedDate'])
+            : null);
   }
 }
 
-/*
-"id" : 3,
-  "login" : "admin",
-  "firstName" : "Administrator",
-  "lastName" : "Administrator",
-  "email" : "admin@localhost",
-  "imageUrl" : "",
-  "activated" : true,
-  "langKey" : "en",
-  "createdBy" : "system",
-  "createdDate" : "2018-07-02T07:46:23.273Z",
-  "lastModifiedBy" : "system",
-  "lastModifiedDate" : null,
-  "authorities" : [ "ROLE_Entity", "ROLE_ADMIN" ]
- */
+

@@ -1,33 +1,30 @@
 import 'package:flutter/foundation.dart';
 
-
-
 class User {
-  const User({
-     this.id,
-   @required this.login,
-   @required this.firstName,
-   @required this.lastName,
-   @required this.email,
-   @required this.imageUrl,
-    @required this.activated,
-   @required this.langKey,
-   @required this.authorities,
-   @required this.createdBy,
-    this.createdDate,
-    this.lastModifiedBy,
-    this.lastModifiedDate
-  })  :
-         assert(login != null),
-         assert(firstName != null),
-         assert(lastName != null),
-         assert(email != null),
-         assert(imageUrl != null),
-         assert(activated != null),
-         assert(langKey != null),
-         assert(authorities != null),
-         assert(createdBy != null),
-         assert(createdDate != null);
+  const User(
+      {this.id,
+      @required this.login,
+      @required this.firstName,
+      @required this.lastName,
+      @required this.email,
+      @required this.imageUrl,
+      @required this.activated,
+      @required this.langKey,
+      @required this.authorities,
+      @required this.createdBy,
+      this.createdDate,
+      this.lastModifiedBy,
+      this.lastModifiedDate})
+      : assert(login != null),
+        assert(firstName != null),
+        assert(lastName != null),
+        assert(email != null),
+        assert(imageUrl != null),
+        assert(activated != null),
+        assert(langKey != null),
+        assert(authorities != null),
+        assert(createdBy != null),
+        assert(createdDate != null);
 
   final int id;
   final String login;
@@ -55,29 +52,30 @@ class User {
         langKey: json['langKey'],
         authorities: json['authorities'],
         createdBy: json['createdBy'],
-        createdDate: (json['createdDate'] != null)? DateTime.parse(json['createdDate']):null,
+        createdDate: (json['createdDate'] != null)
+            ? DateTime.parse(json['createdDate'])
+            : null,
         lastModifiedBy: json['lastModifiedBy'],
-        lastModifiedDate: (json['lastModifiedDate'] != null)? DateTime.parse(json['lastModifiedDate']):null
-    );
+        lastModifiedDate: (json['lastModifiedDate'] != null)
+            ? DateTime.parse(json['lastModifiedDate'])
+            : null);
   }
 
-
-    Map<String, dynamic> toJson() =>
-    {
-      '"id"': '"$id"',
-      '"login"': '"$login"',
-      '"firstName"': '"$firstName"',
-      '"lastName"': '"$lastName"',
-      '"email"': '"$email"',
-      '"imageUrl"': '"$imageUrl"',
-      '"activated"': '"$activated"',
-      '"langKey"': '"$langKey"',
-      '"authorities"': '$authorities',
-      '"createdBy"': '"$createdBy"',
-      '"createdDate"' : '"'+createdDate.toIso8601String()+'Z"',
-      '"lastModifiedBy"': '"$lastModifiedBy"',
-      '"lastModifiedDate"':'"'+lastModifiedDate.toIso8601String()+'Z"'
-    };
+  Map<String, dynamic> toJson() => {
+        '"id"': '"$id"',
+        '"login"': '"$login"',
+        '"firstName"': '"$firstName"',
+        '"lastName"': '"$lastName"',
+        '"email"': '"$email"',
+        '"imageUrl"': '"$imageUrl"',
+        '"activated"': '"$activated"',
+        '"langKey"': '"$langKey"',
+        '"authorities"': '$authorities',
+        '"createdBy"': '"$createdBy"',
+        '"createdDate"': '"' + createdDate.toIso8601String() + 'Z"',
+        '"lastModifiedBy"': '"$lastModifiedBy"',
+        '"lastModifiedDate"': '"' + lastModifiedDate.toIso8601String() + 'Z"'
+      };
 }
 
 /*

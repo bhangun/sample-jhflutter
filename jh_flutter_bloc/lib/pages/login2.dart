@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jh_flutter_sample/blocs/app_bloc/app.dart';
 import '../blocs/auth_bloc/auth.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,24 +11,26 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-
-   AuthenticationBloc _authBloc;
-   ApplicationBloc _appBloc;
-  final _usernameController = TextEditingController();
+ 
+ final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
-     _authBloc = BlocProvider.of<AuthenticationBloc>(context);
-      _appBloc = BlocProvider.of<ApplicationBloc>(context);
-    
-    return BlocBuilder<AuthenticationEvent, AuthenticationState>(
+
+AuthenticationBloc _authBloc = BlocProvider.of<AuthenticationBloc>(context);
+
+    return Scaffold(
+      body: BlocBuilder<AuthenticationEvent, AuthenticationState>(
       bloc: _authBloc,
-      builder: (BuildContext context, AuthenticationState loginState) {
+      builder: (
+        BuildContext context,
+        AuthenticationState loginState,
+      ) {
 
         if (loginState.token.isNotEmpty) {
           _authBloc.onLogin(token: loginState.token);
-          _appBloc.onLoggedIn(token: loginState.token);
         }
 
         if (loginState.error.isNotEmpty) {
@@ -40,14 +43,19 @@ class LoginPageState extends State<LoginPage> {
             );
           });
         }
-        return _form(loginState);
+
+        return _form(loginState, _authBloc);
       },
+    )
     );
   }
+@override
+  void dispose() {
+    super.dispose();
+  }
 
-  Widget _form(AuthenticationState loginState) {
-    return Scaffold(
-      body: Form(
+  Widget _form(AuthenticationState loginState,AuthenticationBloc _authBloc) {
+    return Form(
       child: Column(
         children: [
           SizedBox(height: 80.0),
@@ -57,7 +65,7 @@ class LoginPageState extends State<LoginPage> {
                 width: MediaQuery.of(context).size.width/4,
                 height: MediaQuery.of(context).size.height/4,),
                 SizedBox(height: 16.0),
-                //Text('Flutter'),
+                Text('Flutter'),
               ],
             ),
           TextFormField(
@@ -70,11 +78,11 @@ class LoginPageState extends State<LoginPage> {
             obscureText: true,
           ),
           Checkbox(
-            value: loginState.rememberMe,
-            onChanged: _authBloc.rememberMe(),
+            value: _rememberMe,
+            onChanged: (v)=>_rememberMe=v
           ),
           RaisedButton(
-            onPressed: loginState.isLoginButtonEnabled ? _onLoginButtonPressed : null,
+            onPressed: loginState.isLoginButtonEnabled ? _onLoginButtonPressed( _authBloc) : null,
             child: Text('Login'),
           ),
           Container(
@@ -82,7 +90,6 @@ class LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
-    )
     );
   }
 
@@ -92,18 +99,11 @@ class LoginPageState extends State<LoginPage> {
     });
   }
 
-  _onLoginButtonPressed() {
+  _onLoginButtonPressed(AuthenticationBloc _authBloc) {
     _authBloc.onLoginButtonPressed(
       username: _usernameController.text,
       password: _passwordController.text,
-     // rememberMe: v
+      rememberMe: _rememberMe
     );
-  }
-
-  @override
-  void dispose() {
-    _authBloc.dispose();
-    _appBloc.dispose();
-    super.dispose();
   }
 }

@@ -6,16 +6,19 @@ import 'helper.dart';
 import '../services/config.dart';
 
 //
-restGet(String path,[bool auth=false, bool isBasePath=false]) async {
-  final response =  await http.get(isBasePath? BASE_URL+path:API+path,
-      headers:{HttpHeaders.contentTypeHeader: "application/json",
-        "Authorization":"Bearer  ${(auth)? await prefs("token"):""}"});
-  print(response.body);
+restGet(String path, [bool auth = false, bool isBasePath = false]) async {
+  final response =
+      await http.get(isBasePath ? BASE_URL + path : API + path, headers: {
+    HttpHeaders.contentTypeHeader: "application/json",
+    "Authorization": "Bearer  ${(auth) ? await prefs("token") : ""}"
+  });
+  // print(response.body);
 
-  var parsed =json.decode(response.body).cast<Map<String, dynamic>>();
-  Health health= parsed.map<Health>((json) => Health.fromJson(json));
-  print(health);//">>>>"+health.gauges.jvmGarbageMarkSweepCount.value);
-   if (response.statusCode == 200) {
+  var parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+  Health health = parsed.map<Health>((json) => Health.fromJson(json));
+  // print(health);
+  //">>>>"+health.gauges.jvmGarbageMarkSweepCount.value);
+  if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     return response.body;
   } else {
@@ -25,11 +28,14 @@ restGet(String path,[bool auth=false, bool isBasePath=false]) async {
 }
 
 //
-restPost(String path,String payload,[bool auth=false]) async{
-  final response =  await http.post(API+path,
-      headers: {HttpHeaders.contentTypeHeader: "application/json",
-        "Authorization":"Bearer  ${(auth)? await prefs("token"):""}"},
-      body:payload,encoding: Encoding.getByName('UTF8') );
+restPost(String path, String payload, [bool auth = false]) async {
+  final response = await http.post(API + path,
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        "Authorization": "Bearer  ${(auth) ? await prefs("token") : ""}"
+      },
+      body: payload,
+      encoding: Encoding.getByName('UTF8'));
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     return response.body;
@@ -40,11 +46,14 @@ restPost(String path,String payload,[bool auth=false]) async{
 }
 
 //
-restPut(String path,String payload,[bool auth=false]) async{
-  final response =  await http.put(API+path,
-      headers: {HttpHeaders.contentTypeHeader: "application/json",
-        "Authorization":"Bearer  ${(auth)? await prefs("token"):""}"},
-      body:payload,encoding: Encoding.getByName('UTF8') );
+restPut(String path, String payload, [bool auth = false]) async {
+  final response = await http.put(API + path,
+      headers: {
+        HttpHeaders.contentTypeHeader: "application/json",
+        "Authorization": "Bearer  ${(auth) ? await prefs("token") : ""}"
+      },
+      body: payload,
+      encoding: Encoding.getByName('UTF8'));
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     return response.body;
@@ -56,9 +65,10 @@ restPut(String path,String payload,[bool auth=false]) async{
 
 //
 restDelete(String path) async {
-  final response =  await http.delete(API+path,
-      headers:{HttpHeaders.contentTypeHeader: "application/json",
-        "Authorization":"Bearer "+ await prefs("token")});
+  final response = await http.delete(API + path, headers: {
+    HttpHeaders.contentTypeHeader: "application/json",
+    "Authorization": "Bearer " + await prefs("token")
+  });
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON
     return response.body;

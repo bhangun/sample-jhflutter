@@ -5,6 +5,7 @@ class AuthenticationState {
   final bool isLoading;
   final bool isAuthenticated;
   final bool isLoginButtonEnabled;
+  final bool rememberMe;
   final String status;
   final String error;
   final String token;
@@ -14,6 +15,7 @@ class AuthenticationState {
     @required this.isLoading,
     @required this.isAuthenticated,
      @required this.isLoginButtonEnabled,
+     @required this.rememberMe,
    @required this.status,
    @required this.error,
    @required this.token
@@ -25,6 +27,7 @@ class AuthenticationState {
       isAuthenticated: false,
       isLoading: false,
       isLoginButtonEnabled: true,
+      rememberMe: false,
       status: "initializing",
       error: "",
       token: ""
@@ -37,6 +40,7 @@ class AuthenticationState {
       isAuthenticated: true,
       isLoading: false,
       isLoginButtonEnabled: false,
+      rememberMe: false,
       status: "authenticated",
       error: "",
       token: ""
@@ -49,18 +53,20 @@ class AuthenticationState {
       isAuthenticated: false,
       isLoading: false,
       isLoginButtonEnabled: true,
-      status: "authenticated",
-      error: "",
-      token: ""
+      rememberMe: false,
+      status: 'authenticated',
+      error: '',
+      token: ''
     );
   }
 
   factory AuthenticationState.initial() {
     return AuthenticationState(
-      isInitializing: false,
+      isInitializing: true,
       isAuthenticated: false,
       isLoading: false,
       isLoginButtonEnabled: true,
+      rememberMe: false,
       status: 'Initial',
       error: '',
       token: '',
@@ -71,8 +77,9 @@ class AuthenticationState {
     return AuthenticationState(
       isInitializing: false,
       isAuthenticated: false,
-      isLoading: false,
+      isLoading: true,
       isLoginButtonEnabled: false,
+      rememberMe: false,
       status: 'Loading',
       error: '',
       token: '',
@@ -85,6 +92,7 @@ class AuthenticationState {
       isAuthenticated: false,
       isLoading: false,
       isLoginButtonEnabled: true,
+      rememberMe: false,
       status: 'Failure',
       error: error,
       token: '',
@@ -97,6 +105,7 @@ class AuthenticationState {
       isAuthenticated: false,
       isLoading: false,
       isLoginButtonEnabled: false,
+      rememberMe: false,
       status: 'Success',
       error: '',
       token: token,
@@ -108,6 +117,7 @@ class AuthenticationState {
     bool isAuthenticated,
     bool isLoading,
     bool isLoginButtonEnabled,
+    bool rememberMe,
     String  status,
     String  error,
     String  token
@@ -117,6 +127,7 @@ class AuthenticationState {
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       isLoading: isLoading ?? this.isLoading,
       isLoginButtonEnabled: isLoginButtonEnabled ?? this.isLoginButtonEnabled,
+      rememberMe: rememberMe ?? this.rememberMe,
       status: status ?? this.status,
       error: error ?? this.error,
       token: token ?? this.token
@@ -124,11 +135,32 @@ class AuthenticationState {
   }
 
   @override
+  bool operator ==( Object other) =>
+      identical( this, other) ||
+      other is AuthenticationState &&
+          runtimeType == other.runtimeType &&
+          isInitializing == other.isInitializing &&
+          isAuthenticated == other.isAuthenticated &&
+          isLoading == other.isLoading &&
+          isLoginButtonEnabled == isLoginButtonEnabled &&
+          rememberMe == rememberMe &&
+          status == status &&
+          error == error &&
+          token == token;
+
+  @override
+  int get hashCode =>
+      isInitializing.hashCode ^ isAuthenticated.hashCode ^ isLoading.hashCode ^ 
+      isLoginButtonEnabled.hashCode ^ rememberMe.hashCode ^ status.hashCode ^ 
+      error.hashCode ^ token.hashCode;
+
+  @override
   String toString() =>
       'AuthenticationState { isInitializing: $isInitializing,'+
       'isLoading: $isLoading, '+
       'isAuthenticated: $isAuthenticated, '+
       'isLoginButtonEnabled: $isLoginButtonEnabled, '+
+      'rememberMe: $rememberMe,'+
       'status: $status, '+
       'error: $error, '+
       'token: $token}';
