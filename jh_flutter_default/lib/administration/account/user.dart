@@ -92,4 +92,23 @@ class User {
   "lastModifiedBy" : "system",
   "lastModifiedDate" : null,
   "authorities" : [ "ROLE_USER", "ROLE_ADMIN" ]
+
+
+  {
+  "activated": true,
+  "authorities": [
+    "string"
+  ],
+  "createdBy": "string",
+  "createdDate": "2019-04-17T09:49:53.653Z",
+  "email": "string",
+  "firstName": "string",
+  "id": 0,
+  "imageUrl": "string",
+  "langKey": "string",
+  "lastModifiedBy": "string",
+  "lastModifiedDate": "2019-04-17T09:49:53.653Z",
+  "lastName": "string",
+  "login": "string"
+}
  */

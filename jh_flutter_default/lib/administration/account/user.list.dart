@@ -30,51 +30,50 @@ class _UserListPageState extends State<UserListPage> {
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => UserFormPage()));
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserFormPage()));
           },
           tooltip: 'Add',
           child: Icon(Icons.add),
-        )
-    );
+        ));
   }
 }
-
 
 Widget item(int id, String name, String role, BuildContext context) {
   return ListTile(
       title: Text(name,
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
       subtitle: Text(role),
-      onTap: (){
-        print(id.toString()+" > tap");
-        Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetail(id: id,username: name,)));
+      onTap: () {
+        print(id.toString() + " > tap");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => UserDetail(
+                      id: id,
+                      username: name,
+                    )));
       },
-      leading: Icon(Icons.theaters, color: Colors.blue[500]));
+      leading: Icon(Icons.person, size: 50,color: Colors.blue[500]));
 }
 
-class UserList extends StatelessWidget{
+class UserList extends StatelessWidget {
   final String data;
   UserList({this.data});
 
   @override
   Widget build(BuildContext context) {
+    final parsed = json.decode(data).cast<Map<String, dynamic>>();
+    List<User> _items =
+        parsed.map<User>((json) => User.fromJson(json)).toList();
 
-    final parsed =json.decode(data).cast<Map<String, dynamic>>();
-    List<User> _items= parsed.map<User>((json) => User.fromJson(json)).toList();
-
-
-    // = usersData(data);
     return ListView.builder(
-      // Let the ListView know how many items it needs to build
       itemCount: _items.length,
-      // Provide a builder function. This is where the magic happens! We'll
-      // convert each item into a Widget based on the type of item it is.
       itemBuilder: (context, index) {
         final user = _items[index];
         return item(user.id, user.login, user.email, context);
       },
     );
   }
-
 }
