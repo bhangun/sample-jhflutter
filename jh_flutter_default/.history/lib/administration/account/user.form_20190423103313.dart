@@ -31,7 +31,7 @@ class _UserFormPageState extends State<UserFormPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.isEdit?'Edit User':'Create User'),
+          title: Text('Create User'),
         ),
         body: SafeArea(
             child: ListView(

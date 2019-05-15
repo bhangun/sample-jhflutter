@@ -31,7 +31,7 @@ class _UserFormPageState extends State<UserFormPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.isEdit?'Edit User':'Create User'),
+          title: Text('Create User'),
         ),
         body: SafeArea(
             child: ListView(
@@ -92,6 +92,9 @@ class _UserFormPageState extends State<UserFormPage> {
   void _save() async {
     try {
       if (widget.isEdit) {
+        print(widget.data.createdDate.toString() +
+            "ediiiiiiittttt > " +
+            widget.data.id.toString());
         await updateUser(User(
             id: widget.data.id,
             login: _username.text,
