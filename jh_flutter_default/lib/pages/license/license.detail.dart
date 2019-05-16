@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../administration/account/user.form.dart';
-import 'user.helper.dart';
-import '../../administration/account/user.dart';
+import 'license.dart';
+import 'license.form.dart';
+import 'license.helper.dart';
 
-class UserDetail extends StatelessWidget {
+class LicenseDetail extends StatelessWidget {
   final int id;
-  final String username;
-  User data;
-  UserDetail({@required this.id, @required this.username});
+  License data;
+  LicenseDetail({@required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("User Detail"),
+          title: Text("License Detail"),
           elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
         body: FutureBuilder(
-            future: user(username),
+            future: license(id.toString()),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.hasData
-                  ? userDetail(snapshot.data)
+                  ? licenseDetail(snapshot.data)
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
@@ -28,14 +27,14 @@ class UserDetail extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => UserFormPage(data: data)));
+                    builder: (context) => LicenseFormPage(data: data)));
           },
           tooltip: 'Add',
           child: Icon(Icons.edit),
         ));
   }
 
-  Widget userDetail(User _data) {
+  Widget licenseDetail(License _data) {
     data = _data;
     return ListView(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -43,14 +42,10 @@ class UserDetail extends StatelessWidget {
           SizedBox(height: 100.0),
           Icon(Icons.person, size: 100, color: Colors.blue[500]),
          Column(
-              children: <Widget>[
-                Text(data.login),
-                Text(data.firstName),
-                Text(data.lastName),
-                Text(data.email),
-                Text(data.authorities.toString()),
-                Text(data.lastModifiedDate.toString()),
-                Text(data.createdDate.toString()),
+              children: <Widget>[ 
+              Text(data.id.toString()),
+              Text(data.no.toString()),
+              Text(data.area),
               ])
         ]);
   }

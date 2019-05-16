@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../administration/account/user.helper.dart';
+import '../administration/account.dart';
 import '../services/common.dart' as auth;
 import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/logo_anim.dart';
@@ -24,8 +24,14 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 200.0),
             Column(
               children: <Widget>[
-                SvgPicture.asset('assets/images/logo-jhipster.svg'),
-                //LogoApp()
+                // SvgPicture.asset('assets/images/logo-jhipster.svg'),
+                DecoratedBox(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image:  AssetImage('assets/images/logo-jhipster.png'),
+                      ),
+                    ),
+                  )
               ],
             ),
             SizedBox(height: 50.0),

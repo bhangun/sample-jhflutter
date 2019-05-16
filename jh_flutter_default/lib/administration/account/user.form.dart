@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../services/services.dart';
 import 'user.helper.dart';
 import 'user.dart';
 
@@ -31,7 +32,7 @@ class _UserFormPageState extends State<UserFormPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.isEdit?'Edit User':'Create User'),
+          title: Text('Create User'),
         ),
         body: SafeArea(
             child: ListView(

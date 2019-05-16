@@ -48,7 +48,6 @@ class CommonDrawer extends StatelessWidget {
     list.add(_listTitle("User", context,"/users"));
     list.add(_listTitle("Dashboard", context,"/dashboard"));
     list.add(_listTitle("Logout", context,"/login"));
-    list.add(_listTitle("License", context,"/license"));
     // kutilang-needle-add-drawer - Don't remove, used by kutilang to add new list
     return list;
   }

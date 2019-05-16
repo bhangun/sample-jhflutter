@@ -3,8 +3,9 @@ import 'dart:convert';
 import '../../administration/account/user.dart';
 import '../../services/connection.dart';
 
-String API_ACCOUNT = 'account';
+const API_ACCOUNT = 'account';
 
+const PROFILE = 'profile';
 // POST saveAccount
 const API_ACCOUNT_SAVE = "account";
 
@@ -72,13 +73,6 @@ updateUser(User user) async {
 deleteUser(User user) async {
   return await restDelete(API_USER + user.toJson().toString());
 }
-
-
-instantToDate(DateTime date){
-  //print(">>>>"+date.()+"Z".substring(1));
-  return DateTime.parse(date.toString().substring(0,date.toString().length-1));
-}
-
 
 List<User> usersData(String data) {
   final parsed =json.decode(data).cast<Map<String, dynamic>>();

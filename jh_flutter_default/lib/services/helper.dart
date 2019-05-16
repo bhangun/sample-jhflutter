@@ -11,7 +11,7 @@ setPrefs(String key,String value) {
 //
 Future<String> prefs(String key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString("token");
+  return prefs.getString(key);
 }
 
 Future<JWT> jwt() async {
@@ -28,5 +28,7 @@ Future<bool> isRole(String role) async {
   return b.contains(role);
 }
 
-
+instantToDate(DateTime date){
+  return DateTime.parse(date.toString().substring(0,date.toString().length-1));
+}
 
