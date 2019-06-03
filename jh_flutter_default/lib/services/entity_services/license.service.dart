@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'license.dart';
+import '../../models/license.dart';
 import '../../services/connection.dart';
 
 
@@ -21,7 +21,7 @@ Future<License> license(String id) async {
 
 
 //
-Future<String> licenses() async {
+Future<License> licenses() async {
   print("get licenses");
   return await restGet(API_LICENSE,true,false);
 }

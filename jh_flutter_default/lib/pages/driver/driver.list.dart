@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import '../../models/license.dart';
-import 'license.detail.dart';
-import '../../services/entity_services/license.service.dart';
-import 'license.form.dart';
+import '../../models/driver.dart';
+import 'driver.detail.dart';
+import '../../services/entity_services/driver.service.dart';
+import 'driver.form.dart';
 
-class LicenseListPage extends StatefulWidget {
+class DriverListPage extends StatefulWidget {
 
   @override
-  _LicenseListPageState createState() => _LicenseListPageState();
+  _DriverListPageState createState() => _DriverListPageState();
 }
 
-final String _title = "License List";
+final String _title = "Driver List";
 
-class _LicenseListPageState extends State<LicenseListPage> {
+class _DriverListPageState extends State<DriverListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,56 +22,54 @@ class _LicenseListPageState extends State<LicenseListPage> {
           elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
         body: FutureBuilder(
-            future: licenses(),
+            future: drivers(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.hasData
-                  ? LicenseList(data: snapshot.data)
+                  ? DriverList(data: snapshot.data)
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LicenseFormPage()));
+                MaterialPageRoute(builder: (context) => DriverFormPage()));
           },
           tooltip: 'Add',
           child: Icon(Icons.add),
         ));
   }
 }
-  
+ 
 
-Widget item(int id, int no, String  area, 
+Widget item(int id, String name, 
 BuildContext context) {
   return ListTile(
-      title: Text(no.toString(),
+      title: Text(name,
       style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
-      subtitle: Text(area),
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => LicenseDetail(id: id )));
+                builder: (context) => DriverDetail(id: id )));
       },
       leading: Icon(Icons.person, size: 50,color: Colors.blue[500]));
 }
 
-class LicenseList extends StatelessWidget {
+class DriverList extends StatelessWidget {
   final String data;
-  LicenseList({this.data});
+  DriverList({this.data});
 
   @override
   Widget build(BuildContext context) {
     final parsed = json.decode(data).cast<Map<String, dynamic>>();
-    List<License> _items =
-        parsed.map<License>((json) => License.fromJson(json)).toList();
+    List<Driver> _items =
+        parsed.map<Driver>((json) => Driver.fromJson(json)).toList();
     return ListView.builder(
       itemCount: _items.length,
       itemBuilder: (context, index) {
-        final license = _items[index];
+        final driver = _items[index];
         return item( 
-        license.id,  
-        license.no,  
-        license.area, 
+        driver.id,  
+        driver.name, 
            context);
       },
     );

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../administration/dashboard.dart';
 import 'helper.dart';
 import '../services/config.dart';
 
@@ -13,7 +12,7 @@ restGet(String path, [bool auth = false, bool isBasePath = false]) async {
     "Authorization": "Bearer  ${(auth) ? await prefs("token") : ""}"
   });
 
-  print(auth );
+  print(path + '>>> '+response.body );
   if (response.statusCode == 200)
     // If the call to the server was successful, parse the JSON
     return response.body;

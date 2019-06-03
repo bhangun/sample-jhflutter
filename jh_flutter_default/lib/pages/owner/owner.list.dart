@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import '../../models/license.dart';
-import 'license.detail.dart';
-import '../../services/entity_services/license.service.dart';
-import 'license.form.dart';
+import '../../models/owner.dart';
+import 'owner.detail.dart';
+import '../../services/entity_services/owner.service.dart';
+import 'owner.form.dart';
 
-class LicenseListPage extends StatefulWidget {
+class OwnerListPage extends StatefulWidget {
 
   @override
-  _LicenseListPageState createState() => _LicenseListPageState();
+  _OwnerListPageState createState() => _OwnerListPageState();
 }
 
-final String _title = "License List";
+final String _title = "Owner List";
 
-class _LicenseListPageState extends State<LicenseListPage> {
+class _OwnerListPageState extends State<OwnerListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,56 +22,54 @@ class _LicenseListPageState extends State<LicenseListPage> {
           elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
         body: FutureBuilder(
-            future: licenses(),
+            future: owners(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.hasData
-                  ? LicenseList(data: snapshot.data)
+                  ? OwnerList(data: snapshot.data)
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LicenseFormPage()));
+                MaterialPageRoute(builder: (context) => OwnerFormPage()));
           },
           tooltip: 'Add',
           child: Icon(Icons.add),
         ));
   }
 }
-  
+ 
 
-Widget item(int id, int no, String  area, 
+Widget item(int id, String name, 
 BuildContext context) {
   return ListTile(
-      title: Text(no.toString(),
+      title: Text(name,
       style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20.0)),
-      subtitle: Text(area),
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => LicenseDetail(id: id )));
+                builder: (context) => OwnerDetail(id: id )));
       },
       leading: Icon(Icons.person, size: 50,color: Colors.blue[500]));
 }
 
-class LicenseList extends StatelessWidget {
+class OwnerList extends StatelessWidget {
   final String data;
-  LicenseList({this.data});
+  OwnerList({this.data});
 
   @override
   Widget build(BuildContext context) {
     final parsed = json.decode(data).cast<Map<String, dynamic>>();
-    List<License> _items =
-        parsed.map<License>((json) => License.fromJson(json)).toList();
+    List<Owner> _items =
+        parsed.map<Owner>((json) => Owner.fromJson(json)).toList();
     return ListView.builder(
       itemCount: _items.length,
       itemBuilder: (context, index) {
-        final license = _items[index];
+        final owner = _items[index];
         return item( 
-        license.id,  
-        license.no,  
-        license.area, 
+        owner.id,  
+        owner.name, 
            context);
       },
     );

@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../models/license.dart';
-import 'license.form.dart';
-import '../../services/entity_services/license.service.dart';
+import '../../models/owner.dart';
+import 'owner.form.dart';
+import '../../services/entity_services/owner.service.dart';
 
-class LicenseDetail extends StatelessWidget {
+class OwnerDetail extends StatelessWidget {
   final int id;
-  License data;
-  LicenseDetail({@required this.id});
+  Owner data;
+  OwnerDetail({@required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("License Detail"),
+          title: Text("Owner Detail"),
           elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
         body: FutureBuilder(
-            future: license(id.toString()),
+            future: owner(id.toString()),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.hasData
-                  ? licenseDetail(snapshot.data)
+                  ? ownerDetail(snapshot.data)
                   : Center(child: CircularProgressIndicator());
             }),
         floatingActionButton: FloatingActionButton(
@@ -27,14 +27,14 @@ class LicenseDetail extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => LicenseFormPage(data: data)));
+                    builder: (context) => OwnerFormPage(data: data)));
           },
           tooltip: 'Add',
           child: Icon(Icons.edit),
         ));
   }
 
-  Widget licenseDetail(License _data) {
+  Widget ownerDetail(Owner _data) {
     data = _data;
     return ListView(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
@@ -44,8 +44,7 @@ class LicenseDetail extends StatelessWidget {
          Column(
               children: <Widget>[ 
               Text(data.id.toString()),
-              Text(data.no.toString()),
-              Text(data.area),
+              Text(data.name),
               ])
         ]);
   }

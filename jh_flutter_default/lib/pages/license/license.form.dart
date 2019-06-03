@@ -1,9 +1,9 @@
 
 
+
 import 'package:flutter/material.dart';
-import 'license.helper.dart';
-import 'license.dart';
-import '../../services/services.dart';
+import '../../services/entity_services/license.service.dart';
+import '../../models/license.dart'; 
 
 class LicenseFormPage extends StatefulWidget {
   final License data;
@@ -16,15 +16,17 @@ class _LicenseFormPageState extends State<LicenseFormPage> {
   bool isEdited = false;
   final _id = TextEditingController(); 
   final _no = TextEditingController();
-  var _area = '';
+  var _area = ''; 
+
+  
   @override
   Widget build(BuildContext context) {
     if (widget.data != null) {
       isEdited = true;
       License license = widget.data;
-      _id.text = license.id.toString();
+       _id.text = license.id.toString(); 
       _no.text = license.no.toString();
-      _area = license.area;
+      _area = license.area; 
     }
 
     return Scaffold(
@@ -44,7 +46,7 @@ class _LicenseFormPageState extends State<LicenseFormPage> {
 
   _listChild() {
     return <Widget>[
-      SizedBox(height: 120.0),
+      SizedBox(height: 120.0), 
       TextField(
         controller: _id,
         decoration: InputDecoration(
@@ -57,25 +59,23 @@ class _LicenseFormPageState extends State<LicenseFormPage> {
         controller: _no,
         decoration: InputDecoration(
           filled: true,
-          labelText: 'No',
+          labelText: 'no',
         ),
         keyboardType: TextInputType.number,
       ), 
-
       DropdownButton<String>(
-        value: _area,
-        onChanged: (String newValue) {
-          setState(() {
-            _area = newValue;
-          });
-        },
-        items: area.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          })
-          .toList(),
+              value: _area,
+              onChanged: (String newValue) {
+                setState(() {
+                  _area = newValue;
+                });
+              },
+              items: area.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+              }).toList(),
       ),
     ];
   }
@@ -84,24 +84,21 @@ class _LicenseFormPageState extends State<LicenseFormPage> {
     try {
       if (isEdited) {
         await updateLicense(License(
-          id: int.parse(_id.text),
+          id: int.parse(_id.text), 
           no: int.parse(_no.text),
-          area: _area,
+          area: _area, 
         ));
         isEdited =false;  
       } else {
         await createLicense(License(
+          id: int.parse(_id.text),
           no: int.parse(_no.text),
-          area: _area,
+          area: _area, 
         ));
       }
     } catch (e) {
       print(e.toString());
     }
     Navigator.pop(context);
-  }
-
-  void _clearForm() {
-    _no.clear();
   }
 }

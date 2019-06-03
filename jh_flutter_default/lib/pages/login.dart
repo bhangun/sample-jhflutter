@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../administration/account.dart';
+// import '../administration/account.dart';
 import '../services/common.dart' as auth;
-import 'package:flutter_svg/flutter_svg.dart';
-import '../widgets/logo_anim.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import '../widgets/logo_anim.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final String _token = "";
+ //  final String _token = "";
 
   @override
   Widget build(BuildContext context) {

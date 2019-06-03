@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart'; // deferred as listMenuDrawer;
 
 class CommonDrawer extends StatelessWidget {
   final String accountName;
@@ -49,6 +48,11 @@ class CommonDrawer extends StatelessWidget {
     list.add(_listTitle("Dashboard", context,"/dashboard"));
     list.add(_listTitle("Logout", context,"/login"));
     list.add(_listTitle("License", context,"/license"));
+    list.add(_listTitle("Car", context,"/car"));
+    list.add(_listTitle("Owner", context,"/owner"));
+    list.add(_listTitle("Wheel", context,"/wheel"));
+    list.add(_listTitle("Driver", context,"/driver"));
+    list.add(_listTitle("Coba", context,"/coba"));
     // kutilang-needle-add-drawer - Don't remove, used by kutilang to add new list
     return list;
   }
