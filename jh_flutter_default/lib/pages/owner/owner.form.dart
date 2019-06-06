@@ -4,8 +4,6 @@
 import 'package:flutter/material.dart';
 import '../../services/entity_services/owner.service.dart';
 import '../../models/owner.dart'; 
-import '../../models/driver.dart';
-import '../../services/entity_services/driver.service.dart';
 
 class OwnerFormPage extends StatefulWidget {
   final Owner data;
@@ -19,7 +17,6 @@ class _OwnerFormPageState extends State<OwnerFormPage> {
   final _id = TextEditingController(); 
   final _name = TextEditingController();
 
-  var _driver;
   
   @override
   Widget build(BuildContext context) {
@@ -64,25 +61,6 @@ class _OwnerFormPageState extends State<OwnerFormPage> {
         ),
         keyboardType: TextInputType.number,
       ), 
-      FutureBuilder(
-            future: drivers(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              return snapshot.hasData ? 
-              DropdownButton<String>(
-                value: _driver,
-                onChanged: (String newValue) {
-                  setState(() {
-                    _driver = newValue;
-                  });
-                },
-                items: snapshot.data.map<DropdownMenuItem<Driver>>((Driver driver) {
-                    return DropdownMenuItem<int>(
-                      value: driver.id,
-                      child: Text('As'),
-                    );
-              }).toList(),
-            ): Center(child: CircularProgressIndicator());
-      }), 
     ];
   }
 

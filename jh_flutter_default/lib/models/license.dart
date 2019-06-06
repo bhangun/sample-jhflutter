@@ -1,11 +1,10 @@
 
-
+import 'dart:convert';
 
 class License {
     final int id;
     final int no;
     final String area;
-    
     
     const License ({ 
         this.id,
@@ -33,3 +32,7 @@ const area = {
     'JAKARTA',
     'JATIM'
 };
+
+List<License> licenseFromJson(String str) => new List<License>.from(json.decode(str).map((x) => License.fromJson(x)));
+
+String licenseToJson(List<License> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));

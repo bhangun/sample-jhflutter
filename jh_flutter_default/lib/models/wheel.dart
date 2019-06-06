@@ -1,5 +1,5 @@
 
-
+import 'dart:convert';
 import 'car.dart';
 
 class Wheel {
@@ -7,7 +7,6 @@ class Wheel {
     final String position;
     final String brand;
     final List<Car> cars;
-    
     const Wheel ({ 
         this.id,
         this.position,
@@ -30,3 +29,7 @@ class Wheel {
     };
 }
 
+
+List<Wheel> wheelFromJson(String str) => new List<Wheel>.from(json.decode(str).map((x) => Wheel.fromJson(x)));
+
+String wheelToJson(List<Wheel> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));

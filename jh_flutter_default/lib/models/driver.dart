@@ -1,12 +1,11 @@
 
-
+import 'dart:convert';
 import 'owner.dart';
 
 class Driver {
     final int id;
     final String name;
     final List<Owner> owners;
-    
     const Driver ({ 
         this.id,
         this.name, 
@@ -26,3 +25,7 @@ class Driver {
     };
 }
 
+
+List<Driver> driverFromJson(String str) => new List<Driver>.from(json.decode(str).map((x) => Driver.fromJson(x)));
+
+String driverToJson(List<Driver> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));
