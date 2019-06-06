@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import '../../services/entity_services/wheel.service.dart';
 import '../../models/wheel.dart'; 
@@ -19,8 +16,7 @@ class _WheelFormPageState extends State<WheelFormPage> {
   final _id = TextEditingController(); 
   final _position = TextEditingController();
   final _brand = TextEditingController();
-
-  var _car;
+  var _car; 
   
   @override
   Widget build(BuildContext context) {
@@ -30,6 +26,7 @@ class _WheelFormPageState extends State<WheelFormPage> {
        _id.text = wheel.id.toString(); 
       _position.text = wheel.position.toString();
       _brand.text = wheel.brand.toString();
+      _car.text = wheel.cars.toString();
     }
 
     return Scaffold(
@@ -93,6 +90,7 @@ class _WheelFormPageState extends State<WheelFormPage> {
               }).toList(),
             ): Center(child: CircularProgressIndicator());
       }), 
+      
     ];
   }
 
@@ -103,6 +101,7 @@ class _WheelFormPageState extends State<WheelFormPage> {
           id: int.parse(_id.text), 
           position: _position.text,
           brand: _brand.text,
+          cars: _car, 
         ));
         isEdited =false;  
       } else {
@@ -110,6 +109,7 @@ class _WheelFormPageState extends State<WheelFormPage> {
           id: int.parse(_id.text),
           position: _position.text,
           brand: _brand.text,
+          cars: _car, 
         ));
       }
     } catch (e) {

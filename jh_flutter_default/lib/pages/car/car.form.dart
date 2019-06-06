@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import '../../services/entity_services/car.service.dart';
 import '../../models/car.dart'; 
@@ -18,8 +15,7 @@ class _CarFormPageState extends State<CarFormPage> {
   bool isEdited = false;
   final _id = TextEditingController(); 
   final _name = TextEditingController();
-
-  var _owner;
+  var _owner; 
   
   @override
   Widget build(BuildContext context) {
@@ -28,6 +24,7 @@ class _CarFormPageState extends State<CarFormPage> {
       Car car = widget.data;
        _id.text = car.id.toString(); 
       _name.text = car.name.toString();
+      _owner.text = car.owners.toString();
     }
 
     return Scaffold(
@@ -83,6 +80,7 @@ class _CarFormPageState extends State<CarFormPage> {
               }).toList(),
             ): Center(child: CircularProgressIndicator());
       }), 
+      
     ];
   }
 
@@ -92,12 +90,14 @@ class _CarFormPageState extends State<CarFormPage> {
         await updateCar(Car(
           id: int.parse(_id.text), 
           name: _name.text,
+          owners: _owner, 
         ));
         isEdited =false;  
       } else {
         await createCar(Car(
           id: int.parse(_id.text),
           name: _name.text,
+          owners: _owner, 
         ));
       }
     } catch (e) {

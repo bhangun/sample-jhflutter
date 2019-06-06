@@ -5,21 +5,19 @@ class Owner {
     final int id;
     final String name;
     
-    const Owner ({ 
-        this.id,
+    const Owner ({  
+        this.id, 
         this.name, 
     });
 
     factory Owner.fromJson(Map<String, dynamic> json) =>  Owner(
         id: json['id'],
         name: json['name'],
-        
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id, 
-        "name": name, 
-        
+        "id": id,
+        "name": name,
     };
 }
 

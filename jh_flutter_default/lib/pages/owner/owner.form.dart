@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import '../../services/entity_services/owner.service.dart';
 import '../../models/owner.dart'; 
@@ -16,7 +13,6 @@ class _OwnerFormPageState extends State<OwnerFormPage> {
   bool isEdited = false;
   final _id = TextEditingController(); 
   final _name = TextEditingController();
-
   
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import '../../services/entity_services/license.service.dart';
 import '../../models/license.dart'; 
@@ -17,7 +14,6 @@ class _LicenseFormPageState extends State<LicenseFormPage> {
   final _id = TextEditingController(); 
   final _no = TextEditingController();
   var _area = ''; 
-
   
   @override
   Widget build(BuildContext context) {

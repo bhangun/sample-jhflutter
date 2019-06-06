@@ -1,27 +1,38 @@
 
 import 'dart:convert';
+import 'license.dart';
+import 'car.dart';
 import 'owner.dart';
 
 class Driver {
     final int id;
     final String name;
-    final List<Owner> owners;
-    const Driver ({ 
-        this.id,
-        this.name, 
-        this.owners,
+    final List<License> licenses; 
+    final List<Car> cars; 
+    final List<Owner> owners; 
+    
+    const Driver ({  
+        this.id, 
+        this.name,
+        this.licenses,
+        this.cars,
+        this.owners, 
     });
 
     factory Driver.fromJson(Map<String, dynamic> json) =>  Driver(
         id: json['id'],
         name: json['name'],
-        owners: List<Owner>.from(json['owner'].map((x) => Owner.fromJson(x))),
+        licenses: List<License>.from(json['licenses'].map((x) => License.fromJson(x))), 
+        cars: List<Car>.from(json['cars'].map((x) => Car.fromJson(x))), 
+        owners: List<Owner>.from(json['owners'].map((x) => Owner.fromJson(x))), 
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id, 
-        "name": name, 
-        "owners": List<dynamic>.from(owners.map((x) => x.toJson())),
+        "id": id,
+        "name": name,
+        "licenses": List<dynamic>.from(licenses.map((x) => x.toJson())), 
+        "cars": List<dynamic>.from(cars.map((x) => x.toJson())), 
+        "owners": List<dynamic>.from(owners.map((x) => x.toJson())), 
     };
 }
 
