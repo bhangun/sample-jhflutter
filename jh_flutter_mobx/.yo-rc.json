@@ -1,0 +1,7 @@
+{
+  "generator-jhipster-kutilang": {
+    "promptValues": {
+      "backendPath": "../../../workexample/jhipster/jhCar01"
+    }
+  }
+}
