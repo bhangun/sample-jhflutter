@@ -1,13 +1,13 @@
-import 'package:boilerplate/constants/strings.dart';
-import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
-import 'package:boilerplate/routes.dart';
-import 'package:boilerplate/stores/form/form_store.dart';
-import 'package:boilerplate/widgets/app_icon_widget.dart';
-import 'package:boilerplate/widgets/empty_app_bar_widget.dart';
-import 'package:boilerplate/widgets/progress_indicator_widget.dart';
-import 'package:boilerplate/widgets/rounded_button_widget.dart';
-import 'package:boilerplate/widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_mobx/constants/strings.dart';
+import 'package:jh_flutter_mobx/services/routes.dart';
+import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
+import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
+import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
+import 'package:jh_flutter_mobx/widgets/empty_app_bar_widget.dart';
+import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
+import 'package:jh_flutter_mobx/widgets/rounded_button_widget.dart';
+import 'package:jh_flutter_mobx/widgets/textfield_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flushbar/flushbar_helper.dart';
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   //store
-  final _store = FormStore();
+  final _store = AuthenticationStore();
 
   @override
   void initState() {
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onFieldSubmitted: (value) {
             FocusScope.of(context).requestFocus(_passwordFocusNode);
           },
-          errorText: _store.formErrorStore.userEmail,
+          errorText: _store.userEmail,
         );
       },
     );
@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
           iconColor: Colors.black54,
           textController: _passwordController,
           focusNode: _passwordFocusNode,
-          errorText: _store.formErrorStore.password,
+          errorText: _store.password,
         );
       },
     );

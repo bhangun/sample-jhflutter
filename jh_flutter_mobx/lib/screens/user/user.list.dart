@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'user.detail.dart';
-import 'user.helper.dart';
-import 'user.dart';
+import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'dart:convert';
+import 'user.detail.dart';
 import 'user.form.dart';
 
 class UserListPage extends StatefulWidget {

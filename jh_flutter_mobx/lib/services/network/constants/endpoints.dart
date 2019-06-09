@@ -11,5 +11,7 @@ class Endpoints {
   static const int connectionTimeout = 3000;
 
   // booking endpoints
-  static const String getPosts = baseUrl + "/posts";
+  static String getPosts (String uri){
+     return baseUrl + uri;
+  }
 }

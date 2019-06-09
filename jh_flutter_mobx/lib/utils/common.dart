@@ -33,12 +33,4 @@ Future<User> userProfile() async {
   return User.fromJson(json.decode(profile));
 }
 
-Future<Health> health() async {
-  var response = await restGet("management/metrics", true, true);
-  print(json.decode(response)["gauges"] + "---" + response);
-  var parsed = json.decode(response).cast<Map<String, dynamic>>();
-  Health health =
-      parsed.map<Health>((json) => Health.fromJson(json)); //.toList();
-  print(health.gauges.jvmGarbageMarkSweepCount);
-  return Health.fromJson(json.decode(response));
-}
+

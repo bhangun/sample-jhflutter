@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:boilerplate/utils/encryption/xxtea.dart';
+import 'package:jh_flutter_mobx/utils/encryption/xxtea.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';

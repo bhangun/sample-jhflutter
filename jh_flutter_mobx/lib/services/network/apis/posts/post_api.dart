@@ -27,7 +27,7 @@ class PostApi {
   /// Returns list of post in response
   Future<PostsList> getPosts() {
     return _dioClient
-        .get(Endpoints.getPosts)
+        .get(Endpoints.getPosts('.......'))
         .then((dynamic res) => PostsList.fromJson(res))
         .catchError((error) => throw error);
   }

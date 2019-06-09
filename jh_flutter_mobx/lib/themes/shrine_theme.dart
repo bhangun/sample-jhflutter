@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
-final ThemeData kShrineTheme = _buildTheme();
+final ThemeData shrineTheme = _buildTheme();
 
 const kShrinePink50 = Color(0xFFFEEAE6);
 const kShrinePink100 =  Color(0xFFFEDBD0);

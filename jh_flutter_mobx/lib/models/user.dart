@@ -77,8 +77,10 @@ class User {
         '"lastModifiedBy"': '"$lastModifiedBy"',
         '"lastModifiedDate"': '"' + lastModifiedDate.toIso8601String() + 'Z"'
       };
+
+  List<User> userFromJson(String str) => new List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+
+  String userToJson(List<User> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));
+
 }
 
-List<User> userFromJson(String str) => new List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
-
-String userToJson(List<User> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));

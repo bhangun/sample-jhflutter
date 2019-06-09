@@ -23,9 +23,11 @@ class Driver {
         "name": name, 
         "owners": List<dynamic>.from(owners.map((x) => x.toJson())),
     };
+
+    List<Driver> driverFromJson(String str) => new List<Driver>.from(json.decode(str).map((x) => Driver.fromJson(x)));
+
+    String driverToJson(List<Driver> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));
+
 }
 
 
-List<Driver> driverFromJson(String str) => new List<Driver>.from(json.decode(str).map((x) => Driver.fromJson(x)));
-
-String driverToJson(List<Driver> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));

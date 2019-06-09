@@ -12,13 +12,13 @@ mixin _$PostStore on _PostStore, Store {
   final _$postsListAtom = Atom(name: '_PostStore.postsList');
 
   @override
-  dynamic get postsList {
+  PostsList get postsList {
     _$postsListAtom.reportObserved();
     return super.postsList;
   }
 
   @override
-  set postsList(dynamic value) {
+  set postsList(PostsList value) {
     _$postsListAtom.context
         .checkIfStateModificationsAreAllowed(_$postsListAtom);
     super.postsList = value;
