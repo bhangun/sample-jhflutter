@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
+import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
 import 'package:jh_flutter_mobx/stores/post/post_store.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,14 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   //store
-  final _store = PostStore();
+  final _store = AuthenticationStore();
 
   @override
   void initState() {
     super.initState();
 
     //get all posts
-    _store.getPosts();
+    _store.getUserList();
   }
 
   @override
@@ -74,9 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildListView() {
-    return _store.postsList != null
+    return _store.userList != null
         ? ListView.separated(
-            itemCount: _store.postsList.posts.length,
+            itemCount: _store.userList.length,
             separatorBuilder: (context, position) {
               return Divider();
             },
@@ -84,14 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
               return ListTile(
                 leading: Icon(Icons.cloud_circle),
                 title: Text(
-                  '${_store.postsList.posts[position].title}',
+                  '${_store.userList[position].firstName}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
                   style: Theme.of(context).textTheme.title,
                 ),
                 subtitle: Text(
-                  '${_store.postsList.posts[position].body}',
+                  '${_store.userList[position].lastName}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,

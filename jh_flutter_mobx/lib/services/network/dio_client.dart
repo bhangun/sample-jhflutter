@@ -17,7 +17,8 @@ final Dio dio = new Dio()
     var token = prefs.getString(Preferences.auth_token);
 
     if (token != null) {
-      options.headers.putIfAbsent('Authorization', () => token);
+      //options.headers.putIfAbsent('Authorization', () => token);
+      options.headers = {'Authorization': 'Bearer ' + token};
     } else {
       print('Auth token is null');
     }
@@ -39,7 +40,7 @@ class DioClient {
   static DioClient get instance => DioClient();
   
   // Get:-----------------------------------------------------------------------
-  Future<dynamic> get(String uri) async {
+   Future<dynamic> fetch(String uri) async {
     try {
       final Response response = await dio.get(uri);
       return response.data;
@@ -58,4 +59,25 @@ class DioClient {
       throw e;
     }
   }
+
+  // Post:----------------------------------------------------------------------
+  Future<dynamic> delete(String uri, dynamic data) async {
+    try {
+      final Response response = await dio.delete(uri, data: data);
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  // Post:----------------------------------------------------------------------
+  Future<dynamic> put(String uri, dynamic data) async {
+    try {
+      final Response response = await dio.put(uri, data: data);
+      return response.data;
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }

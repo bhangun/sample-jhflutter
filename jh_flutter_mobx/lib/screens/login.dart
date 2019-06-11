@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
       textColor: Colors.white,
       onPressed: () async {
         if (_store.canLogin) {
-          _store.login();
+          _store.login(_userEmailController.text,_passwordController.text);
         } else {
           showErrorMessage(context, 'Please fill in all fields');
         }

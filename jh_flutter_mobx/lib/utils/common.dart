@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import '../administration/dashboard.dart';
-import '../administration/account.dart';
-import '../services/connection.dart';
-import '../services/helper.dart';
-import '../services/config.dart';
+
+import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:jh_flutter_mobx/services/connection.dart';
+import 'package:jh_flutter_mobx/services/user.helper.dart';
+import 'package:jh_flutter_mobx/utils/config.dart';
+import 'package:jh_flutter_mobx/utils/helper.dart';
+
 
 Future<bool> login(String username, String password, bool rememberMe) async {
   logout();

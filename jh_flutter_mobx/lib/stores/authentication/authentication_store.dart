@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:jh_flutter_mobx/models/post/post_list.dart';
+import 'package:jh_flutter_mobx/models/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
+import 'package:jh_flutter_mobx/services/network/dio_client.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/stores/error/error_store.dart';
 import 'package:jh_flutter_mobx/utils/config.dart';
@@ -29,13 +31,14 @@ abstract class _AuthenticationStore implements Store {
     _disposers = [
       reaction((_) => userEmail, validateUserEmail),
       reaction((_) => password, validatePassword),
-      reaction((_) => confirmPassword, validateConfirmPassword)
+      reaction((_) => confirmPassword, validateConfirmPassword),
     ];
   }
 
   // store variables:-----------------------------------------------------------
+
   @observable
-  PostsList postsList;
+  List<User> userList ;//= List<User>();
 
   @observable
   String userEmail = '';
@@ -50,6 +53,9 @@ abstract class _AuthenticationStore implements Store {
   bool success = false;
 
   @observable
+  bool loggedIn = false;
+
+  @observable
   bool loading = false;
 
   @observable
@@ -57,7 +63,7 @@ abstract class _AuthenticationStore implements Store {
 
   @computed
   bool get canLogin =>
-      !hasErrorsInLogin && userEmail.isNotEmpty && password.isNotEmpty;
+      !hasErrorsInLogin ;//&& userEmail.isNotEmpty && password.isNotEmpty;
 
   @computed
   bool get canRegister =>
@@ -101,9 +107,9 @@ abstract class _AuthenticationStore implements Store {
   void validateUserEmail(String value) {
     if (value.isEmpty) {
       userEmail = "Email can't be empty";
-    } else if (!isEmail(value)) {
+    } /* else if (!isEmail(value)) {
       userEmail = 'Please enter a valid email address';
-    } else {
+    } */ else {
       userEmail = null;
     }
   }
@@ -136,18 +142,25 @@ abstract class _AuthenticationStore implements Store {
   }
 
   @action
-  Future login(String username, String password, bool rememberMe) async {
+  Future getUserList() async{ 
+    users().then((data)=> userList = data); 
+  }
+
+  @action
+  Future login(String _username,String _password,[bool _rememberMe=false]) async {
     loading = true;
- 
-  var body = jsonEncode({"username": username, "password": password, "rememberMe": rememberMe});
-  
+    
+    var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
+  loading = true;
+      success = true;
     final response = await restPost("authenticate", body);
     setPrefs(TOKEN, json.decode(response)["id_token"]);
 
     String profile = await restGet(API_ACCOUNT,true,false);
     setPrefs(PROFILE, profile);
-
-    Future.delayed(Duration(milliseconds: 2000)).then((future) {
+success = true;
+      errorStore.showError = false;
+    /* Future.delayed(Duration(milliseconds: 2000)).then((future) {
       loading = false;
       success = true;
       errorStore.showError = false;
@@ -159,7 +172,7 @@ abstract class _AuthenticationStore implements Store {
           ? "Username and password doesn't match"
           : "Something went wrong, please check your internet connection and try again";
       print(e);
-    });
+    }); */
   }
 
   @action

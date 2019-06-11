@@ -44,20 +44,19 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
           Computed<bool>(() => super.hasErrorInForgotPassword))
       .value;
 
-  final _$postsListAtom = Atom(name: '_AuthenticationStore.postsList');
+  final _$userListAtom = Atom(name: '_AuthenticationStore.userList');
 
   @override
-  PostsList get postsList {
-    _$postsListAtom.reportObserved();
-    return super.postsList;
+  List<User> get userList {
+    _$userListAtom.reportObserved();
+    return super.userList;
   }
 
   @override
-  set postsList(PostsList value) {
-    _$postsListAtom.context
-        .checkIfStateModificationsAreAllowed(_$postsListAtom);
-    super.postsList = value;
-    _$postsListAtom.reportChanged();
+  set userList(List<User> value) {
+    _$userListAtom.context.checkIfStateModificationsAreAllowed(_$userListAtom);
+    super.userList = value;
+    _$userListAtom.reportChanged();
   }
 
   final _$userEmailAtom = Atom(name: '_AuthenticationStore.userEmail');
@@ -123,6 +122,21 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
     _$successAtom.reportChanged();
   }
 
+  final _$loggedInAtom = Atom(name: '_AuthenticationStore.loggedIn');
+
+  @override
+  bool get loggedIn {
+    _$loggedInAtom.reportObserved();
+    return super.loggedIn;
+  }
+
+  @override
+  set loggedIn(bool value) {
+    _$loggedInAtom.context.checkIfStateModificationsAreAllowed(_$loggedInAtom);
+    super.loggedIn = value;
+    _$loggedInAtom.reportChanged();
+  }
+
   final _$loadingAtom = Atom(name: '_AuthenticationStore.loading');
 
   @override
@@ -161,12 +175,20 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
     return _$registerAsyncAction.run(() => super.register());
   }
 
+  final _$getUserListAsyncAction = AsyncAction('getUserList');
+
+  @override
+  Future<dynamic> getUserList() {
+    return _$getUserListAsyncAction.run(() => super.getUserList());
+  }
+
   final _$loginAsyncAction = AsyncAction('login');
 
   @override
-  Future<dynamic> login(String username, String password, bool rememberMe) {
+  Future<dynamic> login(String _username, String _password,
+      [bool _rememberMe = false]) {
     return _$loginAsyncAction
-        .run(() => super.login(username, password, rememberMe));
+        .run(() => super.login(_username, _password, _rememberMe));
   }
 
   final _$forgotPasswordAsyncAction = AsyncAction('forgotPassword');

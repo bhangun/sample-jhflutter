@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import '../../administration/account/user.dart';
-import '../../services/connection.dart';
+
+import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:jh_flutter_mobx/services/connection.dart';
 
 const API_ACCOUNT = 'account';
 
@@ -51,9 +52,12 @@ Future<User> user(String id) async {
 
 
 //
-Future<String> users() async {
-  print("get users");
-  return await restGet(API_USER,true,false);
+Future<List<User>> users() async{
+  print(">>> get users <<<");
+  String v= await restGet(API_USER,true,false);
+  List<User> l=User.listFromString(v);
+  //print('<><><>?? '+l[2].firstName);
+  return l;
 }
 
 //

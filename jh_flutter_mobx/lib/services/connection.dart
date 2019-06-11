@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:jh_flutter_mobx/utils/config.dart';
+import 'package:jh_flutter_mobx/utils/helper.dart';
 
 
 //
@@ -8,7 +10,7 @@ restGet(String path, [bool auth = false, bool isBasePath = false]) async {
   final response =
       await http.get(isBasePath ? BASE_URL + path : API + path, headers: {
     HttpHeaders.contentTypeHeader: "application/json",
-    "Authorization": "Bearer  ${(auth) ? await prefs("token") : ""}"
+    "Authorization": "Bearer  ${(auth) ? await prefs('token') : ""}"
   });
 
   print(path + '>>> '+response.body );
@@ -22,6 +24,7 @@ restGet(String path, [bool auth = false, bool isBasePath = false]) async {
 
 //
 restPost(String path, String payload, [bool auth = false]) async {
+  print('>>>>>>>>>>>>>>>>'+payload);
   final response = await http.post(API + path,
       headers: {
         HttpHeaders.contentTypeHeader: "application/json",

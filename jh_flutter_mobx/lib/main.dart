@@ -13,12 +13,39 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:jh_flutter_mobx/constants/strings.dart';
 import 'package:jh_flutter_mobx/screens/home.dart';
+import 'package:jh_flutter_mobx/screens/splash.dart';
+import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/themes/default_theme.dart';
-import 'services/services.dart';
 
+void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+  ]).then((_) {
+    runApp(MyApp());
+  });
+}
 
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: Strings.appName,
+      theme: defaultTheme,
+      routes: Routes.routes,
+      home: SplashScreen(),
+    );
+  }
+}
 
+/* 
 void main() => runApp(new MyApp());
 
 
@@ -31,10 +58,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: HomeScreen(),
-      initialRoute: loginRoute,
+      initialRoute: Route.,
       onGenerateRoute: route,
       routes: routes,
       theme: defaultTheme,
     );
   }
-}
+} */

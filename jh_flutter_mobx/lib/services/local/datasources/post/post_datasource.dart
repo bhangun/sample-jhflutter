@@ -1,6 +1,6 @@
-import 'package:boilerplate/data/local/constants/db_constants.dart';
-import 'package:boilerplate/models/post/post.dart';
 import 'package:f_logs/data/local/app_database.dart';
+import 'package:jh_flutter_mobx/models/post/post.dart';
+import 'package:jh_flutter_mobx/services/local/constants/db_constants.dart';
 import 'package:sembast/sembast.dart';
 
 class PostDataSource {

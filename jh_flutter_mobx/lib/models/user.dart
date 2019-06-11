@@ -78,9 +78,33 @@ class User {
         '"lastModifiedDate"': '"' + lastModifiedDate.toIso8601String() + 'Z"'
       };
 
-  List<User> userFromJson(String str) => new List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
+  static List<User> listFromString(String str) => new List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
 
-  String userToJson(List<User> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));
+  static List<User> listFromJson(List<dynamic> data) {
+    return data.map((post) => User.fromJson(post)).toList();
+  }
+
+  String listUserToJson(List<User> data) => json.encode(new List<dynamic>.from(data.map((x) => x.toJson())));
 
 }
 
+class UserList {
+  final List<User> users;
+
+  UserList({
+    this.users,
+  });
+
+  factory UserList.fromJson(List<dynamic> json) {
+    List<User> users = List<User>();
+    users = json.map((post) => User.fromJson(post)).toList();
+
+    return UserList(
+      users: users,
+    );
+  }
+}
+
+/* final parsed = json.decode('data').cast<Map<String, dynamic>>();
+    List<User> _items = json.decode('data').cast<Map<String, dynamic>>().map<User>((json) => User.fromJson(json)).toList();
+ */
