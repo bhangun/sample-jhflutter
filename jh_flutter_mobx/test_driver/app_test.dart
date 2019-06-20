@@ -30,7 +30,7 @@ void main() {
       // Record the performance timeline of things that happen
       fd.Timeline timeline = await driver.traceAction(() async {
         // Find the increment button
-        fd.SerializableFinder incrementButton = fd.find.byValueKey('user_id');
+        // fd.SerializableFinder incrementButton = fd.find.byValueKey('user_id');
 
         // Click the button 10 times
         for (int i = 0; i < 10; i++) {

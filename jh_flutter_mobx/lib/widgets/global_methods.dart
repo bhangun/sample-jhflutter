@@ -1,3 +1,4 @@
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 
 
@@ -32,3 +33,17 @@ Widget header(String accountName,String accountEmail,String imgPath) =>
       ),
     );
 
+ // General Methods:-----------------------------------------------------------
+  showErrorMessage(BuildContext context, String message) {
+    Future.delayed(Duration(milliseconds: 0), () {
+      if (message != null) {
+        FlushbarHelper.createError(
+          message: message,
+          title: 'Error',
+          duration: Duration(seconds: 3),
+        )..show(context);
+      }
+    });
+
+    return Container();
+  }

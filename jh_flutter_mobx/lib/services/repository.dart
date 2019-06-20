@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:jh_flutter_mobx/models/post/post.dart';
 import 'package:jh_flutter_mobx/models/post/post_list.dart';
 import 'package:jh_flutter_mobx/services/local/datasources/post/post_datasource.dart';
-import 'package:jh_flutter_mobx/services/sharedpref/shared_preference_helper.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -16,7 +15,7 @@ class Repository {
   final _postApi = PostApi.instance;
 
   // shared pref object
-  final _sharedPrefsHelper = SharedPreferenceHelper.instance;
+  // final _sharedPrefsHelper = SharedPreferenceHelper.instance;
 
   // singleton repository object:-----------------------------------------------
   static final Repository _singleton = Repository._();

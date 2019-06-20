@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:jh_flutter_mobx/models/user.dart';
 import 'package:jh_flutter_mobx/services/network/constants/endpoints.dart';
 import 'package:jh_flutter_mobx/services/network/dio_client.dart';
-import 'package:jh_flutter_mobx/services/network/rest_client.dart';
 
 
 class UserApi {
@@ -20,7 +19,7 @@ class UserApi {
   static UserApi get instance => _singleton;
 
   // rest client
-  final _restClient = RestClient.instance;
+  // final _restClient = RestClient.instance;
   final _dioClient = DioClient.instance;
 
   /// Returns list of post in response

@@ -1,18 +1,19 @@
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_mobx/constants/strings.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
-import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
 import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
 import 'package:jh_flutter_mobx/widgets/empty_app_bar_widget.dart';
+import 'package:jh_flutter_mobx/widgets/error_message_widget.dart';
+import 'package:jh_flutter_mobx/widgets/global_methods.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
 import 'package:jh_flutter_mobx/widgets/rounded_button_widget.dart';
 import 'package:jh_flutter_mobx/widgets/textfield_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flushbar/flushbar_helper.dart';
 
 class LoginScreen extends StatefulWidget {
+  final testKey = Key('K');
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -90,7 +91,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     )
                   : child = Center(child: _buildRightSide());
-
               return child;
             },
           ),
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (context) {
               return _store.success
                   ? navigate(context)
-                  : showErrorMessage(context, _store.errorStore.errorMessage);
+                  : showErrorMessage(context , _store.errorStore.errorMessage);
             },
           ),
           Observer(
@@ -118,8 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildLeftSide() {
     return SizedBox.expand(
-      child: Image.asset(
-        'assets/images/img_login.jpg',
+      child: Image.asset(Strings.login_image,
         fit: BoxFit.cover,
       ),
     );
@@ -136,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              AppIconWidget(image: 'assets/icons/ic_appicon.png'),
+              AppIconWidget(image: Strings.app_icon),
               SizedBox(height: 24.0),
               _buildUserIdField(),
               _buildPasswordField(),
@@ -215,29 +214,16 @@ class _LoginScreenState extends State<LoginScreen> {
         if (_store.canLogin) {
           _store.login(_userEmailController.text,_passwordController.text);
         } else {
-          showErrorMessage(context, 'Please fill in all fields');
+          showErrorMessage(context , 'Please fill in all fields');
         }
       },
     );
   }
 
-  // General Methods:-----------------------------------------------------------
-  showErrorMessage(BuildContext context, String message) {
-    if(message != null) {
-      FlushbarHelper.createError(
-        message: message,
-        title: 'Error',
-        duration: Duration(seconds: 3),
-      )
-        ..show(context);
-    }
-
-    return Container();
-  }
-
-  Widget navigate(BuildContext context) {
+  navigate(BuildContext context) {
+      return Future.delayed(Duration(milliseconds: 0), () {
       Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.home, (Route<dynamic> route) => false);
-    return Container();
+          Routes.home, (Route<dynamic> route) => false); 
+      });
   }
 }

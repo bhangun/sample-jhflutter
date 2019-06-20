@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_mobx/constants/strings.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
@@ -20,12 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Center(child: AppIconWidget(image: 'assets/icons/ic_appicon.png')),
+      child: Center(child: AppIconWidget(image: Strings.splash_image)),
     );
   }
 
   startTimer() {
-    var _duration = Duration(milliseconds: 5000);
+    var _duration = Duration(milliseconds: 300);
     return Timer(_duration, navigate);
   }
 

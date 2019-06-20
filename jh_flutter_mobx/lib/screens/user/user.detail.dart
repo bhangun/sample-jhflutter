@@ -3,11 +3,18 @@ import 'package:jh_flutter_mobx/models/user.dart';
 import 'package:jh_flutter_mobx/screens/user/user.form.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 
-class UserDetail extends StatelessWidget {
+class UserDetail extends StatefulWidget {
   final int id;
   final String username;
-  User data;
+
   UserDetail({@required this.id, @required this.username});
+
+  @override
+  _UserDetailState createState() => _UserDetailState();
+}
+
+class _UserDetailState extends State<UserDetail> {
+  User data;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class UserDetail extends StatelessWidget {
           elevation: 5.0, // Removing the drop shadow cast by the app bar.
         ),
         body: FutureBuilder(
-            future: user(username),
+            future: user(widget.username),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               return snapshot.hasData
                   ? userDetail(snapshot.data)

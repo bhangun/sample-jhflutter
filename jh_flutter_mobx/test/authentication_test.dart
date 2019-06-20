@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jh_flutter_mobx/models/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/utils/common.dart';
@@ -10,7 +9,7 @@ void main() {
   group('Authentication', () {
     String username = 'admin';
     String password = 'admin';
-    String token = '';
+    // var token = '';
     test('login', () async {
       bool rememberMe = false;
       login(username, password, rememberMe);

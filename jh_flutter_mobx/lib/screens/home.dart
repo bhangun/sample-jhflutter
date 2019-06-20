@@ -4,7 +4,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
-import 'package:jh_flutter_mobx/stores/post/post_store.dart';
+import 'package:jh_flutter_mobx/widgets/drawer.dart';
+import 'package:jh_flutter_mobx/widgets/global_methods.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: _buildAppBar(context),
       body: _buildBody(),
+      drawer: CommonDrawer(accountName: 'bhangun',accountEmail: 'blblbl',),
     );
   }
 
@@ -101,20 +103,5 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           )
         : Center(child: Text('No posts found'));
-  }
-
-  // General Methods:-----------------------------------------------------------
-  showErrorMessage(BuildContext context, String message) {
-    Future.delayed(Duration(milliseconds: 0), () {
-      if (message != null) {
-        FlushbarHelper.createError(
-          message: message,
-          title: 'Error',
-          duration: Duration(seconds: 3),
-        )..show(context);
-      }
-    });
-
-    return Container();
   }
 }

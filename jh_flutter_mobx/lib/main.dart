@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
-      theme: defaultTheme,
+      theme: darkTheme,
       routes: Routes.routes,
       home: SplashScreen(),
     );

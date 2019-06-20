@@ -6,7 +6,7 @@ import 'package:jh_flutter_mobx/utils/helper.dart';
 
 class UserFormPage extends StatefulWidget {
   final User data;
-  bool isEdit = false;
+  final bool isEdit = false;
   UserFormPage({this.data});
   @override
   _UserFormPageState createState() => _UserFormPageState();
@@ -22,7 +22,7 @@ class _UserFormPageState extends State<UserFormPage> {
   @override
   Widget build(BuildContext context) {
     if (widget.data != null) {
-      widget.isEdit = true;
+     // widget.isEdit = true;
       User user = widget.data;
 
       _username.text = user.login;
@@ -129,10 +129,4 @@ class _UserFormPageState extends State<UserFormPage> {
     Navigator.pop(context);
   }
 
-  void _clearForm() {
-    _username.clear();
-    _firstname.clear();
-    _lastname.clear();
-    _email.clear();
-  }
 }

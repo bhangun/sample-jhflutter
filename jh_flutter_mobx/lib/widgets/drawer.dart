@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CommonDrawer extends StatelessWidget {
   final String accountName;
   final String accountEmail;
+CommonDrawer({this.accountName, this.accountEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CommonDrawer extends StatelessWidget {
     );
   }
 
-  CommonDrawer({this.accountName, this.accountEmail});
+  
 
   Widget _header(String imgPath) => UserAccountsDrawerHeader(
         accountName: Text(
