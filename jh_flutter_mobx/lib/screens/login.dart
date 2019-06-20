@@ -209,7 +209,8 @@ class _LoginScreenState extends State<LoginScreen> {
       key: Key('sign_button'),
       buttonText: Strings.login_btn_sign_in,
       buttonColor: Colors.orangeAccent,
-      textColor: Colors.white,
+      //textColor: Colors.white,
+      textColor: Theme.of(context).textTheme.button.color,
       onPressed: () async {
         if (_store.canLogin) {
           _store.login(_userEmailController.text,_passwordController.text);
