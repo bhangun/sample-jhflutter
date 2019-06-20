@@ -43,24 +43,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/* 
-void main() => runApp(new MyApp());
-
-
-class MyApp extends StatelessWidget {
-
-  final _title = "My Page";
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: HomeScreen(),
-      initialRoute: Route.,
-      onGenerateRoute: route,
-      routes: routes,
-      theme: defaultTheme,
-    );
-  }
-} */
