@@ -1,22 +1,23 @@
 import 'dart:convert';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-class User {
-  const User(
+class User extends Equatable{
+  User(
       {this.id,
       @required this.login,
       @required this.firstName,
       @required this.lastName,
       @required this.email,
-      @required this.imageUrl,
+      this.imageUrl,
       @required this.activated,
-      @required this.langKey,
+      this.langKey,
       @required this.authorities,
-      @required this.createdBy,
+      this.createdBy,
       this.createdDate,
       this.lastModifiedBy,
-      this.lastModifiedDate})
-      : assert(login != null),
+      this.lastModifiedDate}): super([id,login]);
+      /* : assert(login != null),
         assert(firstName != null),
         assert(lastName != null),
         assert(email != null),
@@ -25,7 +26,7 @@ class User {
         assert(langKey != null),
         assert(authorities != null),
         assert(createdBy != null),
-        assert(createdDate != null);
+        assert(createdDate != null); */
 
   final int id;
   final String login;

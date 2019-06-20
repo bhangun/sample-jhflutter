@@ -15,10 +15,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jh_flutter_mobx/constants/strings.dart';
-import 'package:jh_flutter_mobx/screens/home.dart';
 import 'package:jh_flutter_mobx/screens/splash.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
-import 'package:jh_flutter_mobx/themes/default_theme.dart';
+import 'package:jh_flutter_mobx/themes/index.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([

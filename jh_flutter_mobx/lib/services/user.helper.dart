@@ -53,10 +53,8 @@ Future<User> user(String id) async {
 
 //
 Future<List<User>> users() async{
-  print(">>> get users <<<");
   String v= await restGet(API_USER,true,false);
   List<User> l=User.listFromString(v);
-  //print('<><><>?? '+l[2].firstName);
   return l;
 }
 

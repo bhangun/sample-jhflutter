@@ -153,6 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Observer(
       builder: (context) {
         return TextFieldWidget(
+          key: Key('user_id'),
           hint: Strings.login_et_user_email,
           inputType: TextInputType.emailAddress,
           icon: Icons.person,
@@ -172,6 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Observer(
       builder: (context) {
         return TextFieldWidget(
+          key: Key('user_password'),
           hint: Strings.login_et_user_password,
           isObscure: true,
           padding: EdgeInsets.only(top: 16.0),
@@ -189,6 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Align(
       alignment: FractionalOffset.centerRight,
       child: FlatButton(
+        key: Key('forgot_password'),
         padding: EdgeInsets.all(0.0),
         child: Text(
           Strings.login_btn_forgot_password,
@@ -204,6 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignInButton() {
     return RoundedButtonWidget(
+      key: Key('sign_button'),
       buttonText: Strings.login_btn_sign_in,
       buttonColor: Colors.orangeAccent,
       textColor: Colors.white,
@@ -232,15 +236,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget navigate(BuildContext context) {
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setBool(Preferences.is_logged_in, true);
-    });
-
-    Future.delayed(Duration(milliseconds: 0), () {
       Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.home, (Route<dynamic> route) => false);
-    });
-
     return Container();
   }
 }

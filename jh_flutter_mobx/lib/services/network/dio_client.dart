@@ -51,7 +51,7 @@ class DioClient {
   }
 
   // Post:----------------------------------------------------------------------
-  Future<dynamic> post(String uri, dynamic data) async {
+   Future<dynamic> post(String uri, dynamic data) async {
     try {
       final Response response = await dio.post(uri, data: data);
       return response.data;

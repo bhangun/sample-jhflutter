@@ -23,5 +23,9 @@ flutter packages pub run build_runner watch --delete-conflicting-outputs
 flutter packages pub run build_runner watch
 ```
 
+###Testing flutter with driver
+```
+flutter drive --target=test_driver/app.dart
+```
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).

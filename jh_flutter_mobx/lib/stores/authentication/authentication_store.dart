@@ -4,11 +4,13 @@ import 'package:jh_flutter_mobx/models/post/post_list.dart';
 import 'package:jh_flutter_mobx/models/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
 import 'package:jh_flutter_mobx/services/network/dio_client.dart';
+import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/stores/error/error_store.dart';
 import 'package:jh_flutter_mobx/utils/config.dart';
 import 'package:jh_flutter_mobx/utils/helper.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
 
 part 'authentication_store.g.dart';
@@ -38,7 +40,7 @@ abstract class _AuthenticationStore implements Store {
   // store variables:-----------------------------------------------------------
 
   @observable
-  List<User> userList ;//= List<User>();
+  List<User> userList ;
 
   @observable
   String userEmail = '';
@@ -150,16 +152,26 @@ abstract class _AuthenticationStore implements Store {
   Future login(String _username,String _password,[bool _rememberMe=false]) async {
     loading = true;
     
+    //DioClient.fetch('/authenticate');
+
+    /* 
     var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
-  loading = true;
-      success = true;
     final response = await restPost("authenticate", body);
     setPrefs(TOKEN, json.decode(response)["id_token"]);
+ */
 
-    String profile = await restGet(API_ACCOUNT,true,false);
-    setPrefs(PROFILE, profile);
-success = true;
-      errorStore.showError = false;
+    /* String profile = await restGet(API_ACCOUNT,true,false);
+    setPrefs(PROFILE, profile); */
+
+    loading = true;
+    success = true;
+    success = true;
+    errorStore.showError = false;
+
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setBool(Preferences.is_logged_in, true);
+    });
+
     /* Future.delayed(Duration(milliseconds: 2000)).then((future) {
       loading = false;
       success = true;
