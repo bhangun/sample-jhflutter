@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
+import 'package:jh_flutter_mobx/stores/user/user_store.dart';
 import 'package:jh_flutter_mobx/widgets/drawer.dart';
 import 'package:jh_flutter_mobx/widgets/global_methods.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
@@ -17,13 +18,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   //store
   final _store = AuthenticationStore();
+  final _userStore = UserStore();
 
   @override
   void initState() {
     super.initState();
 
     //get all posts
-    _store.getUserList();
+     _userStore.getUserList();
   }
 
   @override
@@ -31,7 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: _buildAppBar(context),
       body: _buildBody(),
-      drawer: CommonDrawer(accountName: 'bhangun',accountEmail: 'blblbl',),
+      drawer:  Observer(
+          builder: (context) {
+            return CommonDrawer(
+        accountName: _userStore.userProfile.firstName, 
+        accountEmail: _userStore.userProfile.email );
+      })
     );
   }
 
@@ -61,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) {
             return _store.loading
                 ? CustomProgressIndicatorWidget()
-                : Material(child: _buildListView());
+                : Material(child: Text('test'));
           },
         ),
         Observer(
@@ -76,32 +83,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildListView() {
-    return _store.userList != null
-        ? ListView.separated(
-            itemCount: _store.userList.length,
-            separatorBuilder: (context, position) {
-              return Divider();
-            },
-            itemBuilder: (context, position) {
-              return ListTile(
-                leading: Icon(Icons.cloud_circle),
-                title: Text(
-                  '${_store.userList[position].firstName}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                subtitle: Text(
-                  '${_store.userList[position].lastName}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  softWrap: false,
-                ),
-              );
-            },
-          )
-        : Center(child: Text('No posts found'));
-  }
+
 }

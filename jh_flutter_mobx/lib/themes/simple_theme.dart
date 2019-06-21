@@ -28,8 +28,7 @@ import 'material_theme_colors.dart';
 final ThemeData simpleTheme = new ThemeData(
     fontFamily: 'ProductSans',
     brightness: Brightness.light,
-    primarySwatch: MaterialColor(
-        MatThemeColors.green[500].value, MatThemeColors.green),
+    primarySwatch: MatThemeColors.green[500],
     primaryColor: MatThemeColors.green[500],
     primaryColorBrightness: Brightness.light,
     accentColor: MatThemeColors.green[500],

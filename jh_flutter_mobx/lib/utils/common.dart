@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:jh_flutter_mobx/models/account/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/utils/config.dart';

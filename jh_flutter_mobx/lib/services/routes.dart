@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_mobx/screens/account/user.detail.dart';
+import 'package:jh_flutter_mobx/screens/account/user.form.dart';
+import 'package:jh_flutter_mobx/screens/account/user.list.dart';
 import 'package:jh_flutter_mobx/screens/home.dart';
 import 'package:jh_flutter_mobx/screens/login.dart';
 import 'package:jh_flutter_mobx/screens/splash.dart';
@@ -11,11 +14,13 @@ class Routes {
   static const String splash = '/splash';
   static const String login = '/login';
   static const String home = '/home';
+  static const String userList = '/user';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
     login: (BuildContext context) => LoginScreen(),
     home: (BuildContext context) => HomeScreen(),
+    userList: (BuildContext context) => UserListPage(),
   };
 }
 

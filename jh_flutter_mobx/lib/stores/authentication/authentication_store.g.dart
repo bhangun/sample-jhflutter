@@ -44,21 +44,6 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
           Computed<bool>(() => super.hasErrorInForgotPassword))
       .value;
 
-  final _$userListAtom = Atom(name: '_AuthenticationStore.userList');
-
-  @override
-  List<User> get userList {
-    _$userListAtom.reportObserved();
-    return super.userList;
-  }
-
-  @override
-  set userList(List<User> value) {
-    _$userListAtom.context.checkIfStateModificationsAreAllowed(_$userListAtom);
-    super.userList = value;
-    _$userListAtom.reportChanged();
-  }
-
   final _$userEmailAtom = Atom(name: '_AuthenticationStore.userEmail');
 
   @override
@@ -175,13 +160,6 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
     return _$registerAsyncAction.run(() => super.register());
   }
 
-  final _$getUserListAsyncAction = AsyncAction('getUserList');
-
-  @override
-  Future<dynamic> getUserList() {
-    return _$getUserListAsyncAction.run(() => super.getUserList());
-  }
-
   final _$loginAsyncAction = AsyncAction('login');
 
   @override
@@ -263,6 +241,16 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
     final _$actionInfo = _$_AuthenticationStoreActionController.startAction();
     try {
       return super.validateConfirmPassword(value);
+    } finally {
+      _$_AuthenticationStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic navigate(BuildContext context) {
+    final _$actionInfo = _$_AuthenticationStoreActionController.startAction();
+    try {
+      return super.navigate(context);
     } finally {
       _$_AuthenticationStoreActionController.endAction(_$actionInfo);
     }

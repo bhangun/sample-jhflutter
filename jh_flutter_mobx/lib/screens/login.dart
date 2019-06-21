@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
             name: 'navigate',
             builder: (context) {
               return _store.success
-                  ? navigate(context)
+                  ? _store.navigate(context)
                   : showErrorMessage(context , _store.errorStore.errorMessage);
             },
           ),
@@ -220,11 +220,5 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
-
-  navigate(BuildContext context) {
-      return Future.delayed(Duration(milliseconds: 0), () {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.home, (Route<dynamic> route) => false); 
-      });
-  }
+  
 }

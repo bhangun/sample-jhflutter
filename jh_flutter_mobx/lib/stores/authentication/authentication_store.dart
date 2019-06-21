@@ -1,10 +1,13 @@
 import 'dart:convert';
 
-import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:flutter/material.dart';
+import 'package:jh_flutter_mobx/models/account/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
+import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/stores/error/error_store.dart';
+import 'package:jh_flutter_mobx/stores/user/user_store.dart';
 import 'package:jh_flutter_mobx/utils/config.dart';
 import 'package:jh_flutter_mobx/utils/helper.dart';
 import 'package:mobx/mobx.dart';
@@ -18,6 +21,7 @@ abstract class _AuthenticationStore implements Store {
 
   // store for handling error messages
   final ErrorStore errorStore = ErrorStore();
+  final UserStore userStore = UserStore();
 
   _AuthenticationStore() {
     _setupValidations();
@@ -35,10 +39,6 @@ abstract class _AuthenticationStore implements Store {
   }
 
   // store variables:-----------------------------------------------------------
-
-  @observable
-  List<User> userList ;
-
   @observable
   String userEmail = '';
 
@@ -140,37 +140,25 @@ abstract class _AuthenticationStore implements Store {
     loading = true;
   }
 
-  @action
-  Future getUserList() async{ 
-    users().then((data)=> userList = data); 
-  }
 
   @action
   Future login(String _username,String _password,[bool _rememberMe=false]) async {
     loading = true;
-    
-    //DioClient.fetch('/authenticate');
+   try {
+      
+      var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
+      
+      final response = restPost("authenticate", body);
+      setPrefs(TOKEN, json.decode(response)["id_token"]);
 
-    
-    var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
-    final response = await restPost("authenticate", body);
-    setPrefs(TOKEN, json.decode(response)["id_token"]);
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setBool(Preferences.is_logged_in, true);
+      });  
 
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setBool(Preferences.is_logged_in, true);
-    });
-    /* String profile = await restGet(API_ACCOUNT,true,false);
-    setPrefs(PROFILE, profile); */
-
-    loading = false;
-    success = true;
-    errorStore.showError = false;
-
-    /* Future.delayed(Duration(milliseconds: 2000)).then((future) {
       loading = false;
       success = true;
       errorStore.showError = false;
-    }).catchError((e) {
+    } catch (e){
       loading = false;
       success = false;
       errorStore.showError = true;
@@ -178,7 +166,15 @@ abstract class _AuthenticationStore implements Store {
           ? "Username and password doesn't match"
           : "Something went wrong, please check your internet connection and try again";
       print(e);
-    }); */
+    };
+  }
+
+  @action
+  navigate(BuildContext context) {
+      return Future.delayed(Duration(milliseconds: 0), () {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.home, (Route<dynamic> route) => false); 
+      });
   }
 
   @action
@@ -188,6 +184,9 @@ abstract class _AuthenticationStore implements Store {
 
   @action
   Future logout() async {
+    SharedPreferences.getInstance().then((preference) {
+              preference.setBool(Preferences.is_logged_in, false);
+    });
     loading = true;
   }
 

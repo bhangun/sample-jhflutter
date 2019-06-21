@@ -13,7 +13,7 @@ restGet(String path, [bool auth = false, bool isBasePath = false]) async {
     "Authorization": "Bearer  ${(auth) ? await prefs('token') : ""}"
   });
 
-  // print(path + '>>> '+response.body );
+   print(path + '>>> '+response.body );
   if (response.statusCode == 200)
     // If the call to the server was successful, parse the JSON
     return response.body;

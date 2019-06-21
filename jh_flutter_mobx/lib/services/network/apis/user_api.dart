@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:jh_flutter_mobx/models/user.dart';
+import 'package:jh_flutter_mobx/models/account/user.dart';
 import 'package:jh_flutter_mobx/services/network/constants/endpoints.dart';
 import 'package:jh_flutter_mobx/services/network/dio_client.dart';
 
