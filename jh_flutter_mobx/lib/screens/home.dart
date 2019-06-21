@@ -1,10 +1,11 @@
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
 import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
+import 'package:jh_flutter_mobx/stores/home/home_store.dart';
 import 'package:jh_flutter_mobx/stores/user/user_store.dart';
+import 'package:jh_flutter_mobx/widgets/appbar_widget.dart';
 import 'package:jh_flutter_mobx/widgets/drawer.dart';
 import 'package:jh_flutter_mobx/widgets/global_methods.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   //store
   final _store = AuthenticationStore();
   final _userStore = UserStore();
+  //final _homeStore = HomeStore();
 
   @override
   void initState() {
@@ -31,7 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(context),
+      //appBar: Atas(),
+      //appBar: KutAppbar(key: Key('appbar'),title: _homeStore.title, context: context),//_buildAppBar(context),
       body: _buildBody(),
       drawer:  Observer(
           builder: (context) {

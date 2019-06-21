@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/screens/account/user.detail.dart';
-import 'package:jh_flutter_mobx/screens/account/user.form.dart';
 import 'package:jh_flutter_mobx/screens/account/user.list.dart';
 import 'package:jh_flutter_mobx/screens/home.dart';
 import 'package:jh_flutter_mobx/screens/login.dart';

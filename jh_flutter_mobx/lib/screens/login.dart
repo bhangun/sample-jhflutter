@@ -1,11 +1,8 @@
-import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_mobx/constants/strings.dart';
-import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
 import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
 import 'package:jh_flutter_mobx/widgets/empty_app_bar_widget.dart';
-import 'package:jh_flutter_mobx/widgets/error_message_widget.dart';
 import 'package:jh_flutter_mobx/widgets/global_methods.dart';
 import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
 import 'package:jh_flutter_mobx/widgets/rounded_button_widget.dart';
@@ -30,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   //store
-  final _store = AuthenticationStore();
+  final _authStore = AuthenticationStore();
 
   @override
   void initState() {
@@ -40,11 +37,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _userEmailController.addListener(() {
       //this will be called whenever user types in some value
-      _store.setUserId(_userEmailController.text);
+      _authStore.setUserId(_userEmailController.text);
     });
     _passwordController.addListener(() {
       //this will be called whenever user types in some value
-      _store.setPassword(_passwordController.text);
+      _authStore.setPassword(_passwordController.text);
     });
   }
 
@@ -94,19 +91,19 @@ class _LoginScreenState extends State<LoginScreen> {
               return child;
             },
           ),
-         /*  Observer(
+          Observer(
             name: 'navigate',
             builder: (context) {
-              return _store.success
-                  ? _store.navigate(context)
-                  : showErrorMessage(context , _store.errorStore.errorMessage);
+              return _authStore.success
+                  ? _authStore.navigate(context)
+                  : showErrorMessage(context , _authStore.errorStore.errorMessage);
             },
-          ), */
+          ),
           Observer(
             name: 'loading',
             builder: (context) {
               return Visibility(
-                visible: _store.loading,
+                visible: _authStore.loading,
                 child: CustomProgressIndicatorWidget(),
               );
             },
@@ -162,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onFieldSubmitted: (value) {
             FocusScope.of(context).requestFocus(_passwordFocusNode);
           },
-          errorText: _store.userEmail,
+          errorText: _authStore.userEmail,
         );
       },
     );
@@ -180,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
           iconColor: Colors.black54,
           textController: _passwordController,
           focusNode: _passwordFocusNode,
-          errorText: _store.password,
+          errorText: _authStore.password,
         );
       },
     );
@@ -209,12 +206,11 @@ class _LoginScreenState extends State<LoginScreen> {
       key: Key('sign_button'),
       buttonText: Strings.login_btn_sign_in,
       buttonColor:  Theme.of(context).buttonColor,
-      //textColor: Colors.white,
       textColor: Theme.of(context).textTheme.button.color,
       onPressed: () async {
-        if (_store.canLogin) {
-          _store.login(_userEmailController.text,_passwordController.text);
-          _store.navigate(context);
+        if (_authStore.canLogin) {
+          _authStore.login(_userEmailController.text,_passwordController.text);
+          //_authStore.navigate(context);
         } else {
           showErrorMessage(context , 'Please fill in all fields');
         }

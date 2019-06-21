@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/models/account/user.dart';
 import 'package:jh_flutter_mobx/services/connection.dart';
 import 'package:jh_flutter_mobx/services/routes.dart';
 import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
-import 'package:jh_flutter_mobx/services/user.helper.dart';
 import 'package:jh_flutter_mobx/stores/error/error_store.dart';
 import 'package:jh_flutter_mobx/stores/user/user_store.dart';
 import 'package:jh_flutter_mobx/utils/config.dart';
@@ -144,6 +142,7 @@ abstract class _AuthenticationStore implements Store {
   @action
   login(String _username,String _password,[bool _rememberMe=false]) async {
     loading = true;
+    success = false;
    try {
       
       var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
@@ -167,15 +166,14 @@ abstract class _AuthenticationStore implements Store {
           ? "Username and password doesn't match"
           : "Something went wrong, please check your internet connection and try again";
       print(e);
-    };
+    }
   }
 
   @action
   navigate(BuildContext context){
-      return //Future.delayed(Duration(milliseconds: 0), () {
+      return 
        Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.home, (Route<dynamic> route) => false); 
-      //});
   }
 
   @action
