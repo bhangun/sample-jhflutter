@@ -24,8 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    //get all posts
-     _userStore.getUserList();
+    //get profile
+     _userStore.getProfile();
   }
 
   @override
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildAppBar(BuildContext context) {
+  _buildAppBar(BuildContext context) {
     return AppBar(
       title: Text('Posts'),
       actions: <Widget>[
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildBody() {
+   _buildBody() {
     return Stack(
       children: <Widget>[
         Observer(

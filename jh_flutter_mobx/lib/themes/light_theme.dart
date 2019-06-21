@@ -46,7 +46,7 @@ TextTheme _buildTextTheme(TextTheme base) {
     ),
   ).apply(
     fontFamily: 'ProductSans',
-    displayColor: MatThemeColors.blue[800],
-    bodyColor: MatThemeColors.blue[800],
+    displayColor: MatThemeColors.blue,
+    bodyColor: MatThemeColors.black,
   );
 }

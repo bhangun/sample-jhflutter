@@ -142,18 +142,19 @@ abstract class _AuthenticationStore implements Store {
 
 
   @action
-  Future login(String _username,String _password,[bool _rememberMe=false]) async {
+  login(String _username,String _password,[bool _rememberMe=false]) async {
     loading = true;
    try {
       
       var body = jsonEncode({"username": _username, "password": _password, "rememberMe": _rememberMe});
       
-      final response = restPost("authenticate", body);
+      final response = await restPost("authenticate", body);
       setPrefs(TOKEN, json.decode(response)["id_token"]);
 
-      SharedPreferences.getInstance().then((prefs) {
-        prefs.setBool(Preferences.is_logged_in, true);
-      });  
+      //SharedPreferences.getInstance().then((prefs) {
+      // SharedPreferences.getInstance().then((p)=>p.setBool(Preferences.is_logged_in, true));
+       // prefs.setBool(Preferences.is_logged_in, true);
+      //});  
 
       loading = false;
       success = true;
@@ -170,11 +171,11 @@ abstract class _AuthenticationStore implements Store {
   }
 
   @action
-  navigate(BuildContext context) {
-      return Future.delayed(Duration(milliseconds: 0), () {
-      Navigator.of(context).pushNamedAndRemoveUntil(
+  navigate(BuildContext context){
+      return //Future.delayed(Duration(milliseconds: 0), () {
+       Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.home, (Route<dynamic> route) => false); 
-      });
+      //});
   }
 
   @action

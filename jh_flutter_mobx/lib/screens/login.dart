@@ -94,14 +94,14 @@ class _LoginScreenState extends State<LoginScreen> {
               return child;
             },
           ),
-          Observer(
+         /*  Observer(
             name: 'navigate',
             builder: (context) {
               return _store.success
                   ? _store.navigate(context)
                   : showErrorMessage(context , _store.errorStore.errorMessage);
             },
-          ),
+          ), */
           Observer(
             name: 'loading',
             builder: (context) {
@@ -208,17 +208,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return RoundedButtonWidget(
       key: Key('sign_button'),
       buttonText: Strings.login_btn_sign_in,
-      buttonColor: Colors.orangeAccent,
+      buttonColor:  Theme.of(context).buttonColor,
       //textColor: Colors.white,
       textColor: Theme.of(context).textTheme.button.color,
       onPressed: () async {
         if (_store.canLogin) {
           _store.login(_userEmailController.text,_passwordController.text);
+          _store.navigate(context);
         } else {
           showErrorMessage(context , 'Please fill in all fields');
         }
       },
     );
   }
-  
+
 }

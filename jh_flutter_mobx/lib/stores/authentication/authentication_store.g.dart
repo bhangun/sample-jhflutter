@@ -163,8 +163,7 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
   final _$loginAsyncAction = AsyncAction('login');
 
   @override
-  Future<dynamic> login(String _username, String _password,
-      [bool _rememberMe = false]) {
+  Future login(String _username, String _password, [bool _rememberMe = false]) {
     return _$loginAsyncAction
         .run(() => super.login(_username, _password, _rememberMe));
   }
