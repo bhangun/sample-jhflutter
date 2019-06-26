@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'exceptions/network_exceptions.dart';
+import 'network_exceptions.dart';
 
 class RestClient {
   // singleton object

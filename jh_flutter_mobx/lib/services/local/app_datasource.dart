@@ -1,7 +1,8 @@
-import 'package:f_logs/data/local/app_database.dart';
-import 'package:jh_flutter_mobx/models/app_data.dart';
-import 'package:jh_flutter_mobx/services/local/constants/db_constants.dart';
 import 'package:sembast/sembast.dart';
+import '../../models/app_data.dart';
+import '../../constants/db_constants.dart';
+import 'app_database.dart';
+
 
 class AppDataSource {
   // A Store with int keys and Map<String, dynamic> values.

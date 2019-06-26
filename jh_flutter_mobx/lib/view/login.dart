@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/constants/strings.dart';
-import 'package:jh_flutter_mobx/stores/authentication/authentication_store.dart';
-import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
-import 'package:jh_flutter_mobx/widgets/empty_app_bar_widget.dart';
-import 'package:jh_flutter_mobx/widgets/global_methods.dart';
-import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
-import 'package:jh_flutter_mobx/widgets/rounded_button_widget.dart';
-import 'package:jh_flutter_mobx/widgets/textfield_widget.dart';
+import 'package:jh_flutter_mobx/services/locator.dart';
+import 'package:jh_flutter_mobx/services/navigation.dart';
+import 'package:jh_flutter_mobx/services/routes.dart';
+import '../constants/strings.dart';
+import '../stores/authentication/authentication_store.dart';
+import '../widgets/app_icon_widget.dart';
+import '../widgets/empty_app_bar_widget.dart';
+import '../widgets/global_methods.dart';
+import '../widgets/progress_indicator_widget.dart';
+import '../widgets/rounded_button_widget.dart';
+import '../widgets/textfield_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -207,10 +210,12 @@ class _LoginScreenState extends State<LoginScreen> {
       buttonText: Strings.login_btn_sign_in,
       buttonColor:  Theme.of(context).buttonColor,
       textColor: Theme.of(context).textTheme.button.color,
-      onPressed: () async {
+      onPressed: () {
         if (_authStore.canLogin) {
           _authStore.login(_userEmailController.text,_passwordController.text);
-          //_authStore.navigate(context);
+          _authStore.navigate(context);
+          //locator<NavigationService>().navigateTo('/home');
+          //Routes.generateRoute('/home');
         } else {
           showErrorMessage(context , 'Please fill in all fields');
         }

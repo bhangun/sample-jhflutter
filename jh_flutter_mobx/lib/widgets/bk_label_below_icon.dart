@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/utils/config.dart';
+import '../services/config.dart';
 
 class LabelBelowIcon extends StatelessWidget {
   final label;

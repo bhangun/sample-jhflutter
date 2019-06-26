@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:jh_flutter_mobx/models/account/user.dart';
-import 'package:jh_flutter_mobx/services/connection.dart';
+import '../models/user.dart';
+
+import 'network/connection.dart';
+
 
 const API_ACCOUNT = 'account';
 

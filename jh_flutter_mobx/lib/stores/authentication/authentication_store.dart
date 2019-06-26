@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/services/connection.dart';
-import 'package:jh_flutter_mobx/services/routes.dart';
-import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
-import 'package:jh_flutter_mobx/stores/error/error_store.dart';
-import 'package:jh_flutter_mobx/stores/user/user_store.dart';
-import 'package:jh_flutter_mobx/utils/config.dart';
-import 'package:jh_flutter_mobx/utils/helper.dart';
+import '../../services/config.dart';
+import '../../services/helper.dart';
+import '../../services/locator.dart';
+import '../../services/navigation.dart';
+import '../../services/network/connection.dart';
+import '../../services/routes.dart';
+import '../../services/sharedpref/constants/preferences.dart';
+import '../../stores/error/error_store.dart';
+import '../../stores/user/user_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -156,8 +158,10 @@ abstract class _AuthenticationStore implements Store {
       //});  
 
       loading = false;
+      loggedIn = true;
       success = true;
       errorStore.showError = false;
+      
     } catch (e){
       loading = false;
       success = false;
@@ -169,7 +173,7 @@ abstract class _AuthenticationStore implements Store {
     }
   }
 
-  @action
+
   navigate(BuildContext context){
       return 
        Navigator.of(context).pushNamedAndRemoveUntil(

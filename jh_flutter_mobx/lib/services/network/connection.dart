@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:jh_flutter_mobx/utils/config.dart';
-import 'package:jh_flutter_mobx/utils/helper.dart';
+
+import '../config.dart';
+import '../helper.dart';
 
 
 //

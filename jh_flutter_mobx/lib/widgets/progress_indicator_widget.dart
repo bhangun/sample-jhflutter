@@ -7,6 +7,7 @@ class CustomProgressIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('--progress--');
     return Align(
       alignment: Alignment.center,
       child: Container(

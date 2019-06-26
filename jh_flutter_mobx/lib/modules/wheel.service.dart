@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import '../../models/wheel.dart';
-import '../../services/connection.dart';
+import 'wheel.dart';
+import '../services/network/connection.dart';
 
 
 // GET getAllWheels

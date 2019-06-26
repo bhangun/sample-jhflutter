@@ -1,5 +1,5 @@
 
-import 'package:jh_flutter_mobx/stores/error/error_store.dart';
+import '../../stores/error/error_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';

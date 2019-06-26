@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:jh_flutter_mobx/stores/user/user_store.dart';
-import 'package:jh_flutter_mobx/widgets/global_methods.dart';
-import 'package:jh_flutter_mobx/widgets/progress_indicator_widget.dart';
+import '../../stores/user/user_store.dart';
+import '../../widgets/global_methods.dart';
+import '../../widgets/progress_indicator_widget.dart';
 import 'user.form.dart';
 
-class UserListPage extends StatefulWidget {
+class UserList extends StatefulWidget {
   final String title;
-  UserListPage({Key key, this.title}) : super(key: key);
+  UserList({Key key, this.title}) : super(key: key);
 
   @override
-  _UserListPageState createState() => _UserListPageState();
+  _UserListState createState() => _UserListState();
 }
 
-class _UserListPageState extends State<UserListPage> {
+class _UserListState extends State<UserList> {
 
   final _userStore = UserStore();
 

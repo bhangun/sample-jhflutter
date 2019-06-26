@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jh_flutter_mobx/services/connection.dart';
-import 'package:jh_flutter_mobx/services/user.helper.dart';
-import 'package:jh_flutter_mobx/utils/common.dart';
+import '../lib/services/network/connection.dart';
+import '../lib/services/user.helper.dart';
+import '../lib/services/common.dart';
 
 void main() {
   group('Authentication', () {

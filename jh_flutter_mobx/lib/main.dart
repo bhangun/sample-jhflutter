@@ -14,10 +14,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jh_flutter_mobx/constants/strings.dart';
-import 'package:jh_flutter_mobx/screens/splash.dart';
-import 'package:jh_flutter_mobx/services/routes.dart';
-import 'package:jh_flutter_mobx/themes/index.dart';
+
+import 'constants/strings.dart';
+import 'view/splash.dart';
+import 'services/locator.dart';
+import 'services/routes.dart';
+import 'themes/light_theme.dart';
+import 'services/navigation.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([
@@ -26,6 +29,7 @@ void main() {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.landscapeLeft,
   ]).then((_) {
+    setupLocator();
     runApp(MyApp());
   });
 }
@@ -40,6 +44,8 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       routes: Routes.routes,
       home: SplashScreen(),
+      navigatorKey: NavigationService.navigatorKey,
+      //onGenerateRoute: Routes.generateRoute,
     );
   }
 }

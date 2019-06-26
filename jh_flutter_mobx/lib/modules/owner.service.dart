@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import '../../models/owner.dart';
-import '../../services/connection.dart';
+import 'owner.dart';
+import '../services/network/connection.dart';
 
 
 // GET getAllOwners

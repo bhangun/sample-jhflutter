@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/constants/strings.dart';
-import 'package:jh_flutter_mobx/services/routes.dart';
-import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
-import 'package:jh_flutter_mobx/widgets/app_icon_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+
+import '../constants/strings.dart';
+import '../services/routes.dart';
+import '../services/sharedpref/constants/preferences.dart';
+import '../widgets/app_icon_widget.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override

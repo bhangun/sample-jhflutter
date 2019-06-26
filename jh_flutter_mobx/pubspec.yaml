@@ -44,6 +44,9 @@ dependencies:
   # Flogs, a powerful logging framework
   f_logs: ^1.1.1
 
+  # dependency injection
+  get_it: ^1.0.3
+
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
   mobx: ^0.1.2

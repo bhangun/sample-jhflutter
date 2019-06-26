@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import '../services/routes.dart';
 
 class CommonDrawer extends StatelessWidget {
   final String accountName;
   final String accountEmail;
-CommonDrawer({this.accountName, this.accountEmail});
+  
+  CommonDrawer({this.accountName, this.accountEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,6 @@ CommonDrawer({this.accountName, this.accountEmail});
       ),
     );
   }
-
-  
 
   Widget _header(String imgPath) => UserAccountsDrawerHeader(
         accountName: Text(
@@ -38,7 +38,7 @@ CommonDrawer({this.accountName, this.accountEmail});
           Icons.person,
           color: Colors.blue,
         ),
-        onTap: () => Navigator.pushNamed(context, path),
+        onTap: () => Navigator.pushReplacementNamed(context, Routes.userList),
       );
 
   _listMenu(BuildContext context) {
@@ -47,14 +47,8 @@ CommonDrawer({this.accountName, this.accountEmail});
     list.add(_listTitle("Register", context,"/users"));
     list.add(_listTitle("User", context,"/users"));
     list.add(_listTitle("Dashboard", context,"/dashboard"));
-    list.add(_listTitle("Logout", context,"/login"));
-    list.add(_listTitle("License", context,"/license"));
-    list.add(_listTitle("Car", context,"/car"));
-    list.add(_listTitle("Owner", context,"/owner"));
-    list.add(_listTitle("Wheel", context,"/wheel"));
-    list.add(_listTitle("Driver", context,"/driver"));
-    list.add(_listTitle("Coba", context,"/coba"));
     // kutilang-needle-add-drawer - Don't remove, used by kutilang to add new list
+    list.add(_listTitle("Logout", context,"/login"));
     return list;
   }
 }

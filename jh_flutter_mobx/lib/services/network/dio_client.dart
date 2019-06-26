@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:jh_flutter_mobx/services/network/constants/endpoints.dart';
-import 'package:jh_flutter_mobx/services/sharedpref/constants/preferences.dart';
+import '../../constants/endpoints.dart';
+import '../../services/sharedpref/constants/preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final Dio dio = new Dio()

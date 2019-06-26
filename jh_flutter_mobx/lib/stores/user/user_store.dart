@@ -1,12 +1,12 @@
 
 import 'dart:convert';
-
-import 'package:jh_flutter_mobx/models/account/user.dart';
-import 'package:jh_flutter_mobx/services/connection.dart';
-import 'package:jh_flutter_mobx/services/user.helper.dart';
-import 'package:jh_flutter_mobx/stores/error/error_store.dart';
-import 'package:jh_flutter_mobx/utils/helper.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../models/user.dart';
+import '../../services/helper.dart';
+import '../../services/network/connection.dart';
+import '../../services/user.helper.dart';
+import '../../stores/error/error_store.dart';
 
 part 'user_store.g.dart';
 
@@ -38,7 +38,6 @@ abstract class _UserStore implements Store {
   @action
   Future getUserList() async{ 
     users().then((data)=> userList = data); 
-    //print(userList[0].firstName);
   }
 
   @action
@@ -47,7 +46,6 @@ abstract class _UserStore implements Store {
       setPrefs(PROFILE, profile);
 
       userProfile = User.fromJson(json.decode(profile));
-      print('<<<<<<<<<<<<<<<<<<< '+userProfile.firstName);
   }
   /* @action
   Future getPosts() async {

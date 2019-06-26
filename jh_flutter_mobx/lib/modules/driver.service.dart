@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import '../../models/driver.dart';
-import '../../services/connection.dart';
+import 'driver.dart';
+import '../services/network/connection.dart';
 
 
 // GET getAllDrivers

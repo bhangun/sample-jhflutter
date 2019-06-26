@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/themes/material_theme_colors.dart';
+import '../themes/material_theme_colors.dart';
 
 final ThemeData darkTheme = _buildTheme();
 

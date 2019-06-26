@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import '../../models/license.dart';
-import '../../services/connection.dart';
+import 'license.dart';
+import '../services/network/connection.dart';
 
 
 // GET getAllLicenses

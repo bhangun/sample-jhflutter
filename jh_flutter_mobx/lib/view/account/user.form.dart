@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_mobx/models/account/user.dart';
-import 'package:jh_flutter_mobx/services/user.helper.dart';
-import 'package:jh_flutter_mobx/utils/helper.dart';
+import '../../models/user.dart';
+import '../../services/user.helper.dart';
+import '../../services/helper.dart';
 
 
 class UserFormPage extends StatefulWidget {
